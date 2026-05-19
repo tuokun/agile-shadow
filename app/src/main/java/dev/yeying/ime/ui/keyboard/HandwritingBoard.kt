@@ -2,7 +2,6 @@ package dev.yeying.ime.ui.keyboard
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectDragGestures
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.yeying.ime.engine.HandwritingEngine
@@ -29,11 +29,12 @@ fun HandwritingBoard(
     modifier: Modifier = Modifier,
     onCandidateSelected: (String) -> Unit = {},
 ) {
-    val engine = remember { HandwritingEngine() }
+    val context = LocalContext.current
+    val engine = remember { HandwritingEngine().also { it.init(context) } }
     var paths by remember { mutableStateOf(listOf<List<Offset>>()) }
     var currentPath by remember { mutableStateOf(listOf<Offset>()) }
     var candidates by remember { mutableStateOf(listOf<List<String>>()) }
-    var points by remember { mutableStateOf(mutableListOf<Int>()) }
+    val points = remember { mutableListOf<Int>() }
 
     Column(modifier = modifier.fillMaxWidth()) {
         Canvas(
@@ -44,25 +45,21 @@ fun HandwritingBoard(
                     detectDragGestures(
                         onDragStart = { offset ->
                             currentPath = listOf(offset)
-                            points = mutableListOf(
-                                offset.x.toInt(),
-                                offset.y.toInt()
-                            )
+                            points.clear()
+                            points.add(offset.x.toInt())
+                            points.add(offset.y.toInt())
                         },
                         onDrag = { change, _ ->
                             change.consume()
                             currentPath = currentPath + change.position
-                            (points as MutableList).apply {
-                                add(change.position.x.toInt())
-                                add(change.position.y.toInt())
-                            }
+                            points.add(change.position.x.toInt())
+                            points.add(change.position.y.toInt())
                         },
                         onDragEnd = {
-                            paths = paths + listOf(currentPath)
+                            paths = paths + currentPath
                             currentPath = emptyList()
                             val result = engine.recognize(points.toIntArray())
                             candidates = result
-                            points = mutableListOf()
                             paths = emptyList()
                         },
                     )

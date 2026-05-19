@@ -2,7 +2,6 @@ package dev.yeying.ime.data.clipboard
 
 import androidx.room.Dao
 import androidx.room.Database
-import androidx.room.Delete
 import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.PrimaryKey

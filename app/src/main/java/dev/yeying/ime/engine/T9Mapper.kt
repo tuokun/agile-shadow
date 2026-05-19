@@ -13,7 +13,7 @@ object T9Mapper {
         'w' to 'W', 'x' to 'W', 'y' to 'W', 'z' to 'W',
     )
 
-    private val pinyinMap = mapOf(
+    private val rawPinyinMap = mapOf(
         "A" to "a,b,c",
         "D" to "e,d,f",
         "G" to "g,h,i",
@@ -241,16 +241,19 @@ object T9Mapper {
         "WGTAMG" to "zhuang",
     )
 
+    private val pinyinMap: Map<String, List<String>> =
+        rawPinyinMap.mapValues { it.value.split(",") }
+
     fun t9ToPinyin(t9Sequence: String): Array<String> {
         if (t9Sequence.isEmpty()) return emptyArray()
-        val key = t9Sequence.take(6)
+        val key = t9Sequence.take(7)
         val result = mutableListOf<String>()
         for (length in key.length downTo 1) {
             pinyinMap[key.substring(0, length)]?.let { value ->
-                result.add(value)
+                result.addAll(value)
             }
         }
-        return result.flatMap { it.split(",") }.toTypedArray()
+        return result.toTypedArray()
     }
 
     fun pinyinToT9(pinyin: String): String =

@@ -25,21 +25,13 @@ class KeyboardViewModel : ViewModel() {
         if (!engine.isInitialized) return
 
         engine.processKey(action.keycode, action.mask)
-
-        val commit = engine.getCommit()
-        if (commit != null && commit.commitText.isNotEmpty()) {
-            engine.clearComposition()
-        }
-
+        engine.commitIfNeeded()
         refreshState()
     }
 
     private fun handleCandidateSelect(action: KeyboardAction.CandidateSelect) {
         RimeEngine.instance.selectCandidate(action.index)
-        val commit = RimeEngine.instance.getCommit()
-        if (commit != null && commit.commitText.isNotEmpty()) {
-            // TODO: 提交文本
-        }
+        RimeEngine.instance.commitIfNeeded()
         refreshState()
     }
 

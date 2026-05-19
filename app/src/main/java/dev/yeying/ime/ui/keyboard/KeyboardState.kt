@@ -9,8 +9,6 @@ data class KeyboardState(
     val activeKeyboard: KeyboardType = KeyboardType.QWERTY,
     val candidates: List<CandidateListItem> = emptyList(),
     val composingText: String = "",
-    val capsState: CapsState = CapsState.NONE,
-    val symbolPage: Int = 0,
     val hasNextPage: Boolean = false,
     val page: Int = 0,
 )

@@ -53,12 +53,19 @@ class RimeEngine private constructor() {
     fun setOption(option: String, value: Boolean) =
         Rime.setRimeOption(option, value)
 
+    fun commitIfNeeded() {
+        val commit = getCommit()
+        if (commit != null && commit.commitText.isNotEmpty()) {
+            clearComposition()
+        }
+    }
+
     private fun copyAssetsToShared(context: Context): String {
         val sharedDir = File(context.filesDir, "rime/shared")
         val versionFile = File(sharedDir, "rime_version.txt")
-        val currentVersion = readAssetVersion(context)
 
-        if (!sharedDir.exists() || readVersion(versionFile) != currentVersion) {
+        if (!sharedDir.exists() || readVersion(versionFile) != readAssetVersion(context)) {
+            val currentVersion = readAssetVersion(context)
             copyAssetDir(context, "rime", sharedDir)
             versionFile.writeText(currentVersion.toString())
         }
@@ -72,7 +79,11 @@ class RimeEngine private constructor() {
     }
 
     private fun readVersion(file: File): Int {
-        return if (file.exists()) file.readText().trim().toIntOrNull() ?: 0 else 0
+        return try {
+            file.readText().trim().toIntOrNull() ?: 0
+        } catch (_: Exception) {
+            0
+        }
     }
 
     private fun copyAssetDir(context: Context, assetPath: String, dest: File) {
@@ -82,7 +93,7 @@ class RimeEngine private constructor() {
         for (file in files) {
             val src = "$assetPath/$file"
             val dst = File(dest, file)
-            if (assetManager.list(src)?.isNotEmpty() == true) {
+            if (assetManager.list(src) != null) {
                 copyAssetDir(context, src, dst)
             } else {
                 assetManager.open(src).use { input ->

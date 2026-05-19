@@ -10,8 +10,8 @@ data class SchemaItem(
 
 @Keep
 data class CandidateListItem(
-    var comment: String,
-    var text: String,
+    val comment: String,
+    val text: String,
 )
 
 @Keep

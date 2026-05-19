@@ -103,7 +103,7 @@ fun SymbolPanel(
                         modifier = Modifier
                             .size(32.dp)
                             .clickable {
-                                val code = symbol[0].code
+                                val code = symbol.codePointAt(0)
                                 viewModel.onAction(KeyboardAction.KeyPress(code))
                             },
                         contentAlignment = Alignment.Center,
