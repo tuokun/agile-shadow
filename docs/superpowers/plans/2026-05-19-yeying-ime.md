@@ -448,8 +448,94 @@ git add app/src/main/java/dev/yeying/ime/engine/RimeEngine.kt
 git commit -m "feat: adopt Rime JNI bridge from yuyan, add RimeEngine wrapper"
 ```
 
+
+### Task 5: Rime 词库部署
+
+**策略**: 词库采用 rime-ice 雾凇拼音源文件，首次运行时由 Rime 编译为 `.table.bin`。版本号管理增量升级，不覆盖用户自定义文件。
+
+**Files:**
+- Copy: rime-ice 词库文件 → `app/src/main/assets/rime/`
+- Create: `app/src/main/assets/rime/rime_version.txt`
+
+- [ ] **Step 1: 从 rime-ice 复制词库文件**
+
+来源: `D:/Dev/project/ime/rime-ice/`
+
+```
+assets/rime/
+  ├─ rime_version.txt               ← 自建，内容 "1"
+  ├─ rime_ice.schema.yaml           ← 主拼音方案
+  ├─ rime_ice.dict.yaml             ← 主词库入口
+  ├─ t9.schema.yaml                 ← T9 方案（继承 rime_ice）
+  ├─ melt_eng.schema.yaml           ← 英文方案
+  ├─ melt_eng.dict.yaml             ← 英文词库
+  ├─ radical_pinyin.schema.yaml     ← 部首查字（rime_ice 依赖）
+  ├─ radical_pinyin.dict.yaml       ← 部首词库
+  ├─ symbols_v.yaml                 ← v 模式符号
+  ├─ default.yaml                   ← 全局配置（自定义）
+  ├─ custom_phrase.txt              ← 用户短语模板
+  ├─ cn_dicts/
+  │    ├─ 8105.dict.yaml            (123KB)
+  │    ├─ base.dict.yaml            (17.2MB)
+  │    ├─ ext.dict.yaml             (12.3MB)
+  │    ├─ tencent.dict.yaml         (18.3MB)
+  │    └─ others.dict.yaml          (18KB)
+  ├─ en_dicts/
+  │    ├─ en.dict.yaml              (387KB)
+  │    ├─ en_ext.dict.yaml          (52KB)
+  │    └─ cn_en.txt                 (17KB)
+  └─ opencc/
+       ├─ emoji.json + emoji.txt    (138KB)
+       └─ others.txt                (47KB)
+```
+
+> **不纳入**: `cn_dicts/41448.dict.yaml`（默认注释掉）、全部 `double_pinyin_*`（7 个双拼方案）、`en_dicts/cn_en_*.txt`（双拼变体）、`others/`（Hamster 等桌面端配置）、`squirrel.yaml` / `weasel.yaml`。
+
+- [ ] **Step 2: 更新 RimeEngine 版本管理逻辑**
+
+```kotlin
+// RimeEngine.kt — copyAssetsToShared 改为版本感知
+
+private fun copyAssetsToShared(context: Context): String {
+    val sharedDir = File(context.filesDir, "rime/shared")
+    val versionFile = File(sharedDir, "rime_version.txt")
+    val currentVersion = readAssetVersion(context)
+
+    if (!sharedDir.exists() || readVersion(versionFile) != currentVersion) {
+        // 覆盖内置文件，但不删除用户可能放进去的额外文件
+        copyAssetDir(context, "rime", sharedDir)
+        versionFile.writeText(currentVersion.toString())
+    }
+    return sharedDir.absolutePath
+}
+
+private fun readAssetVersion(context: Context): Int {
+    return context.assets.open("rime/rime_version.txt").bufferedReader().use {
+        it.readText().trim().toIntOrNull() ?: 1
+    }
+}
+
+private fun readVersion(file: File): Int {
+    return if (file.exists()) file.readText().trim().toIntOrNull() ?: 0 else 0
+}
+```
+
+> **原则**: 升级时覆盖 shared_dir，user_dir 永不触碰。Rime 首次编译 `.dict.yaml` → `.table.bin` 耗时 30s–2min，后续启动即用。
+
+- [ ] **Step 3: 自定义 default.yaml**
+
+从 rime-ice 的 `default.yaml` 精简，只启用 `rime_ice` 和 `t9` 两个 schema，去掉双拼方案列表。
+
+- [ ] **Step 4: 提交**
+
+```bash
+git add app/src/main/assets/rime/
+git commit -m "feat: add rime-ice dictionary assets with version management"
+```
+
 ---
-### Task 5: T9 拼音映射
+---
+### Task 6: T9 拼音映射
 
 **Files:**
 - Create: `app/src/main/java/dev/yeying/ime/engine/T9Mapper.kt`
@@ -507,11 +593,112 @@ git add app/src/main/java/dev/yeying/ime/engine/T9Mapper.kt
 git commit -m "feat: add T9 pinyin mapping"
 ```
 
+
+### Task 7: 核心单元测试
+
+**策略**: 只测自有逻辑，不测 JNI 桥接和 UI 视觉效果。覆盖 T9Mapper 映射和 KeyboardViewModel 状态迁移。
+
+**Files:**
+- Create: `app/src/test/java/dev/yeying/ime/engine/T9MapperTest.kt`
+- Create: `app/src/test/java/dev/yeying/ime/ui/keyboard/KeyboardViewModelTest.kt`
+
+- [ ] **Step 1: 添加测试依赖**
+
+在 `app/build.gradle.kts` 中添加：
+
+```kotlin
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.1")
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+}
+```
+
+- [ ] **Step 2: T9Mapper 测试**
+
+```kotlin
+package dev.yeying.ime.engine
+
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.*
+
+class T9MapperTest {
+
+    @Test
+    fun `single key D returns e d f`() {
+        val result = T9Mapper.t9ToPinyin("D")
+        assertArrayEquals(arrayOf("e", "d", "f"), result)
+    }
+
+    @Test
+    fun `sequence ADG returns bei ben etc`() {
+        val result = T9Mapper.t9ToPinyin("ADG")
+        assertTrue(result.contains("bei"))
+        assertTrue(result.contains("ben"))
+    }
+
+    @Test
+    fun `pinyin to T9 reverse mapping`() {
+        assertEquals("ADG", T9Mapper.pinyinToT9("bei"))
+    }
+
+    @Test
+    fun `empty sequence returns empty`() {
+        val result = T9Mapper.t9ToPinyin("")
+        assertEquals(0, result.size)
+    }
+}
+```
+
+- [ ] **Step 3: KeyboardViewModel 状态迁移测试**
+
+```kotlin
+package dev.yeying.ime.ui.keyboard
+
+import app.cash.turbine.test
+import dev.yeying.ime.engine.RimeEngine
+import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.*
+
+class KeyboardViewModelTest {
+
+    @Test
+    fun `switch keyboard updates state`() = runTest {
+        val vm = KeyboardViewModel()
+        vm.state.test {
+            assertEquals(KeyboardType.QWERTY, awaitItem().activeKeyboard)
+            vm.onAction(KeyboardAction.SwitchKeyboard(KeyboardType.T9))
+            assertEquals(KeyboardType.T9, awaitItem().activeKeyboard)
+        }
+    }
+
+    @Test
+    fun `clear composition action`() = runTest {
+        val vm = KeyboardViewModel()
+        vm.onAction(KeyboardAction.ClearComposition)
+        val state = vm.state.value
+        assertEquals("", state.composingText)
+        assertTrue(state.candidates.isEmpty())
+    }
+}
+```
+
+> **不测**: Rime JNI 调用（二进制接口）、Compose UI 布局（Preview 足够）、视觉效果。
+
+- [ ] **Step 4: 提交**
+
+```bash
+git add app/src/test/
+git commit -m "test: add core unit tests for T9Mapper and KeyboardViewModel"
+```
+
+---
 ---
 
 ## Phase 3: 桥接层
 
-### Task 6: InputMethodService + ComposeView 桥接
+### Task 8: InputMethodService + ComposeView 桥接
 
 **Files:**
 - Create: `app/src/main/java/dev/yeying/ime/YeyingImeService.kt`
@@ -657,7 +844,7 @@ git commit -m "feat: add InputMethodService with Compose bridge"
 
 ## Phase 4: 主题系统
 
-### Task 7: Liquid Glass 效果
+### Task 9: Liquid Glass 效果
 
 **Files:**
 - Create: `app/src/main/java/dev/yeying/ime/ui/theme/LiquidGlass.kt`
@@ -815,26 +1002,25 @@ git commit -m "feat: add Liquid Glass modifier and theme"
 ---
 
 ## Phase 5: 基础键盘 UI
+## Phase 5: 输入管线 + 基础键盘 UI
 
-### Task 8: 键盘状态管理
+### Task 10: 输入管线 ViewModel
+
+**职责**: 创建 `KeyboardViewModel`，作为输入法核心逻辑的唯一持有者。所有 UI 事件通过 `KeyboardAction` 流入，处理后更新 `KeyboardState`，Compose 自动重组。
 
 **Files:**
 - Create: `app/src/main/java/dev/yeying/ime/ui/keyboard/KeyboardState.kt`
+- Create: `app/src/main/java/dev/yeying/ime/ui/keyboard/KeyboardViewModel.kt`
 
-- [ ] **Step 1: 定义键盘状态和类型**
+- [ ] **Step 1: 定义状态类型和 Action**
 
 ```kotlin
 package dev.yeying.ime.ui.keyboard
 
 import dev.yeying.ime.engine.CandidateItem
 
-enum class KeyboardType {
-    T9, QWERTY, ENGLISH, SYMBOL, HANDWRITING,
-}
-
-enum class CapsState {
-    NONE, ONCE, LOCK,
-}
+enum class KeyboardType { T9, QWERTY, ENGLISH, SYMBOL, HANDWRITING }
+enum class CapsState { NONE, ONCE, LOCK }
 
 data class KeyboardState(
     val activeKeyboard: KeyboardType = KeyboardType.QWERTY,
@@ -845,24 +1031,114 @@ data class KeyboardState(
     val hasNextPage: Boolean = false,
     val page: Int = 0,
 )
+
+sealed class KeyboardAction {
+    data class KeyPress(val keycode: Int, val mask: Int = 0) : KeyboardAction()
+    data class CandidateSelect(val index: Int) : KeyboardAction()
+    data class SwitchKeyboard(val type: KeyboardType) : KeyboardAction()
+    data object ClearComposition : KeyboardAction()
+}
 ```
 
-- [ ] **Step 2: 提交**
+- [ ] **Step 2: 实现 KeyboardViewModel**
+
+```kotlin
+package dev.yeying.ime.ui.keyboard
+
+import androidx.lifecycle.ViewModel
+import dev.yeying.ime.engine.RimeEngine
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
+
+class KeyboardViewModel : ViewModel() {
+
+    private val _state = MutableStateFlow(KeyboardState())
+    val state: StateFlow<KeyboardState> = _state
+
+    fun onAction(action: KeyboardAction) {
+        when (action) {
+            is KeyboardAction.KeyPress -> handleKeyPress(action)
+            is KeyboardAction.CandidateSelect -> handleCandidateSelect(action)
+            is KeyboardAction.SwitchKeyboard -> handleSwitchKeyboard(action)
+            is KeyboardAction.ClearComposition -> handleClearComposition()
+        }
+    }
+
+    private fun handleKeyPress(action: KeyboardAction.KeyPress) {
+        val engine = RimeEngine.instance
+        if (!engine.isInitialized) return
+
+        engine.processKey(action.keycode, action.mask)
+
+        val commit = engine.getCommit()
+        if (commit != null && commit.commitText.isNotEmpty()) {
+            // TODO: 通过 IME service 提交文本 (Phase 3 实现)
+            engine.clearComposition()
+        }
+
+        refreshState()
+    }
+
+    private fun handleCandidateSelect(action: KeyboardAction.CandidateSelect) {
+        RimeEngine.instance.selectCandidate(action.index)
+        val commit = RimeEngine.instance.getCommit()
+        if (commit != null && commit.commitText.isNotEmpty()) {
+            // TODO: 提交文本
+        }
+        refreshState()
+    }
+
+    private fun handleSwitchKeyboard(action: KeyboardAction.SwitchKeyboard) {
+        _state.update { it.copy(activeKeyboard = action.type) }
+    }
+
+    private fun handleClearComposition() {
+        RimeEngine.instance.clearComposition()
+        refreshState()
+    }
+
+    private fun refreshState() {
+        val ctx = RimeEngine.instance.getContext()
+        val status = RimeEngine.instance.getStatus()
+        _state.update { s ->
+            s.copy(
+                candidates = ctx?.candidates?.toList() ?: emptyList(),
+                composingText = ctx?.composition?.preedit ?: "",
+                hasNextPage = ctx?.menu?.isLastPage == false,
+                page = ctx?.menu?.pageNo ?: 0,
+            )
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        // ViewModel 销毁时不清除 RimeEngine，它由 IME Service 生命周期管理
+    }
+}
+```
+
+> **注意**: `commitText()` 调用依赖 `InputMethodService.currentInputConnection`，在 Compose 侧通过回调传递给 ViewModel。具体桥接方式在 Task 6 中实现。
+
+- [ ] **Step 3: 提交**
 
 ```bash
 git add app/src/main/java/dev/yeying/ime/ui/keyboard/KeyboardState.kt
-git commit -m "feat: add keyboard state types"
+git add app/src/main/java/dev/yeying/ime/ui/keyboard/KeyboardViewModel.kt
+git commit -m "feat: add input pipeline ViewModel"
 ```
 
 ---
 
-### Task 9: 全键 QWERTY 键盘
+### Task 11: 全键 QWERTY 键盘
+
+**职责**: 纯 UI Composable，接收 `KeyboardViewModel`，画按键布局，发 `KeyboardAction.KeyPress`。不做任何引擎调用或状态管理。
 
 **Files:**
-- Create: `app/src/main/java/dev/yeying/ime/ui/keyboard/QwertyKeyboard.kt`
 - Create: `app/src/main/java/dev/yeying/ime/ui/keyboard/KeyLayout.kt`
+- Create: `app/src/main/java/dev/yeying/ime/ui/keyboard/QwertyKeyboard.kt`
 
-- [ ] **Step 1: 定义按键数据**
+- [ ] **Step 1: 定义按键数据和布局**
 
 ```kotlin
 package dev.yeying.ime.ui.keyboard
@@ -873,87 +1149,55 @@ import androidx.compose.ui.unit.dp
 data class KeyDef(
     val label: String,
     val code: Int,
-    val width: Dp = 0.dp, // 0 表示弹性宽度
+    val width: Dp = 0.dp, // 0 = 弹性宽度
     val isRepeatable: Boolean = false,
 )
 
 object QwertyLayout {
 
     val row1 = listOf(
-        KeyDef("q", KEYCODE_Q), KeyDef("w", KEYCODE_W),
-        KeyDef("e", KEYCODE_E), KeyDef("r", KEYCODE_R),
-        KeyDef("t", KEYCODE_T), KeyDef("y", KEYCODE_Y),
-        KeyDef("u", KEYCODE_U), KeyDef("i", KEYCODE_I),
-        KeyDef("o", KEYCODE_O), KeyDef("p", KEYCODE_P),
+        KeyDef("q", 'q'.code), KeyDef("w", 'w'.code),
+        KeyDef("e", 'e'.code), KeyDef("r", 'r'.code),
+        KeyDef("t", 't'.code), KeyDef("y", 'y'.code),
+        KeyDef("u", 'u'.code), KeyDef("i", 'i'.code),
+        KeyDef("o", 'o'.code), KeyDef("p", 'p'.code),
     )
 
     val row2 = listOf(
-        KeyDef("a", KEYCODE_A), KeyDef("s", KEYCODE_S),
-        KeyDef("d", KEYCODE_D), KeyDef("f", KEYCODE_F),
-        KeyDef("g", KEYCODE_G), KeyDef("h", KEYCODE_H),
-        KeyDef("j", KEYCODE_J), KeyDef("k", KEYCODE_K),
-        KeyDef("l", KEYCODE_L),
+        KeyDef("a", 'a'.code), KeyDef("s", 's'.code),
+        KeyDef("d", 'd'.code), KeyDef("f", 'f'.code),
+        KeyDef("g", 'g'.code), KeyDef("h", 'h'.code),
+        KeyDef("j", 'j'.code), KeyDef("k", 'k'.code),
+        KeyDef("l", 'l'.code),
     )
 
     val row3 = listOf(
         KeyDef("⇧", KEYCODE_SHIFT),
-        KeyDef("z", KEYCODE_Z), KeyDef("x", KEYCODE_X),
-        KeyDef("c", KEYCODE_C), KeyDef("v", KEYCODE_V),
-        KeyDef("b", KEYCODE_B), KeyDef("n", KEYCODE_N),
-        KeyDef("m", KEYCODE_M),
+        KeyDef("z", 'z'.code), KeyDef("x", 'x'.code),
+        KeyDef("c", 'c'.code), KeyDef("v", 'v'.code),
+        KeyDef("b", 'b'.code), KeyDef("n", 'n'.code),
+        KeyDef("m", 'm'.code),
         KeyDef("⌫", KEYCODE_DELETE, isRepeatable = true),
     )
 
     val row4 = listOf(
         KeyDef("?123", KEYCODE_SYMBOL),
         KeyDef(",", KEYCODE_COMMA, width = 40.dp),
-        KeyDef("空格", KEYCODE_SPACE),
+        KeyDef("空格", KEYCODE_SPACE = 32),
         KeyDef(".", KEYCODE_PERIOD, width = 40.dp),
         KeyDef("↵", KEYCODE_ENTER),
     )
 
     val rows = listOf(row1, row2, row3, row4)
 }
-
-// Keycode constants
-const val KEYCODE_A = 29
-const val KEYCODE_B = 30
-// ... 完整 A-Z
-const val KEYCODE_Q = 45
-const val KEYCODE_W = 51
-const val KEYCODE_E = 33
-const val KEYCODE_R = 46
-const val KEYCODE_T = 48
-const val KEYCODE_Y = 53
-const val KEYCODE_U = 49
-const val KEYCODE_I = 37
-const val KEYCODE_O = 43
-const val KEYCODE_P = 44
-const val KEYCODE_S = 47
-const val KEYCODE_D = 32
-const val KEYCODE_F = 34
-const val KEYCODE_G = 35
-const val KEYCODE_H = 36
-const val KEYCODE_J = 38
-const val KEYCODE_K = 39
-const val KEYCODE_L = 40
-const val KEYCODE_Z = 54
-const val KEYCODE_X = 52
-const val KEYCODE_C = 31
-const val KEYCODE_V = 50
-const val KEYCODE_N = 42
-const val KEYCODE_M = 41
-
+```
+// 特殊功能键常量 — 负值不会被 Rime 处理，在 KeyboardViewModel 中拦截
 const val KEYCODE_SHIFT = -1
 const val KEYCODE_DELETE = -2
-const val KEYCODE_SPACE = 62
-const val KEYCODE_ENTER = 66
-const val KEYCODE_COMMA = 55
-const val KEYCODE_PERIOD = 56
 const val KEYCODE_SYMBOL = -3
-```
 
-> **注意:** Android KeyEvent keycode 值来自 `android.view.KeyEvent.KEYCODE_*`。此处使用 int 常量以便传递给 Rime 引擎。完整常量列表参照 `android.view.KeyEvent`。
+
+> **编码策略**: KeyDef.code 直接存储 Rime 所需的字符码点。字母键存 ASCII 小写（`'q'.code`=113），T9 分组键存 ASCII 大写（`'D'.code`=68）。特殊功能键用负值：SHIFT=-1, DELETE=-2, SYMBOL=-3。无需 Android KeyEvent 映射层。
 
 - [ ] **Step 2: 实现 QWERTY 键盘 Composable**
 
@@ -963,6 +1207,8 @@ package dev.yeying.ime.ui.keyboard
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -970,9 +1216,11 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun QwertyKeyboard(
-    onKey: (KeyDef) -> Unit,
+    viewModel: KeyboardViewModel,
     modifier: Modifier = Modifier,
 ) {
+    val state by viewModel.state.collectAsState()
+
     Column(
         modifier = modifier.fillMaxWidth().padding(horizontal = 4.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -986,7 +1234,7 @@ fun QwertyKeyboard(
                 row.forEach { key ->
                     KeyButton(
                         key = key,
-                        onClick = { onKey(key) },
+                        onClick = { viewModel.onAction(KeyboardAction.KeyPress(key.code)) },
                         modifier = Modifier.weight(if (key.width == 0.dp) 1f else 0f),
                     )
                 }
@@ -1004,9 +1252,7 @@ private fun KeyButton(
     Box(
         modifier = modifier
             .height(44.dp)
-            .then(if (key.width > 0.dp) Modifier.width(key.width) else Modifier)
-            // 点击和外观实现
-            ,
+            .then(if (key.width > 0.dp) Modifier.width(key.width) else Modifier),
         contentAlignment = Alignment.Center,
     ) {
         Text(text = key.label, fontSize = 18.sp)
@@ -1014,16 +1260,21 @@ private fun KeyButton(
 }
 ```
 
+> **注意**: `KeyButton` 为简单占位，完整实现（点击态、Liquid Glass 背景、按键振动）在后续 Task 中补充。
+
 - [ ] **Step 3: 提交**
 
 ```bash
-git add app/src/main/java/dev/yeying/ime/ui/keyboard/
+git add app/src/main/java/dev/yeying/ime/ui/keyboard/KeyLayout.kt
+git add app/src/main/java/dev/yeying/ime/ui/keyboard/QwertyKeyboard.kt
 git commit -m "feat: add QWERTY keyboard layout and composable"
 ```
 
 ---
 
-### Task 10: 候选词栏
+### Task 12: 候选词栏
+
+**职责**: 纯 UI Composable，显示 composing text 和候选词列表，点击候选词发 `KeyboardAction.CandidateSelect`。
 
 **Files:**
 - Create: `app/src/main/java/dev/yeying/ime/ui/candidate/CandidateBar.kt`
@@ -1035,50 +1286,51 @@ package dev.yeying.ime.ui.candidate
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.yeying.ime.engine.CandidateItem
-import dev.yeying.ime.ui.theme.liquidGlass
+import dev.yeying.ime.ui.keyboard.KeyboardViewModel
+import dev.yeying.ime.ui.keyboard.KeyboardAction
 
 @Composable
 fun CandidateBar(
-    composingText: String,
-    candidates: List<CandidateItem>,
-    onSelect: (index: Int) -> Unit,
+    viewModel: KeyboardViewModel,
     modifier: Modifier = Modifier,
 ) {
+    val state by viewModel.state.collectAsState()
+
     Row(
         modifier = modifier
             .fillMaxWidth()
             .height(40.dp)
-            .liquidGlass(cornerRadius = 0.dp)
             .padding(horizontal = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (composingText.isNotEmpty()) {
+        if (state.composingText.isNotEmpty()) {
             Text(
-                text = composingText,
+                text = state.composingText,
                 fontSize = 14.sp,
                 modifier = Modifier.padding(end = 8.dp),
             )
         }
 
-        LazyRow(
+        Row(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            itemsIndexed(candidates) { index, candidate ->
+            state.candidates.forEachIndexed { index, candidate ->
                 Text(
-                    text = candidate.text,
+                    text = "${index + 1}. ${candidate.text}",
                     fontSize = 16.sp,
-                    modifier = Modifier
-                        // clickable { onSelect(index) }
-                        ,
+                    modifier = Modifier.clickable {
+                        viewModel.onAction(KeyboardAction.CandidateSelect(index))
+                    }
                 )
             }
         }
@@ -1090,14 +1342,13 @@ fun CandidateBar(
 
 ```bash
 git add app/src/main/java/dev/yeying/ime/ui/candidate/CandidateBar.kt
-git commit -m "feat: add candidate bar with Liquid Glass"
+git commit -m "feat: add candidate bar"
 ```
 
 ---
-
 ## Phase 6: T9 九键键盘
 
-### Task 11: T9 键盘 UI
+### Task 13: T9 键盘 UI
 
 **Files:**
 - Create: `app/src/main/java/dev/yeying/ime/ui/keyboard/T9Keyboard.kt`
@@ -1139,16 +1390,16 @@ object T9Layout {
     val rows = listOf(row1, row2, row3)
 }
 
-const val KEYCODE_T9_2 = 200
-const val KEYCODE_T9_3 = 201
-const val KEYCODE_T9_4 = 202
-const val KEYCODE_T9_5 = 203
-const val KEYCODE_T9_6 = 204
-const val KEYCODE_T9_7 = 205
-const val KEYCODE_T9_8 = 206
-const val KEYCODE_T9_9 = 207
-const val KEYCODE_QUOTE = 208
-const val KEYCODE_CLEAR = 209
+const val KEYCODE_T9_2 = 'A'.code  // ABC/2
+const val KEYCODE_T9_3 = 'D'.code  // DEF/3
+const val KEYCODE_T9_4 = 'G'.code  // GHI/4
+const val KEYCODE_T9_5 = 'J'.code  // JKL/5
+const val KEYCODE_T9_6 = 'M'.code  // MNO/6
+const val KEYCODE_T9_7 = 'P'.code  // PQRS/7
+const val KEYCODE_T9_8 = 'T'.code  // TUV/8
+const val KEYCODE_T9_9 = 'W'.code  // WXYZ/9
+const val KEYCODE_QUOTE = '"'.code
+const val KEYCODE_CLEAR = -10
 ```
 
 - [ ] **Step 2: 实现 T9 键盘 Composable**
@@ -1170,7 +1421,7 @@ git commit -m "feat: add T9 keyboard layout and input chain"
 
 ## Phase 7: 符号/Emoji 面板
 
-### Task 12: 符号面板
+### Task 14: 符号面板
 
 **Files:**
 - Create: `app/src/main/java/dev/yeying/ime/ui/symbol/SymbolPanel.kt`
@@ -1194,7 +1445,7 @@ git commit -m "feat: add symbol and emoji panel"
 
 ## Phase 8: 手写输入
 
-### Task 13: 手写输入（采纳 yuyan + 搜狗 .so 链）
+### Task 15: 手写输入（采纳 yuyan + 搜狗 .so 链）
 
 **策略**: 手写链路涉及 `libhandwriting.so` → `libhwInterface.so` → `libgpen_handwriter.so` + `libSogouShell.so` 等 5 个 .so，依赖关系复杂。JNI 声明从 yuyan 直接采纳（`com.yuyan.inputmethod.core.HandWriting`），HandwritingEngine 封装层自行编写。
 
@@ -1258,7 +1509,7 @@ git commit -m "feat: adopt handwriting JNI bridge from yuyan, add HandwritingEng
 ```
 
 ---
-### Task 14: 设置页面
+### Task 16: 设置页面
 
 **Files:**
 - Create: `app/src/main/java/dev/yeying/ime/ui/settings/SettingsActivity.kt`
@@ -1287,7 +1538,7 @@ git commit -m "feat: add settings page with dictionary management"
 
 ## Phase 10: 剪贴板
 
-### Task 15: 剪贴板管理
+### Task 17: 剪贴板管理
 
 **Files:**
 - Create: `app/src/main/java/dev/yeying/ime/data/clipboard/ClipboardDatabase.kt`
@@ -1343,16 +1594,16 @@ git commit -m "feat: add clipboard management with Room DB"
 ## 实现顺序总结
 
 ```
-Phase 1  项目脚手架           → 可构建空 APK
-Phase 2  引擎层               → Rime JNI 可调用
-Phase 3  桥接层               → 输入法可激活并显示 Compose UI
-Phase 4  Liquid Glass 主题    → 视觉效果可用
-Phase 5  QWERTY 键盘 + 候选词 → 基本中文输入可用
-Phase 6  T9 九键键盘          → 九键输入可用
-Phase 7  符号/Emoji 面板      → 符号输入可用
-Phase 8  手写输入             → 手写可用
-Phase 9  设置页               → 可管理词库和偏好
-Phase 10 剪贴板管理           → 剪贴板功能可用
+Phase 1  项目脚手架 (Task 1-2)           → 可构建空 APK
+Phase 2  引擎层 (Task 3-6)               → Rime JNI 可调用
+Phase 3  桥接层 (Task 8)                  → 输入法可激活并显示 Compose UI
+Phase 4  Liquid Glass 主题 (Task 9)       → 视觉效果可用
+Phase 5  QWERTY 键盘 + 候选词 (Task 10-12) → 基本中文输入可用 ← 核心里程碑
+Phase 6  T9 九键键盘 (Task 13)            → 九键输入可用
+Phase 7  符号/Emoji 面板 (Task 14)        → 符号输入可用
+Phase 8  手写输入 (Task 15)               → 手写可用
+Phase 9  设置页 (Task 16)                 → 可管理词库和偏好
+Phase 10 剪贴板管理 (Task 16)             → 剪贴板功能可用
 ```
 
 每个 Phase 完成后都是一个可测试的里程碑。Phase 5 完成后即为核心可用状态。

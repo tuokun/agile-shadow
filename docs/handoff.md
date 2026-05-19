@@ -75,15 +75,15 @@
 
 ```
 Phase 1  项目脚手架 (Task 1-2)           → 可构建空 APK
-Phase 2  引擎层 (Task 3-5)               → Rime JNI 可调用
-Phase 3  桥接层 (Task 6)                  → 输入法可激活并显示 Compose UI
-Phase 4  Liquid Glass 主题 (Task 7)       → 视觉效果可用
-Phase 5  QWERTY 键盘 + 候选词 (Task 8-10) → 基本中文输入可用 ← 核心里程碑
-Phase 6  T9 九键键盘 (Task 11)            → 九键输入可用
-Phase 7  符号/Emoji 面板 (Task 12)        → 符号输入可用
-Phase 8  手写输入 (Task 13)               → 手写可用
-Phase 9  设置页 (Task 14)                 → 可管理词库和偏好
-Phase 10 剪贴板管理 (Task 15)             → 剪贴板功能可用
+Phase 2  引擎层 (Task 3-7)               → Rime JNI 可调用 + 单元测试
+Phase 3  桥接层 (Task 8)                  → 输入法可激活并显示 Compose UI
+Phase 4  Liquid Glass 主题 (Task 9)       → 视觉效果可用
+Phase 5  QWERTY 键盘 + 候选词 (Task 10-12) → 基本中文输入可用 ← 核心里程碑
+Phase 6  T9 九键键盘 (Task 13)            → 九键输入可用
+Phase 7  符号/Emoji 面板 (Task 14)        → 符号输入可用
+Phase 8  手写输入 (Task 15)               → 手写可用
+Phase 9  设置页 (Task 16)                 → 可管理词库和偏好
+Phase 10 剪贴板管理 (Task 17)             → 剪贴板功能可用
 ```
 
 ## 4. 参考项目
