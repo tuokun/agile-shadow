@@ -1,4 +1,5 @@
 {
+  "skillListingBudgetFraction": 0.015,
   "permissions": {
     "allow": [
       "Read(*)",
@@ -8,8 +9,8 @@
       "Grep(*)",
       "Bash(*)",
       "Bash(*)",
-      "WebSearch"
+      "WebSearch",
+      "Skill(*)"
     ]
-  },
-  "skillListingBudgetFraction": 0.015
+  }
 }
