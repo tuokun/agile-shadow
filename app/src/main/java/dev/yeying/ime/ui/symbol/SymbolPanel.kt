@@ -46,11 +46,6 @@ private val symbolCategories = listOf(
         "[", "]", "{", "}", "<", ">", "/", "\\", "@", "#",
         "$", "%", "^", "&", "*", "+", "-", "=", "_", "|",
     )),
-    SymbolCategory("Emoji", listOf(
-        "😀", "😂", "🥰", "😎", "🤔", "😅", "😭", "😡", "👍", "👎",
-        "❤️", "🔥", "⭐", "🎉", "💯", "🙏", "💪", "👋", "🤝", "✌️",
-        "☀️", "🌙", "🌸", "🍀", "🎵", "📷", "💻", "📱", "🏠", "🚗",
-    )),
     SymbolCategory("特殊", listOf(
         "℃", "℉", "°", "±", "×", "÷", "≠", "≈", "≤", "≥",
         "∞", "√", "∑", "∏", "∫", "Δ", "π", "Ω", "μ", "†",
@@ -103,8 +98,7 @@ fun SymbolPanel(
                         modifier = Modifier
                             .size(32.dp)
                             .clickable {
-                                val code = symbol.codePointAt(0)
-                                viewModel.onAction(KeyboardAction.KeyPress(code))
+                                viewModel.onAction(KeyboardAction.DirectCommit(symbol))
                             },
                         contentAlignment = Alignment.Center,
                     ) {

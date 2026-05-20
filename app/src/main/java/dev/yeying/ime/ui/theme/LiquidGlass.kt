@@ -12,18 +12,20 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 data class GlassParams(
-    val baseAlpha: Float = 0.90f,
+    val baseAlpha: Float = 0.40f,
     val glassHighAlpha: Float = 0.30f,
     val glassLowAlpha: Float = 0.10f,
     val specularAlpha: Float = 0.45f,
     val innerGlowAlpha: Float = 0.08f,
     val borderAlpha: Float = 0.08f,
+    val keyBackground: Color? = null,
 )
 
 fun Modifier.liquidGlass(
     cornerRadius: Dp = 16.dp,
     isDark: Boolean = false,
     params: GlassParams = if (isDark) GlassParams(
+        baseAlpha = 0.50f,
         glassHighAlpha = 0.12f,
         glassLowAlpha = 0.04f,
         specularAlpha = 0.18f,
@@ -34,9 +36,20 @@ fun Modifier.liquidGlass(
     val w = size.width
     val h = size.height
 
-    // 1. 底色（高 alpha，遮住底层）
+    val baseColor = params.keyBackground ?: if (isDark) Color.Black else Color.White
+    val highlightColor = Color.White
+
+    // 0. 按键背景色（深色半透明，区分背景）
+    params.keyBackground?.let { bg ->
+        drawRoundRect(
+            color = bg,
+            cornerRadius = r,
+        )
+    }
+
+    // 1. 底色（半透明，透出底层模糊）
     drawRoundRect(
-        color = Color.White.copy(alpha = params.baseAlpha),
+        color = baseColor.copy(alpha = params.baseAlpha),
         cornerRadius = r,
     )
 
@@ -44,8 +57,8 @@ fun Modifier.liquidGlass(
     drawRoundRect(
         brush = Brush.verticalGradient(
             listOf(
-                Color.White.copy(alpha = params.glassHighAlpha),
-                Color.White.copy(alpha = params.glassLowAlpha),
+                highlightColor.copy(alpha = params.glassHighAlpha),
+                highlightColor.copy(alpha = params.glassLowAlpha),
             )
         ),
         cornerRadius = r,
@@ -56,7 +69,7 @@ fun Modifier.liquidGlass(
         brush = Brush.horizontalGradient(
             listOf(
                 Color.Transparent,
-                Color.White.copy(alpha = params.specularAlpha),
+                highlightColor.copy(alpha = params.specularAlpha),
                 Color.Transparent,
             ),
             startX = w * 0.15f,
@@ -70,17 +83,18 @@ fun Modifier.liquidGlass(
     // 4. 内发光（底部）
     drawRoundRect(
         brush = Brush.verticalGradient(
-            listOf(Color.Transparent, Color.White.copy(alpha = params.innerGlowAlpha))
+            listOf(Color.Transparent, highlightColor.copy(alpha = params.innerGlowAlpha))
         ),
         topLeft = Offset(4.dp.toPx(), h - 8.dp.toPx()),
         size = Size(w - 8.dp.toPx(), 4.dp.toPx()),
         cornerRadius = CornerRadius(2.dp.toPx()),
     )
 
-    // 5. 边框（仅深色主题）
-    if (isDark && params.borderAlpha > 0f) {
+    // 5. 边框
+    if (params.borderAlpha > 0f) {
+        val borderColor = if (isDark) Color.White else Color.Black
         drawRoundRect(
-            color = Color.White.copy(alpha = params.borderAlpha),
+            color = borderColor.copy(alpha = params.borderAlpha),
             cornerRadius = r,
             style = Stroke(width = 1.dp.toPx()),
         )

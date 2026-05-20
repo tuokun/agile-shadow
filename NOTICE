@@ -1,0 +1,18 @@
+曳影输入法 (Yeying IME) — NOTICE
+
+本项目包含以下第三方开源组件：
+
+1. Rime 输入法引擎 (librime)
+   https://github.com/rime/librime
+   BSD 3-Clause License
+
+   Copyright (c) 2014, RIME Developers
+   All rights reserved.
+
+2. 雾凇拼音 (rime-ice)
+   https://github.com/iDvel/rime-ice
+   GPL-3.0-only
+
+3. 语燕输入法 (yuyansdk)
+   https://github.com/gurecn/yuyansdk
+   GPL-3.0

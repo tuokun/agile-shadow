@@ -241,6 +241,13 @@ object T9Mapper {
         "WGTAMG" to "zhuang",
     )
 
+    private val numToT9Letter = mapOf(
+        '2' to 'A', '3' to 'D', '4' to 'G', '5' to 'J',
+        '6' to 'M', '7' to 'P', '8' to 'T', '9' to 'W',
+    )
+
+    fun numKeyToT9Letter(keycode: Int): Char? = numToT9Letter[keycode.toChar()]
+
     private val pinyinMap: Map<String, List<String>> =
         rawPinyinMap.mapValues { it.value.split(",") }
 

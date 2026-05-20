@@ -18,7 +18,7 @@ class RimeEngine private constructor() {
         val userDir = File(context.filesDir, "rime/user").apply { mkdirs() }.absolutePath
 
         Rime.startupRime(context, sharedDir, userDir, fullCheck)
-        Rime.setRimePageSize(5)
+        Rime.setRimePageSize(30)
         isInitialized = true
     }
 
@@ -53,11 +53,14 @@ class RimeEngine private constructor() {
     fun setOption(option: String, value: Boolean) =
         Rime.setRimeOption(option, value)
 
-    fun commitIfNeeded() {
+    fun commitIfNeeded(): String? {
         val commit = getCommit()
         if (commit != null && commit.commitText.isNotEmpty()) {
+            val text = commit.commitText
             clearComposition()
+            return text
         }
+        return null
     }
 
     private fun copyAssetsToShared(context: Context): String {
@@ -93,7 +96,7 @@ class RimeEngine private constructor() {
         for (file in files) {
             val src = "$assetPath/$file"
             val dst = File(dest, file)
-            if (assetManager.list(src) != null) {
+            if (!assetManager.list(src).isNullOrEmpty()) {
                 copyAssetDir(context, src, dst)
             } else {
                 assetManager.open(src).use { input ->

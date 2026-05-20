@@ -13,6 +13,7 @@ data class KeyDef(
 const val KEYCODE_SHIFT = -1
 const val KEYCODE_DELETE = -2
 const val KEYCODE_SYMBOL = -3
+const val KEYCODE_NUMBER = -12
 
 object QwertyLayout {
 
@@ -42,11 +43,13 @@ object QwertyLayout {
     )
 
     val row4 = listOf(
-        KeyDef("?123", KEYCODE_SYMBOL),
+        KeyDef("符号", KEYCODE_SYMBOL),
+        KeyDef("123", KEYCODE_NUMBER),
         KeyDef(",", ','.code, width = 40.dp),
         KeyDef("空格", ' '.code),
         KeyDef(".", '.'.code, width = 40.dp),
-        KeyDef("↵", '\n'.code),
+        KeyDef("中/英", KEYCODE_SWITCH_LANG),
+        KeyDef("↵", KEYCODE_ENTER),
     )
 
     val rows = listOf(row1, row2, row3, row4)

@@ -8,7 +8,7 @@
 
 **Tech Stack:** Kotlin 2.1.21, Compose BOM 2026.03.01, Material3, Room 2.8.4, DataStore 1.1.4, Lifecycle 2.8.7, Coroutines 1.10.1, minSdk 31, targetSdk 35, compileSdk 35, Java 17
 
-**依赖版本对齐:** `D:/Dev/project/joy-tune/gradle/libs.versions.toml`
+**依赖版本对齐:** `~/dev/project/joy-tune/gradle/libs.versions.toml`
 
 ---
 
