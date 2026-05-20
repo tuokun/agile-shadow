@@ -133,6 +133,16 @@ class KeyboardViewModel(
     }
 
     private fun handleCandidateSelect(action: KeyboardAction.CandidateSelect) {
+        val hwCandidates = _state.value.handwritingCandidates
+        if (hwCandidates.isNotEmpty()) {
+            val text = hwCandidates.getOrElse(action.index) { null }
+            if (text != null) {
+                onCommitText(text)
+                clearHandwritingCandidates()
+            }
+            return
+        }
+
         RimeEngine.instance.selectCandidate(action.index)
         val committed = RimeEngine.instance.commitIfNeeded()
         if (committed != null) {
@@ -243,5 +253,21 @@ class KeyboardViewModel(
 
     fun setClipboardSuggestion(text: String?) {
         _state.update { it.copy(clipboardSuggestion = text) }
+    }
+
+    fun setHandwritingCandidates(candidates: List<String>) {
+        _state.update { s ->
+            s.copy(
+                candidates = candidates.map { CandidateListItem(it, it) },
+                composingText = "",
+                handwritingCandidates = candidates,
+            )
+        }
+    }
+
+    fun clearHandwritingCandidates() {
+        _state.update { s ->
+            s.copy(candidates = emptyList(), composingText = "", handwritingCandidates = emptyList())
+        }
     }
 }

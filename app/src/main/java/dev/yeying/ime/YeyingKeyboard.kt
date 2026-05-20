@@ -61,7 +61,9 @@ fun YeyingKeyboard(
                 KeyboardType.SYMBOL -> SymbolPanel(viewModel)
                 KeyboardType.EMOJI -> EmojiPanel(viewModel)
                 KeyboardType.HANDWRITING -> HandwritingBoard(
-                    onCandidateSelected = onCommitText,
+                    viewModel = viewModel,
+                    onCommitText = onCommitText,
+                    onDeleteChar = onDeleteChar,
                 )
                 KeyboardType.TOOLS -> ToolsPanel(viewModel)
                 KeyboardType.KEYBOARD_PICKER -> KeyboardPickerPanel(viewModel)

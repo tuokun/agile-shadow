@@ -107,7 +107,7 @@ private fun CandidateRow(
         LazyRow(
             state = listState,
             modifier = Modifier.weight(1f),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             itemsIndexed(candidates) { index, candidate ->
                 Text(

@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import dev.yeying.ime.ui.theme.GlassParams
 import dev.yeying.ime.ui.theme.liquidGlass
@@ -99,7 +100,12 @@ fun GlassKeyButton(
                 Text(text = subLabel, fontSize = 10.sp)
             }
         } else {
-            Text(text = label, fontSize = 18.sp)
+            Text(
+                text = label,
+                fontSize = 18.sp,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center,
+            )
         }
     }
 }
