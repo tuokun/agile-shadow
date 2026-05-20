@@ -30,10 +30,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.EmojiEmotions
+import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Keyboard
 import androidx.compose.material.icons.outlined.KeyboardArrowDown
 import androidx.compose.material.icons.outlined.Menu
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.yeying.ime.ui.keyboard.GlassKeyButton
@@ -47,11 +49,24 @@ fun ToolbarCandidateBar(
     viewModel: KeyboardViewModel,
     modifier: Modifier = Modifier,
     onHideKeyboard: () -> Unit = {},
+    onCommitText: (String) -> Unit = {},
 ) {
     val state by viewModel.state.collectAsState()
 
+    val suggestion = state.clipboardSuggestion
+
     if (state.composingText.isNotEmpty() || state.candidates.isNotEmpty()) {
         CandidateRow(viewModel, state.candidates, state.hasNextPage, state.candidatesExpanded, modifier)
+    } else if (suggestion != null) {
+        ClipboardSuggestionRow(
+            text = suggestion,
+            onClick = {
+                onCommitText(suggestion)
+                viewModel.setClipboardSuggestion(null)
+            },
+            onDismiss = { viewModel.setClipboardSuggestion(null) },
+            modifier = modifier,
+        )
     } else {
         ToolbarRow(viewModel, modifier, onHideKeyboard)
     }
@@ -86,7 +101,7 @@ private fun CandidateRow(
     }
 
     Row(
-        modifier = modifier.fillMaxWidth().height(40.dp).padding(horizontal = 8.dp),
+        modifier = modifier.fillMaxWidth().height(50.dp).padding(horizontal = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         LazyRow(
@@ -97,7 +112,7 @@ private fun CandidateRow(
             itemsIndexed(candidates) { index, candidate ->
                 Text(
                     text = candidate.text,
-                    fontSize = 16.sp,
+                    fontSize = 18.sp,
                     modifier = Modifier.clickable {
                         viewModel.onAction(KeyboardAction.CandidateSelect(index))
                     },
@@ -182,7 +197,7 @@ private fun ToolbarRow(
     val state by viewModel.state.collectAsState()
 
     Row(
-        modifier = modifier.fillMaxWidth().height(40.dp).padding(horizontal = 4.dp),
+        modifier = modifier.fillMaxWidth().height(50.dp).padding(horizontal = 4.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
@@ -193,7 +208,7 @@ private fun ToolbarRow(
             icon = Icons.Outlined.Menu,
             onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(toolsTarget)) },
             modifier = Modifier.weight(1f),
-            height = 32.dp,
+            height = 36.dp,
         )
 
         // 键盘方案选择
@@ -203,7 +218,7 @@ private fun ToolbarRow(
             icon = Icons.Outlined.Keyboard,
             onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(pickerTarget)) },
             modifier = Modifier.weight(1f),
-            height = 32.dp,
+            height = 36.dp,
         )
 
         // 表情
@@ -213,7 +228,7 @@ private fun ToolbarRow(
             icon = Icons.Outlined.EmojiEmotions,
             onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(emojiTarget)) },
             modifier = Modifier.weight(1f),
-            height = 32.dp,
+            height = 36.dp,
         )
 
         // 编辑
@@ -223,10 +238,18 @@ private fun ToolbarRow(
             icon = Icons.Outlined.Edit,
             onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(editTarget)) },
             modifier = Modifier.weight(1f),
-            height = 32.dp,
+            height = 36.dp,
         )
 
-        Spacer(modifier = Modifier.weight(1f))
+        // 剪贴板
+        val clipboardTarget = if (state.activeKeyboard == KeyboardType.CLIPBOARD) state.previousKeyboard else KeyboardType.CLIPBOARD
+        GlassKeyButton(
+            label = "剪贴板",
+            icon = Icons.Outlined.ContentPaste,
+            onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(clipboardTarget)) },
+            modifier = Modifier.weight(1f),
+            height = 36.dp,
+        )
 
         // 收起键盘
         GlassKeyButton(
@@ -234,7 +257,37 @@ private fun ToolbarRow(
             icon = Icons.Outlined.KeyboardArrowDown,
             onClick = onHideKeyboard,
             modifier = Modifier.weight(1f),
-            height = 32.dp,
+            height = 36.dp,
+        )
+    }
+}
+
+@Composable
+private fun ClipboardSuggestionRow(
+    text: String,
+    onClick: () -> Unit,
+    onDismiss: () -> Unit,
+    modifier: Modifier,
+) {
+    Row(
+        modifier = modifier.fillMaxWidth().height(50.dp).padding(horizontal = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = text,
+            fontSize = 15.sp,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier
+                .weight(1f)
+                .clickable(onClick = onClick),
+        )
+        Text(
+            text = "✕",
+            fontSize = 16.sp,
+            modifier = Modifier
+                .clickable(onClick = onDismiss)
+                .padding(horizontal = 8.dp),
         )
     }
 }

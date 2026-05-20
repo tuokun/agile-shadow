@@ -4,6 +4,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -43,14 +44,14 @@ fun YeyingKeyboard(
             onSendEnter = onSendEnter,
         ).also { onViewModelReady(it) }
     }
-    
+
     val state by viewModel.state.collectAsState()
     val isDark = isSystemInDarkTheme()
 
     Column(modifier = Modifier.fillMaxWidth().liquidGlass(cornerRadius = 0.dp, isDark = isDark)) {
-        ToolbarCandidateBar(viewModel, onHideKeyboard = onHideKeyboard)
+        ToolbarCandidateBar(viewModel, onHideKeyboard = onHideKeyboard, onCommitText = onCommitText)
 
-        Box(modifier = Modifier.fillMaxWidth().heightIn(min = 260.dp)) {
+        Box(modifier = Modifier.fillMaxWidth().height(260.dp)) {
             if (state.candidatesExpanded) {
                 ExpandedCandidateView(viewModel)
             } else when (state.activeKeyboard) {

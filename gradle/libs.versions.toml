@@ -9,12 +9,14 @@ lifecycle = "2.8.7"
 coreKtx = "1.16.0"
 activityCompose = "1.10.1"
 kotlinxCoroutines = "1.10.1"
+kotlinxCoroutinesPlayServices = "1.10.1"
 emojiCompat = "1.1.0"
+mlkitDigitalInk = "19.0.0"
 projectMinSdk = "31"
 projectTargetSdk = "35"
 projectCompileSdk = "35"
-projectVersionCode = "7"
-projectVersionName = "0.1.6"
+projectVersionCode = "8"
+projectVersionName = "0.1.7"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
@@ -34,7 +36,9 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version = "2.5.1" }
 datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutinesPlayServices" }
 emoji-compat = { module = "androidx.emoji2:emoji2", version.ref = "emojiCompat" }
+mlkit-digital-ink = { module = "com.google.mlkit:digital-ink-recognition", version.ref = "mlkitDigitalInk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

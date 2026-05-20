@@ -74,6 +74,9 @@ dependencies {
     implementation(libs.datastore.preferences)
 
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.play.services)
 
     implementation(libs.emoji.compat)
+
+    implementation(libs.mlkit.digital.ink)
 }

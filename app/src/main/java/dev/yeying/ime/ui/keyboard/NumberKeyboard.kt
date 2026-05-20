@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Backspace
+import androidx.compose.material.icons.outlined.SpaceBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -124,7 +125,8 @@ fun NumberKeyboard(
                     height = 44.dp,
                 )
                 GlassKeyButton(
-                    label = "空格",
+                    label = "",
+                    icon = Icons.Outlined.SpaceBar,
                     onClick = { viewModel.onAction(KeyboardAction.DirectCommit(" ")) },
                     modifier = Modifier.weight(1f),
                     height = 44.dp,

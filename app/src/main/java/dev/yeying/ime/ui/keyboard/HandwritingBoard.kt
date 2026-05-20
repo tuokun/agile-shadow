@@ -13,9 +13,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,8 +31,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.yeying.ime.engine.HandwritingEngine
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -41,25 +42,27 @@ fun HandwritingBoard(
     onCandidateSelected: (String) -> Unit = {},
 ) {
     val context = LocalContext.current
-    val engine = remember { HandwritingEngine().also { it.init(context) } }
-    var strokes by remember { mutableStateOf(listOf<List<Offset>>()) }
-    var currentStroke by remember { mutableStateOf(listOf<Offset>()) }
+    val engine = remember { HandwritingEngine() }
+    val scope = rememberCoroutineScope()
+
+    var initResult by remember { mutableStateOf(false to "初始化中...") }
+    val strokes = remember { mutableStateListOf<List<Offset>>() }
+    val currentStroke = remember { mutableStateListOf<Offset>() }
     var candidates by remember { mutableStateOf(listOf<String>()) }
-    var clearJob by remember { mutableStateOf<kotlinx.coroutines.Job?>(null) }
-    val scope = remember { CoroutineScope(Dispatchers.Main) }
+
+    LaunchedEffect(Unit) {
+        val success = engine.init(context)
+        initResult = success to if (success) "" else "初始化失败，请检查网络后重试"
+    }
 
     fun resetBoard() {
-        clearJob?.cancel()
-        strokes = emptyList()
+        strokes.clear()
         candidates = emptyList()
         engine.clear()
     }
 
     DisposableEffect(Unit) {
-        onDispose {
-            clearJob?.cancel()
-            engine.release()
-        }
+        onDispose { engine.release() }
     }
 
     Column(modifier = modifier.fillMaxWidth()) {
@@ -73,49 +76,46 @@ fun HandwritingBoard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(180.dp)
-                    .pointerInput(Unit) {
+                    .pointerInput(engine.isInitialized) {
+                        if (!engine.isInitialized) return@pointerInput
                         detectDragGestures(
                             onDragStart = { offset ->
-                                clearJob?.cancel()
-                                currentStroke = listOf(offset)
+                                currentStroke.clear()
+                                currentStroke.add(offset)
                                 engine.addPoint(offset.x.toInt(), offset.y.toInt())
                             },
                             onDrag = { change, _ ->
                                 change.consume()
-                                currentStroke = currentStroke + change.position
+                                currentStroke.add(change.position)
                                 engine.addPoint(change.position.x.toInt(), change.position.y.toInt())
                             },
                             onDragEnd = {
-                                strokes = strokes + listOf(currentStroke)
-                                currentStroke = emptyList()
+                                strokes.addAll(listOf(currentStroke.toList()))
+                                currentStroke.clear()
                                 engine.finishStroke()
-                                candidates = engine.recognize()
 
-                                clearJob = scope.launch {
+                                scope.launch {
+                                    candidates = engine.recognize()
                                     delay(AUTO_CLEAR_MS)
-                                    strokes = emptyList()
+                                    strokes.clear()
                                     engine.clear()
                                 }
                             },
                         )
                     }
             ) {
-                val allStrokes = strokes + if (currentStroke.isNotEmpty()) listOf(currentStroke) else emptyList()
-                allStrokes.forEach { strokePoints ->
-                    if (strokePoints.size > 1) {
-                        val path = Path()
-                        path.moveTo(strokePoints.first().x, strokePoints.first().y)
-                        for (i in 1 until strokePoints.size) {
-                            path.lineTo(strokePoints[i].x, strokePoints[i].y)
-                        }
-                        drawPath(path, Color.Black, style = Stroke(width = 4f))
-                    }
+                for (strokePoints in strokes) {
+                    drawStrokePath(strokePoints)
+                }
+                if (currentStroke.isNotEmpty()) {
+                    drawStrokePath(currentStroke.toList())
                 }
             }
 
             if (strokes.isEmpty() && currentStroke.isEmpty() && candidates.isEmpty()) {
+                val hintText = if (!initResult.first) initResult.second else "在此区域书写"
                 Text(
-                    text = "在此区域书写",
+                    text = hintText,
                     fontSize = 16.sp,
                     color = Color.Gray.copy(alpha = 0.5f),
                 )
@@ -145,4 +145,14 @@ fun HandwritingBoard(
 
         Spacer(modifier = Modifier.height(28.dp))
     }
+}
+
+private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawStrokePath(points: List<Offset>) {
+    if (points.size < 2) return
+    val path = Path()
+    path.moveTo(points.first().x, points.first().y)
+    for (i in 1 until points.size) {
+        path.lineTo(points[i].x, points[i].y)
+    }
+    drawPath(path, Color.Black, style = Stroke(width = 4f))
 }

@@ -14,6 +14,7 @@ const val KEYCODE_SHIFT = -1
 const val KEYCODE_DELETE = -2
 const val KEYCODE_SYMBOL = -3
 const val KEYCODE_NUMBER = -12
+const val KEYCODE_SPACE = ' '.code
 
 object QwertyLayout {
 
@@ -46,8 +47,8 @@ object QwertyLayout {
         KeyDef("符号", KEYCODE_SYMBOL),
         KeyDef("123", KEYCODE_NUMBER),
         KeyDef(",", ','.code, width = 40.dp),
-        KeyDef("空格", ' '.code),
-        KeyDef(".", '.'.code, width = 40.dp),
+        KeyDef("", ' '.code),
+        KeyDef("。", '。'.code, width = 40.dp),
         KeyDef("中/英", KEYCODE_SWITCH_LANG),
         KeyDef("↵", KEYCODE_ENTER),
     )

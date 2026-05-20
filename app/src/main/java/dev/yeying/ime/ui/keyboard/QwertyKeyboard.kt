@@ -12,6 +12,7 @@ import androidx.compose.material.icons.outlined.Backspace
 import androidx.compose.material.icons.outlined.KeyboardCapslock
 import androidx.compose.material.icons.outlined.KeyboardReturn
 import androidx.compose.material.icons.outlined.Language
+import androidx.compose.material.icons.outlined.SpaceBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -63,6 +64,7 @@ fun QwertyKeyboard(
                             label = ""
                             Icons.Outlined.Language
                         }
+                        KEYCODE_SPACE -> { label = ""; Icons.Outlined.SpaceBar }
                         else -> { label = key.label; null }
                     }
                     val subLabel = when (key.code) {

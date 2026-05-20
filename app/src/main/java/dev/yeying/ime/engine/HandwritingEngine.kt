@@ -2,80 +2,98 @@ package dev.yeying.ime.engine
 
 import android.content.Context
 import android.util.Log
-import com.yuyan.inputmethod.core.HandWriting
-import java.io.File
-import java.io.FileOutputStream
+import com.google.mlkit.common.model.DownloadConditions
+import com.google.mlkit.common.model.RemoteModelManager
+import com.google.mlkit.vision.digitalink.recognition.DigitalInkRecognition
+import com.google.mlkit.vision.digitalink.recognition.DigitalInkRecognitionModel
+import com.google.mlkit.vision.digitalink.recognition.DigitalInkRecognitionModelIdentifier
+import com.google.mlkit.vision.digitalink.recognition.DigitalInkRecognizer
+import com.google.mlkit.vision.digitalink.recognition.DigitalInkRecognizerOptions
+import com.google.mlkit.vision.digitalink.recognition.Ink
+import com.google.mlkit.vision.digitalink.common.RecognitionResult
+import kotlinx.coroutines.tasks.await
 
 class HandwritingEngine {
     var isInitialized = false
         private set
 
-    private val strokePoints = mutableListOf<Int>()
     private val TAG = "HandwritingEngine"
+    private var recognizer: DigitalInkRecognizer? = null
+    private var inkBuilder: Ink.Builder = Ink.builder()
+    private var strokeBuilder: Ink.Stroke.Builder? = null
 
-    fun init(context: Context): Boolean {
+    suspend fun init(context: Context): Boolean {
         if (isInitialized) return true
-        val hwDir = context.getExternalFilesDir("hw")!!.absolutePath
-        copyAssets(context, "hw", hwDir)
-        Log.d(TAG, "hwDir=$hwDir, files=${File(hwDir).list()?.joinToString()}")
-        val result = HandWriting.initWithDirectory(context, hwDir)
-        Log.d(TAG, "initWithDirectory result=$result")
-        if (result) {
-            HandWriting.reloadConfig()
-            HandWriting.activeMode(5)
+
+        return try {
+            val modelIdentifier = DigitalInkRecognitionModelIdentifier.fromLanguageTag("zh-Hans-CN")
+            if (modelIdentifier == null) {
+                Log.e(TAG, "Failed to get Chinese model identifier")
+                return false
+            }
+
+            val model = DigitalInkRecognitionModel.builder(modelIdentifier).build()
+
+            val remoteModelManager = RemoteModelManager.getInstance()
+            val isDownloaded = remoteModelManager.isModelDownloaded(model).await()
+            if (!isDownloaded) {
+                Log.d(TAG, "Downloading Chinese handwriting model...")
+                remoteModelManager.download(model, DownloadConditions.Builder().build()).await()
+                Log.d(TAG, "Model downloaded")
+            }
+
+            recognizer = DigitalInkRecognition.getClient(
+                DigitalInkRecognizerOptions.builder(model).build()
+            )
+            isInitialized = true
+            Log.d(TAG, "ML Kit recognizer initialized")
+            true
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to init handwriting engine", e)
+            false
         }
-        isInitialized = result
-        return result
     }
 
     fun addPoint(x: Int, y: Int) {
-        strokePoints.add(x)
-        strokePoints.add(y)
+        if (strokeBuilder == null) {
+            strokeBuilder = Ink.Stroke.builder()
+        }
+        strokeBuilder?.addPoint(Ink.Point.create(x.toFloat(), y.toFloat(), System.currentTimeMillis()))
     }
 
     fun finishStroke() {
-        strokePoints.add(-1)
-        strokePoints.add(0)
+        strokeBuilder?.build()?.let { stroke ->
+            inkBuilder.addStroke(stroke)
+        }
+        strokeBuilder = null
     }
 
-    fun recognize(): List<String> {
-        if (strokePoints.isEmpty()) return emptyList()
-        Log.d(TAG, "recognize: pointsCount=${strokePoints.size}")
-        HandWriting.reset()
-        HandWriting.inputHWPoints(strokePoints.toIntArray())
-        val raw = HandWriting.getCandidates()
-        Log.d(TAG, "recognize: raw=${raw?.map { it?.toList() }}")
-        return raw?.firstOrNull()?.filterNotNull() ?: emptyList()
+    suspend fun recognize(): List<String> {
+        if (!isInitialized || recognizer == null) {
+            Log.w(TAG, "Recognizer not initialized")
+            return emptyList()
+        }
+
+        val ink = inkBuilder.build()
+        if (ink.getStrokes().isEmpty()) return emptyList()
+
+        return try {
+            val result: RecognitionResult = recognizer!!.recognize(ink).await()
+            result.getCandidates().mapNotNull { it.getText() }
+        } catch (e: Exception) {
+            Log.e(TAG, "Recognition failed", e)
+            emptyList()
+        }
     }
 
     fun clear() {
-        strokePoints.clear()
-        HandWriting.reset()
+        inkBuilder = Ink.builder()
+        strokeBuilder = null
     }
 
-    fun release() = HandWriting.release()
-
-    private fun copyAssets(context: Context, assetPath: String, destPath: String) {
-        val assets = context.assets.list(assetPath) ?: return
-        if (assets.isEmpty()) {
-            copyFile(context, assetPath, destPath)
-        } else {
-            val dir = File(destPath)
-            if (!dir.exists()) dir.mkdirs()
-            for (asset in assets) {
-                copyAssets(context, "$assetPath/$asset", "$destPath/$asset")
-            }
-        }
-    }
-
-    private fun copyFile(context: Context, assetPath: String, destPath: String) {
-        val file = File(destPath)
-        if (file.exists()) return
-        file.parentFile?.mkdirs()
-        context.assets.open(assetPath).use { input ->
-            FileOutputStream(file).use { output ->
-                input.copyTo(output)
-            }
-        }
+    fun release() {
+        recognizer?.close()
+        recognizer = null
+        isInitialized = false
     }
 }

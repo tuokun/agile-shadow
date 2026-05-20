@@ -55,6 +55,11 @@ class KeyboardViewModel(
         val engine = RimeEngine.instance
         if (!engine.isInitialized) return
 
+        // 用户开始输入时清除剪贴板建议
+        if (_state.value.clipboardSuggestion != null) {
+            _state.update { it.copy(clipboardSuggestion = null) }
+        }
+
         when (action.keycode) {
             KEYCODE_DELETE -> {
                 if (_state.value.composingText.isNotEmpty()) {
@@ -234,5 +239,9 @@ class KeyboardViewModel(
 
     fun toggleCandidatesExpanded() {
         _state.update { it.copy(candidatesExpanded = !it.candidatesExpanded) }
+    }
+
+    fun setClipboardSuggestion(text: String?) {
+        _state.update { it.copy(clipboardSuggestion = text) }
     }
 }

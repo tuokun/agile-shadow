@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Backspace
 import androidx.compose.material.icons.outlined.Language
+import androidx.compose.material.icons.outlined.SpaceBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -144,6 +145,13 @@ fun T9Keyboard(
                     modifier = Modifier.weight(1f),
                     height = 44.dp,
                 )
+                GlassKeyButton(
+                    label = "",
+                    icon = Icons.Outlined.SpaceBar,
+                    onClick = { viewModel.onAction(KeyboardAction.KeyPress(' '.code)) },
+                    modifier = Modifier.weight(1f),
+                    height = 44.dp,
+                )
                 val langIcon = Icons.Outlined.Language
                 GlassKeyButton(
                     label = "",
@@ -153,16 +161,10 @@ fun T9Keyboard(
                     modifier = Modifier.weight(1f),
                     height = 44.dp,
                 )
-                GlassKeyButton(
-                    label = "确认",
-                    onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_ENTER)) },
-                    modifier = Modifier.weight(1f),
-                    height = 44.dp,
-                )
             }
             GlassKeyButton(
-                label = "空格",
-                onClick = { viewModel.onAction(KeyboardAction.KeyPress(' '.code)) },
+                label = "确认",
+                onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_ENTER)) },
                 modifier = Modifier.weight(1f),
                 height = 44.dp,
             )

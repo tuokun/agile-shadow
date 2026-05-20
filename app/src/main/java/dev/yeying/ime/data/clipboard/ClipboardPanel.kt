@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -18,7 +19,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.room.Room
 
 @Composable
 fun ClipboardPanel(
@@ -26,10 +26,7 @@ fun ClipboardPanel(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val db = remember {
-        Room.databaseBuilder(context, ClipboardDatabase::class.java, "clipboard.db").build()
-    }
-    val dao = db.clipboardDao()
+    val dao = remember { ClipboardDatabase.getInstance(context).clipboardDao() }
     val items by dao.getAll().collectAsState(initial = emptyList())
 
     LazyColumn(
@@ -51,6 +48,7 @@ fun ClipboardPanel(
                     overflow = TextOverflow.Ellipsis,
                 )
             }
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 12.dp))
         }
     }
 }
