@@ -13,8 +13,8 @@ emojiCompat = "1.1.0"
 projectMinSdk = "31"
 projectTargetSdk = "35"
 projectCompileSdk = "35"
-projectVersionCode = "5"
-projectVersionName = "0.1.4"
+projectVersionCode = "7"
+projectVersionName = "0.1.6"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }

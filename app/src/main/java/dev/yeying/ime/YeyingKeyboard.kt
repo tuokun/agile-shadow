@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import dev.yeying.ime.ui.keyboard.EditPanel
 import dev.yeying.ime.ui.candidate.ExpandedCandidateView
 import dev.yeying.ime.ui.candidate.ToolbarCandidateBar
+import dev.yeying.ime.data.clipboard.ClipboardPanel
 import dev.yeying.ime.ui.keyboard.HandwritingBoard
 import dev.yeying.ime.ui.keyboard.KeyboardPickerPanel
 import dev.yeying.ime.ui.keyboard.KeyboardType
@@ -61,13 +62,10 @@ fun YeyingKeyboard(
                 KeyboardType.HANDWRITING -> HandwritingBoard(
                     onCandidateSelected = onCommitText,
                 )
-                KeyboardType.TOOLS -> ToolsPanel(
-                    viewModel = viewModel,
-                    onCommitText = onCommitText,
-                    onSendKey = onPerformAction,
-                )
+                KeyboardType.TOOLS -> ToolsPanel(viewModel)
                 KeyboardType.KEYBOARD_PICKER -> KeyboardPickerPanel(viewModel)
                 KeyboardType.EDIT -> EditPanel(onSendKey = onPerformAction)
+                KeyboardType.CLIPBOARD -> ClipboardPanel(onCommitText = onCommitText)
             }
         }
     }

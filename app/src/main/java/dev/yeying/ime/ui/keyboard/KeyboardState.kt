@@ -2,7 +2,7 @@ package dev.yeying.ime.ui.keyboard
 
 import com.yuyan.inputmethod.core.CandidateListItem
 
-enum class KeyboardType { T9, QWERTY, ENGLISH, NUMBER, SYMBOL, EMOJI, HANDWRITING, TOOLS, KEYBOARD_PICKER, EDIT }
+enum class KeyboardType { T9, QWERTY, ENGLISH, NUMBER, SYMBOL, EMOJI, HANDWRITING, TOOLS, KEYBOARD_PICKER, EDIT, CLIPBOARD }
 enum class CapsState { NONE, ONCE, LOCK }
 
 data class KeyboardState(

@@ -1,8 +1,6 @@
 # 曳影 (Yeying)
 
-基于 [Rime](https://rime.im) 输入法框架，从零开发的个人 Android 输入法。参考 [语燕输入法](https://github.com/yuyansdk/yuyan) 的实现思路，全部 Kotlin 代码自行编写。
-
-## 功能
+> 《拾遗记》载，颛顼有神剑曰曳影，在匣中如电拖影，时刻待出。
 
 - 九键拼音 (T9)、全键拼音 (QWERTY)、英文输入、手写输入（计划中）
 - 符号/Emoji 面板、剪贴板管理
@@ -40,4 +38,4 @@
 
 ## License
 
-请参阅项目 License 文件。
+[GPL-3.0](LICENSE) © 2026 cgfhsc

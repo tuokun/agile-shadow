@@ -24,7 +24,7 @@ class KeyboardViewModel(
             KeyboardType.TOOLS, KeyboardType.KEYBOARD_PICKER,
             KeyboardType.SYMBOL, KeyboardType.EMOJI,
             KeyboardType.NUMBER, KeyboardType.HANDWRITING,
-            KeyboardType.EDIT,
+            KeyboardType.EDIT, KeyboardType.CLIPBOARD,
         )
     }
 

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Backspace
@@ -18,6 +19,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+
+private val CENTER_KEY_HEIGHT = 52.dp
+private val CENTER_ROW_GAP = 4.dp
+private val MAIN_HEIGHT = CENTER_KEY_HEIGHT * 3 + CENTER_ROW_GAP * 2 // 164dp
 
 @Composable
 fun T9Keyboard(
@@ -32,18 +37,18 @@ fun T9Keyboard(
     ) {
         // 主区域：三列（左标点 + 中九键 + 右功能）
         Row(
-            modifier = Modifier.fillMaxWidth().height(168.dp),
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = Modifier.fillMaxWidth().height(MAIN_HEIGHT),
+            horizontalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
         ) {
             // 左列：拼音组合（输入时）或标点符号（空闲时）
             Column(
                 modifier = Modifier.weight(1f).fillMaxHeight(),
-                verticalArrangement = Arrangement.spacedBy(2.dp),
+                verticalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
             ) {
                 if (state.pinyins.isNotEmpty()) {
                     LazyColumn(
-                        modifier = Modifier.fillMaxHeight(),
-                        verticalArrangement = Arrangement.spacedBy(2.dp),
+                        modifier = Modifier.height(MAIN_HEIGHT),
+                        verticalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         items(count = state.pinyins.size, key = { "pinyin-$it" }) { index ->
@@ -70,12 +75,12 @@ fun T9Keyboard(
             // 中列：九键网格
             Column(
                 modifier = Modifier.weight(4f).fillMaxHeight(),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
+                verticalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
             ) {
                 T9Layout.center9Keys.forEach { row ->
                     Row(
-                        modifier = Modifier.fillMaxWidth().weight(1f),
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        modifier = Modifier.fillMaxWidth().height(CENTER_KEY_HEIGHT),
+                        horizontalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
                     ) {
                         row.forEach { key ->
                             GlassKeyButton(
@@ -83,7 +88,7 @@ fun T9Keyboard(
                                 subLabel = key.subLabel.ifEmpty { null },
                                 onClick = { viewModel.onAction(KeyboardAction.KeyPress(key.code)) },
                                 modifier = Modifier.weight(1f),
-                                height = 52.dp,
+                                height = CENTER_KEY_HEIGHT,
                             )
                         }
                     }
@@ -93,7 +98,7 @@ fun T9Keyboard(
             // 右列：功能键
             Column(
                 modifier = Modifier.weight(1f).fillMaxHeight(),
-                verticalArrangement = Arrangement.spacedBy(2.dp),
+                verticalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
             ) {
                 T9Layout.rightFunctions.forEach { key ->
                     val icon = when (key.code) {
@@ -117,33 +122,52 @@ fun T9Keyboard(
             }
         }
 
-        // 底部工具栏
+        // 底部工具栏（镜像上方三列结构：左1 + 中4 + 右1）
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            horizontalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            T9Layout.bottomToolbar.forEach { key ->
-                val icon = when (key.code) {
-                    KEYCODE_SWITCH_LANG -> Icons.Outlined.Language
-                    else -> null
-                }
-                val subLabel = when (key.code) {
-                    KEYCODE_SWITCH_LANG -> if (state.activeKeyboard == KeyboardType.ENGLISH) "EN" else "中"
-                    else -> null
-                }
+            GlassKeyButton(
+                label = "符号",
+                onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_SYMBOL)) },
+                modifier = Modifier.weight(1f),
+                height = 44.dp,
+            )
+            Row(
+                modifier = Modifier.weight(4f),
+                horizontalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
+            ) {
                 GlassKeyButton(
-                    label = if (icon != null) "" else key.label,
-                    icon = icon,
-                    subLabel = subLabel,
-                    onClick = { viewModel.onAction(KeyboardAction.KeyPress(key.code)) },
+                    label = "123",
+                    onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_NUMBER)) },
+                    modifier = Modifier.weight(1f),
+                    height = 44.dp,
+                )
+                val langIcon = Icons.Outlined.Language
+                GlassKeyButton(
+                    label = "",
+                    icon = langIcon,
+                    subLabel = if (state.activeKeyboard == KeyboardType.ENGLISH) "EN" else "中",
+                    onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_SWITCH_LANG)) },
+                    modifier = Modifier.weight(1f),
+                    height = 44.dp,
+                )
+                GlassKeyButton(
+                    label = "确认",
+                    onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_ENTER)) },
                     modifier = Modifier.weight(1f),
                     height = 44.dp,
                 )
             }
+            GlassKeyButton(
+                label = "空格",
+                onClick = { viewModel.onAction(KeyboardAction.KeyPress(' '.code)) },
+                modifier = Modifier.weight(1f),
+                height = 44.dp,
+            )
         }
 
-        // 底部留白（适配曲面屏手机）
         Spacer(modifier = Modifier.height(28.dp))
     }
 }
