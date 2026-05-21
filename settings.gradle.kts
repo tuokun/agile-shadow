@@ -20,5 +20,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "yeying"
+rootProject.name = "agile-shadow"
 include(":app")
