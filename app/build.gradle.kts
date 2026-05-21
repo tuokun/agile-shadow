@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "dev.yeying.ime"
+    namespace = "io.github.cgfhsc.agileshadow.ime"
     compileSdk = libs.versions.projectCompileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "dev.yeying.ime"
+        applicationId = "io.github.cgfhsc.agileshadow.ime"
         minSdk = libs.versions.projectMinSdk.get().toInt()
         targetSdk = libs.versions.projectTargetSdk.get().toInt()
         versionCode = libs.versions.projectVersionCode.get().toInt()

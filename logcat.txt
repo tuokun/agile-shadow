@@ -1,0 +1,748 @@
+2026-05-22 06:41:39.286  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 1, new: 3
+2026-05-22 06:41:39.825  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 3, new: 2
+2026-05-22 06:41:43.234  2763-11642 AppsFilter              system_server                        I  interaction: PackageSetting{d8ed204 dev.yeying.ime/10377} -> PackageSetting{9fde4cb com.ss.android.lark/10362} BLOCKED
+2026-05-22 06:41:43.422  2763-2887  AppsFilter              system_server                        I  interaction: PackageSetting{d8ed204 dev.yeying.ime/10377} -> PackageSetting{e13fd10 com.miui.weather2/10236} BLOCKED
+2026-05-22 06:41:45.011  2763-9011  PolicyMaker             system_server                        D  uid =10377 pkg=dev.yeying.ime reason=IME_APP
+2026-05-22 06:41:51.651  2763-9041  SmartPower...0377(4234) system_server                        I  idle->background(1921885ms) R(add to whitelist) adj=200.
+2026-05-22 06:41:51.652  2763-2817  SmartPower...0377(4234) system_server                        D  show input method
+2026-05-22 06:41:51.652  2763-2817  SmartPower...0377(4234) system_server                        I  background->visible(1ms) R(show input method) adj=200.
+2026-05-22 06:41:52.018  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.018  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.018  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.019  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.030  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.030  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.030  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.030  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.030  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.030  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.030  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.040  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  updateConfiguration: {1.25 460mcc1mnc [zh_CN] ldltr sw393dp w393dp h873dp 440dpi nrml long hdr widecg port uimode=15 night finger -keyb/v/h -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0 mInSplitScreen=false letterBoxed=false foScaled=false isSpecificEmbedded=false embeddingScale=1.0} as.2 s.67076 fontWeightAdjustment=0/d/o themeChanged=0 themeChangedFlags=0 display=0 extraData = Bundle[{}] screenType=0/o}, ViewRootImpl: android.view.ViewRootImpl@6cd8919, context: android.view.ContextThemeWrapper@5dc11bd
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.041  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:52.116  4234-4234  NativeTurboSchedManager dev.yeying.ime                       I  Load libmiui_runtime
+2026-05-22 06:41:52.142  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:41:52.769  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551580258, downTime=551580258, phoneEventTime=1779403312765 } moveCount:0
+2026-05-22 06:41:52.772  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:41:52.855  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551580345, downTime=551580258, phoneEventTime=1779403312852 } moveCount:0
+2026-05-22 06:41:52.879  2763-10125 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:41:53.076  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551580567, downTime=551580567, phoneEventTime=1779403313074 } moveCount:0
+2026-05-22 06:41:53.077  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:41:53.177  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551580668, downTime=551580567, phoneEventTime=1779403313175 } moveCount:0
+2026-05-22 06:41:53.182  2763-10125 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:41:53.324  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551580814, downTime=551580814, phoneEventTime=1779403313321 } moveCount:0
+2026-05-22 06:41:53.324  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:41:53.338  2763-10869 PerfShielderService     system_server                        D  dev.yeying.ime|InputMethod|146|551580499986513|146|3|1
+2026-05-22 06:41:53.339  2763-10869 PerfShielderService     system_server                        D  dev.yeying.ime|InputMethod|79|551580755055159|66|2|2
+2026-05-22 06:41:53.339 12770-5058  MiuiPerfServiceClient   com.miui.daemon                      W  interceptAndQueuing:4234|dev.yeying.ime|146|146|551580499986513|Slow handle traversal|1
+2026-05-22 06:41:53.340 12770-5058  MiuiPerfServiceClient   com.miui.daemon                      W  interceptAndQueuing:4234|dev.yeying.ime|79|66|551580755055159|Slow handle animation|2
+2026-05-22 06:41:53.418  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551580906, downTime=551580814, phoneEventTime=1779403313414 } moveCount:0
+2026-05-22 06:41:53.424  2763-12887 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:41:53.493  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551580983, downTime=551580983, phoneEventTime=1779403313490 } moveCount:0
+2026-05-22 06:41:53.493  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:41:53.577  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551581067, downTime=551580983, phoneEventTime=1779403313574 } moveCount:0
+2026-05-22 06:41:53.582  2763-10125 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:41:53.697  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551581187, downTime=551581187, phoneEventTime=1779403313694 } moveCount:0
+2026-05-22 06:41:53.698  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:41:53.765  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551581255, downTime=551581187, phoneEventTime=1779403313762 } moveCount:0
+2026-05-22 06:41:53.769  2763-12887 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:41:54.147  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551581638, downTime=551581638, phoneEventTime=1779403314145 } moveCount:0
+2026-05-22 06:41:54.148  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:41:54.214  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551581705, downTime=551581638, phoneEventTime=1779403314212 } moveCount:0
+2026-05-22 06:41:54.920  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551582343, downTime=551582343, phoneEventTime=1779403314850 } moveCount:0
+2026-05-22 06:41:54.920  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:41:54.923  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551582410, downTime=551582343, phoneEventTime=1779403314918 } moveCount:0
+2026-05-22 06:41:54.925  2763-12887 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:41:55.419  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:41:55.926  2763-10859 SmartPower...0377(4234) system_server                        I  visible->invisible(4273ms) R(become invisible) adj=200.
+2026-05-22 06:41:55.926  2763-10859 SmartPower...0377(4234) system_server                        I  invisible->background(1ms) R(become background) adj=200.
+2026-05-22 06:41:55.932  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:55.932  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:55.932  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:41:55.932  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:55.932  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:55.932  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:41:55.932  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:42:02.009  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 2, new: 1
+2026-05-22 06:42:02.641  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 1, new: 3
+2026-05-22 06:42:03.319  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 3, new: 2
+2026-05-22 06:42:08.409  2763-9011  PolicyMaker             system_server                        D  uid =10377 pkg=dev.yeying.ime reason=IME_APP
+2026-05-22 06:42:19.635  2763-9011  PolicyMaker             system_server                        D  uid =10377 pkg=dev.yeying.ime reason=IME_APP
+2026-05-22 06:42:21.085  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 2, new: 1
+2026-05-22 06:42:21.400  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 1, new: 3
+2026-05-22 06:42:26.111  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 3, new: 1
+2026-05-22 06:44:09.086  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 1, new: 3
+2026-05-22 06:44:14.124  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 3, new: 4
+2026-05-22 06:44:14.136  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 4, new: 3
+2026-05-22 06:44:14.430  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 3, new: 4
+2026-05-22 06:44:20.681  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 4, new: 3
+2026-05-22 06:44:22.536  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 3, new: 1
+2026-05-22 06:44:48.356  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 1, new: 3
+2026-05-22 06:44:49.167  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 3, new: 2
+2026-05-22 06:44:54.648  2763-9011  PolicyMaker             system_server                        D  uid =10377 pkg=dev.yeying.ime reason=IME_APP
+2026-05-22 06:44:54.910  2763-10335 AppsFilter              system_server                        I  interaction: PackageSetting{d8ed204 dev.yeying.ime/10377} -> PackageSetting{acecbc3 com.hengye.share/10296} BLOCKED
+2026-05-22 06:45:19.573  2763-13633 AppsFilter              system_server                        I  interaction: PackageSetting{d8ed204 dev.yeying.ime/10377} -> PackageSetting{54c8629 com.huanchengfly.tieba.post/10310} BLOCKED
+2026-05-22 06:45:52.587  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:45:52.588  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:45:52.588  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:45:52.588  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:45:52.589  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:45:52.589  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:45:52.589  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:45:52.589  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:45:52.590  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:45:53.075  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:45:53.075  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:45:53.076  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:45:53.077  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:45:53.077  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:45:53.077  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:45:53.077  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:45:53.077  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:47:06.235  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:47:06.236  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:47:06.236  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:47:06.236  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:47:06.236  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:47:06.236  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:47:06.236  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:47:06.236  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:47:06.236  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:47:06.236  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:47:07.084  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:47:07.084  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:47:07.084  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:47:07.084  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:47:07.085  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:47:07.228  2763-2887  AppsFilter              system_server                        I  interaction: PackageSetting{d8ed204 dev.yeying.ime/10377} -> PackageSetting{85a5838 com.miui.weather2/10236} BLOCKED
+2026-05-22 06:47:08.037  2763-10439 ProcessManager          system_server                        D  update DY:[com.xiaomi.bsgamecenter, com.android.quicksearchbox, com.google.android.projection.gearhead, dev.yeying.ime, com.miui.voip, li.songe.gkd, com.mi.appfinder, com.xiaomi.mirror]
+2026-05-22 06:47:09.046  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 2, new: 1
+2026-05-22 06:47:09.527  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 1, new: 3
+2026-05-22 06:47:14.506  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 3, new: 4
+2026-05-22 06:47:14.521  2763-9011  PolicyMaker             system_server                        D  uid =10377 pkg=dev.yeying.ime reason=IME_APP
+2026-05-22 06:47:19.600  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 4, new: 3
+2026-05-22 06:47:21.416  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 3, new: 1
+2026-05-22 06:53:43.237  4234-4234  VRI[InputMethod]        dev.yeying.ime                       I  DisplayState - old: 1, new: 2
+2026-05-22 06:53:43.687  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:53:43.687  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:53:43.687  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:53:43.687  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:53:43.688  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:53:48.766  2763-9011  PolicyMaker             system_server                        D  uid =10377 pkg=dev.yeying.ime reason=IME_APP
+2026-05-22 06:53:52.118  2763-21362 ArtService              system_server                        I  Adjusting the compiler filter for 'dev.yeying.ime' from 'speed-profile' to 'verify' because the package is debuggable
+2026-05-22 06:53:52.119 21365-21372 artd                    artd                                 I  GetBestInfo: /data/app/~~BQLLf1gZYdBHqrJ3BEqaCw==/dev.yeying.ime-axLVx9H7qsyKzpy8gQvHVw==/base.apk has no usable artifacts
+2026-05-22 06:53:52.191 21365-21372 artd                    artd                                 I  Running dex2oat: /apex/com.android.art/bin/art_exec --drop-capabilities --set-task-profile=Dex2OatBackground --set-priority=background --keep-fds=6:7:8:9:10:11 -- /apex/com.android.art/bin/dex2oat64 --zip-fd=6 --zip-location=/data/app/~~BQLLf1gZYdBHqrJ3BEqaCw==/dev.yeying.ime-axLVx9H7qsyKzpy8gQvHVw==/base.apk --oat-fd=7 --oat-location=/data/app/~~BQLLf1gZYdBHqrJ3BEqaCw==/dev.yeying.ime-axLVx9H7qsyKzpy8gQvHVw==/oat/arm64/base.odex --output-vdex-fd=8 --swap-fd=9 --class-loader-context-fds=10:11 --class-loader-context=PCL[]{PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]} --classpath-dir=/data/app/~~BQLLf1gZYdBHqrJ3BEqaCw==/dev.yeying.ime-axLVx9H7qsyKzpy8gQvHVw== --instruction-set=arm64 --instruction-set-features=default --instruction-set-variant=kryo300 --compiler-filter=verify --compilation-reason=bg-dexopt --max-image-block-size=524288 --resolve-startup-const-strings=true --debuggable --generate-mini-debug-info --runtime-arg -Xtarget-sdk-version:35 --runtime-arg -Xhidden-api-policy:enabled --cpu-set=0,1,2,3,4,5,6,7 -j8 --runtime-arg -Xms64m --runtime-arg -Xmx512m --cpu-set=0,1,2,3,4,5,6,7 --comments=app-name:dev.yeying.ime,app-version-name:0.3.6,app-version-code:16,art-version:360499999
+                                                                                                    Opened FDs: 6:/data/app/~~BQLLf1gZYdBHqrJ3BEqaCw==/dev.yeying.ime-axLVx9H7qsyKzpy8gQvHVw==/base.apk 7:/data/app/~~BQLLf1gZYdBHqrJ3BEqaCw==/dev.yeying.ime-axLVx9H7qsyKzpy8gQvHVw==/oat/arm64/base.odex.gg6wfp.tmp 8:/data/app/~~BQLLf1gZYdBHqrJ3BEqaCw==/dev.yeying.ime-axLVx9H7qsyKzpy8gQvHVw==/oat/arm64/base.vdex.tVaRMc.tmp 9:/data/app/~~BQLLf1gZYdBHqrJ3BEqaCw==/dev.yeying.ime-axLVx9H7qsyKzpy8gQvHVw==/oat/arm64/base.odex.swap.4cUquW.tmp 10:/system_ext/framework/androidx.window.sidecar.jar 11:/system_ext/framework/androidx.window.extensions.jar
+2026-05-22 06:53:52.212 21478-21478 dex2oat64               art_exec                             I  /apex/com.android.art/bin/dex2oat64 --output-vdex-fd=8 --class-loader-context-fds=10:11 --class-loader-context=PCL[]{PCL[/system_ext/framework/androidx.window.extensions.jar]#PCL[/system_ext/framework/androidx.window.sidecar.jar]} --classpath-dir=/data/app/~~BQLLf1gZYdBHqrJ3BEqaCw==/dev.yeying.ime-axLVx9H7qsyKzpy8gQvHVw== --compiler-filter=verify --compilation-reason=bg-dexopt --max-image-block-size=524288 --resolve-startup-const-strings=true --debuggable --generate-mini-debug-info --cpu-set=0,1,2,3,4,5,6,7 -j8 --cpu-set=0,1,2,3,4,5,6,7 --comments=app-name:dev.yeying.ime,app-version-name:0.3.6,app-version-code:16,art-version:360499999
+2026-05-22 06:53:52.787  2763-21362 ArtService              system_server                        I  Dexopt result: [packageName = dev.yeying.ime] DexContainerFileDexoptResult{dexContainerFile=/data/app/~~BQLLf1gZYdBHqrJ3BEqaCw==/dev.yeying.ime-axLVx9H7qsyKzpy8gQvHVw==/base.apk, primaryAbi=true, abi=arm64-v8a, actualCompilerFilter=verify, status=PERFORMED, dex2oatWallTimeMillis=590, dex2oatCpuTimeMillis=1840, sizeBytes=1017332, sizeBeforeBytes=0, extendedStatusFlags=[]}
+2026-05-22 06:53:52.788 12770-5058  MiuiPerfSe...x2oatUtils com.miui.daemon                      D  interceptDex2oatEvent reason=bg-dexopt packageName=dev.yeying.ime costTime=590
+2026-05-22 06:53:58.949  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:53:58.949  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:53:58.949  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:53:58.950  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:53:58.950  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:53:58.950  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:53:58.950  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:53:58.950  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:53:58.951  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:53:59.113  2763-2887  AppsFilter              system_server                        I  interaction: PackageSetting{d8ed204 dev.yeying.ime/10377} -> PackageSetting{9dfe3e4 io.github.cgfhsc.agileshadow.ime/10378} BLOCKED
+2026-05-22 06:53:59.183  2763-2763  AppsFilter              system_server                        I  interaction: PackageSetting{c6558ec dev.yeying.ime/10377} -> PackageSetting{3a05f9f io.github.cgfhsc.agileshadow.ime/10378} BLOCKED
+2026-05-22 06:53:59.215  2763-4301  AppsFilter              system_server                        I  interaction: PackageSetting{c6558ec dev.yeying.ime/10377} -> PackageSetting{3a05f9f io.github.cgfhsc.agileshadow.ime/10378} BLOCKED
+2026-05-22 06:53:59.486 26501-30432 ThumbnailBlurUtils      com.miui.securitycenter.remote       I  loadPrivacyThumbnailBlurMonthly successd{"cn.com.chsi.chsiapp":12,"com.deye":4,"com.heytap.headset":5,"com.xunmeng.pinduoduo":9,"com.hengye.share":2,"com.tencent.mobileqq":2,"com.pwrd.steam.esports":2,"com.tmri.app.main":3,"com.miui.compass":5,"com.yuyan.pinyin.offline.release":-1,"com.coolapk.market":2,"com.miui.huanji":5,"com.chinamobile.mcloud":10,"is.xyz.mpv":5,"com.miui.calculator":5,"com.android.contacts":5,"com.android.deskclock":5,"com.cmbchina.ccd.pluto.cmbActivity":1,"moe.shizuku.privileged.api":-1,"com.twitter.android":5,"com.edifier.edifierconnect":5,"com.google.android.apps.bard":-1,"com.xiaomi.finddevice":-1,"com.xingin.xhs":5,"com.huawei.hwvplayer.youku":27,"com.huanchengfly.tieba.post":-1,"com.duokan.phone.remotecontroller":5,"com.smzdm.client.android":9,"gov.anzong.androidnga":-1,"com.sankuai.meituan":4,"com.gaoshenggs.app":9,"com.xiaomi.market":5,"com.mercury.cloudrouter":-1,"com.google.android.googlequicksearchbox":5,"io.nekohasekai.sfa":-1,"org.mozilla.firefox":5,"com.mystyle.purelive":-1,"com.example.administrator.searchpicturetool":6,"io.github.cgfhsc.agileshadow.ime":-1,"cn.igxe":9,"com.compose.batteryinfo":-1,"xyz.re.player.ex":-1,"com.alicloud.databox":10,"org.thunderdog.challegram":5,"info.muge.appshare":-1,"com.miui.weather2":5,"com.max.xiaoheihe":2,"com.google.android.documentsui":-1,"com.timescale.app":-1,"cn.bd.dt":-1,"com.chinamworld.bocmbci":1,"com.taobao.idlefish":9,"com.android.mms":5,"me.piebridge.brevent":5,"cn.toside.music.mobile":-1,"com.android.thememanager":5,"com.android.camera":6,"com.ss.android.lark":10,"li.songe.gkd":-1,"zed.rainxch.githubstore":-1,"com.android.calendar":10,"com.android.settings":-1,"com.deepseek.chat":-1,"com.uu898.uuhavequality":9,"com.v2ray.ang":5,"net.steampp.app":-1,"com.jingdong.app.mall":9,"com.larus.nova":-1,"com.android.soundrecorder":5,"com.ss.android.ugc.aweme":27,"air.tv.douyu.android":27,"com.anydesk.anydeskandroid":5,"com.tencent.wework":10,"com.baidu.BaiduMap":3,"com.mipay.wallet":1,"com.unionpay":1,"md.obsidian":5,"com.netease.buff":2,"com.tencent.mm":5,"io.legado.app.release":-1,"com.viscouspot.gitsync":-1,"com.sinovatech.unicom.ui":5,"com.android.fileexplorer":5,"org.getlantern.lantern":5,"com.byd.aeri.caranywhere":5,"youqu.android.todesk":10,"com.mi.health":14,"com.fongmi.android.tv":-1,"com.autonavi.minimap":3,"com.vgjump.jump":2,"com.miui.voiceassist":5,"com.xiaomi.scanner":5,"com.miui.passwords":-1,"com.miui.securitycenter":5,"com.example.piliplus":-1,"bin.mt.plus":5,"com.android.vending":5,"com.maimemo.android.momo":12,"com.github.android":5,"com.moondroplab.moondrop.moondrop_app":-1,"com.hupu.games":8,"tv.danmaku.bili":27,"com.One.WoodenLetter":5,"com.openai.chatgpt":-1,"com.shizuku.uninstaller":-1,"com.miui.gallery":6,"com.google.android.youtube":5,"cn.kuwo.player":27,"com.android.email":10,"com.eg.android.AlipayGphone":1,"com.miui.notes":5,"com.alibaba.wireless":9,"com.tipsoon.android":7,"com.MobileTicket":3,"com.taobao.taobao":9,"xyz.chatboxapp.chatbox":-1,"com.android.browser":5,"com.joytune":-1,"com.schultegrid":-1,"com.valvesoftware.android.steam.community":5,"cn.gov.tax.its":1,"com.vivo.easyshare":5,"com.github.zly2006.zhplus.lite":-1,"cn.wps.moffice_eng":10,"com.quark.browser":5,"com.steampy.app":9,"com.jdjdc.jdfastjdc":12,"com.estrongs.android.pop":5,"com.huya.kiwi":27,"mark.via":5,"com.oppo.optvassistant":-1,"dev.yeying.ime":-1,"com.douban.frodo":5,"com.ecitic.bank.mobile":1,"com.lingkou.leetcode":12}
+2026-05-22 06:53:59.553  2763-4302  AppsFilter              system_server                        I  interaction: PackageSetting{c6558ec dev.yeying.ime/10377} -> PackageSetting{79091ca io.github.cgfhsc.agileshadow.ime/10378} BLOCKED
+---------------------------- 软件包 io.github.cgfhsc.agileshadow.ime 的进程已开始(19537) ----------------------------
+2026-05-22 06:54:00.595  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:00.595  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:00.595  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:00.595  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:00.595  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:00.595  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:00.595  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:00.596  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:06.223  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:06.223  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:06.223  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:06.224  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:06.239  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:06.239  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:06.240  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:06.241  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:06.241  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:06.241  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:06.241  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:06.241  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:06.242  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:18.718  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:18.718  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:18.719  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:18.719  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:18.721  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:19.470 23290-23342 NetCategoryUtils        com.xiaomi.misettings                D  adapterMergeJsonBefore:{"category_undefined":",,com.kdyyl.tt02,com.viscouspot.gitsync,com.android.phone,com.mercury.cloudrouter,io.nekohasekai.sfa,com.google.android.googlequicksearchbox,org.getlantern.lantern,com.mystyle.purelive,com.android.systemui,com.flatter.app.kuafu,chat.fluffy.fluffychat,com.yuyan.pinyin.offline.release,com.fongmi.android.tv,com.android.provision,xyz.chatboxapp.chatbox,com.compose.batteryinfo,xyz.re.player.ex,com.schultegrid,com.joytune,moe.shizuku.privileged.api,com.miui.powerkeeper,com.example.piliplus,com.google.android.documentsui,com.timescale.app,com.github.zly2006.zhplus.lite,com.miui.voiceassistProxy,com.google.android.apps.bard,cn.toside.music.mobile,com.moondroplab.moondrop.moondrop_app,cn.deepkolos.schultegrid,com.omarea.vtools,com.android.stk,com.huawei.hwvplayer.youku,com.oppo.optvassistant,com.huanchengfly.tieba.post,com.openai.chatgpt,cn.kuwo.autolite,com.osfans.trime,com.shizuku.uninstaller,li.songe.gkd,zed.rainxch.githubstore,com.jtom.userprobation,dev.yeying.ime,com.google.android.youtube,com.android.settings,net.steampp.app,gov.anzong.androidnga","category_tools":",,com.xiaomi.bsgamecenter,com.miui.securitymanager,com.anydesk.anydeskandroid,md.obsidian,com.heytap.headset,com.miui.securitycore,io.legado.app.release,com.sinovatech.unicom.ui,com.paget96.batteryguru,com.android.fileexplorer,com.miui.compass,com.miui.huanji,is.xyz.mpv,com.miui.calculator,com.miui.mishare.connectivity,com.android.contacts,com.android.deskclock,com.miui.greenguard,com.miui.voiceassist,com.xiaomi.scanner,com.miui.securitycenter,bin.mt.plus,com.twitter.android,com.edifier.edifierconnect,com.android.vending,com.miui.backup,com.miui.cloudbackup,com.github.android,com.miui.fliphome,com.android.updater,com.One.WoodenLetter,com.duokan.phone.remotecontroller,com.miui.password,com.miui.screenrecorder,com.miui.voicetrigger,com.xiaomi.market,com.xiaomi.misettings,com.miui.notes,com.miui.miservice,org.mozilla.firefox,com.miui.home,com.android.browser,com.xiaomi.account,org.thunderdog.challegram,info.muge.appshare,com.valvesoftware.android.steam.community,com.android.quicksearchbox,com.vivo.easyshare,com.miui.weather2,com.mi.android.globallauncher,com.quark.browser,com.estrongs.android.pop,com.android.mms,com.miui.personalassistant,me.piebridge.brevent,com.topjohnwu.magisk,com.android.thememanager,mark.via,com.miui.findmy,com.miui.themestore,com.miui.bugreport,com.xiaomi.subscreencenter,com.android.incallui,com.v2ray.ang,com.uu898.uuhavequality,com.larus.nova,com.android.soundrecorder,com.xiaomi.mihomemanager","category_productivity":",,com.alicloud.databox,com.android.email,com.anydesk.anydeskandroid,com.tencent.wework,com.mi.oa,cn.bd.dt,cn.wps.moffice_eng,youqu.android.todesk,com.ss.android.lark,com.android.calendar,com.deepseek.chat,com.chinamobile.mcloud","category_education":",,cn.com.chsi.chsiapp,com.maimemo.android.momo,com.jdjdc.jdfastjdc,com.lingkou.leetcode","category_travel":",,com.MobileTicket,com.byd.aeri.caranywhere,com.baidu.BaiduMap,com.tmri.app.main,com.autonavi.minimap","category_life":",,com.sankuai.meituan,com.eg.android.AlipayGphone,com.deye","category_social":",,com.vgjump.jump,com.xingin.xhs,com.max.xiaoheihe,com.tencent.mm,com.netease.buff,com.douban.frodo,com.hengye.share,com.tencent.mobileqq,com.coolapk.market,com.pwrd.steam.esports","category_video_etc":",,com.ss.android.ugc.aweme,com.moondroplab.moondrop.moondrop_app,com.huya.kiwi,air.tv.douyu.android,tv.danmaku.bili,cn.kuwo.player,com.miui.mediaviewer","category_photo":",,com.miui.mediaeditor,com.android.camera,com.example.administrator.searchpicturetool,com.miui.gallery","category_shopping":",,com.alibaba.wireless,com.gaoshenggs.app,com.xunmeng.pinduoduo,cn.igxe,com.taobao.taobao,com.taobao.idlefish,com.steampy.app,com.smzdm.client.android,com.jingdong.app.mall","category_financial":",,com.xiaomi.payment,com.cmbchina.ccd.pluto.cmbActivity,com.mipay.wallet,cn.gov.tax.its,com.unionpay,com.chinamworld.bocmbci,com.ecitic.bank.mobile","category_sport":",,com.hupu.games","category_medicine":",,
+2026-05-22 06:54:19.470 23290-23342 NetCategoryUtils        com.xiaomi.misettings                D  onSuccess: merge result:={"category_undefined":",,com.viscouspot.gitsync,com.android.phone,org.getlantern.lantern,com.flatter.app.kuafu,com.yuyan.pinyin.offline.release,com.fongmi.android.tv,moe.shizuku.privileged.api,com.example.piliplus,com.google.android.apps.bard,com.moondroplab.moondrop.moondrop_app,com.android.stk,com.huawei.hwvplayer.youku,com.huanchengfly.tieba.post,com.openai.chatgpt,com.osfans.trime,com.shizuku.uninstaller,com.google.android.youtube,gov.anzong.androidnga,com.kdyyl.tt02,com.mercury.cloudrouter,io.nekohasekai.sfa,com.google.android.googlequicksearchbox,com.mystyle.purelive,com.android.systemui,chat.fluffy.fluffychat,com.android.provision,io.github.cgfhsc.agileshadow.ime,xyz.chatboxapp.chatbox,com.compose.batteryinfo,xyz.re.player.ex,com.schultegrid,com.joytune,com.miui.powerkeeper,com.google.android.documentsui,com.timescale.app,com.github.zly2006.zhplus.lite,com.miui.voiceassistProxy,cn.toside.music.mobile,cn.deepkolos.schultegrid,com.omarea.vtools,com.oppo.optvassistant,cn.kuwo.autolite,li.songe.gkd,zed.rainxch.githubstore,com.jtom.userprobation,dev.yeying.ime,com.android.settings,net.steampp.app","category_tools":",,com.xiaomi.bsgamecenter,com.miui.securitymanager,com.anydesk.anydeskandroid,md.obsidian,com.heytap.headset,com.miui.securitycore,io.legado.app.release,com.sinovatech.unicom.ui,com.paget96.batteryguru,com.android.fileexplorer,com.miui.compass,com.miui.huanji,is.xyz.mpv,com.miui.calculator,com.miui.mishare.connectivity,com.android.contacts,com.android.deskclock,com.miui.greenguard,com.miui.voiceassist,com.xiaomi.scanner,com.miui.securitycenter,bin.mt.plus,com.twitter.android,com.edifier.edifierconnect,com.android.vending,com.miui.backup,com.miui.cloudbackup,com.github.android,com.miui.fliphome,com.android.updater,com.One.WoodenLetter,com.duokan.phone.remotecontroller,com.miui.password,com.miui.screenrecorder,com.miui.voicetrigger,com.xiaomi.market,com.xiaomi.misettings,com.miui.notes,com.miui.miservice,org.mozilla.firefox,com.miui.home,com.android.browser,com.xiaomi.account,org.thunderdog.challegram,info.muge.appshare,com.valvesoftware.android.steam.community,com.android.quicksearchbox,com.vivo.easyshare,com.miui.weather2,com.mi.android.globallauncher,com.quark.browser,com.estrongs.android.pop,com.android.mms,com.miui.personalassistant,me.piebridge.brevent,com.topjohnwu.magisk,com.android.thememanager,mark.via,com.miui.findmy,com.miui.themestore,com.miui.bugreport,com.xiaomi.subscreencenter,com.android.incallui,com.v2ray.ang,com.uu898.uuhavequality,com.larus.nova,com.android.soundrecorder,com.xiaomi.mihomemanager","category_productivity":",,com.alicloud.databox,com.android.email,com.anydesk.anydeskandroid,com.tencent.wework,com.mi.oa,cn.bd.dt,cn.wps.moffice_eng,youqu.android.todesk,com.ss.android.lark,com.android.calendar,com.deepseek.chat,com.chinamobile.mcloud","category_education":",,cn.com.chsi.chsiapp,com.maimemo.android.momo,com.jdjdc.jdfastjdc,com.lingkou.leetcode","category_travel":",,com.MobileTicket,com.byd.aeri.caranywhere,com.baidu.BaiduMap,com.tmri.app.main,com.autonavi.minimap","category_life":",,com.sankuai.meituan,com.eg.android.AlipayGphone,com.deye","category_social":",,com.vgjump.jump,com.xingin.xhs,com.max.xiaoheihe,com.tencent.mm,com.netease.buff,com.douban.frodo,com.hengye.share,com.tencent.mobileqq,com.coolapk.market,com.pwrd.steam.esports","category_video_etc":",,com.ss.android.ugc.aweme,com.moondroplab.moondrop.moondrop_app,com.huya.kiwi,air.tv.douyu.android,tv.danmaku.bili,cn.kuwo.player,com.miui.mediaviewer","category_photo":",,com.miui.mediaeditor,com.android.camera,com.example.administrator.searchpicturetool,com.miui.gallery","category_shopping":",,com.alibaba.wireless,com.gaoshenggs.app,com.xunmeng.pinduoduo,cn.igxe,com.taobao.taobao,com.taobao.idlefish,com.steampy.app,com.smzdm.client.android,com.jingdong.app.mall","category_financial":",,com.xiaomi.payment,com.cmbchina.ccd.pluto.cmbActivity,com.mipay.wallet,cn.gov.tax.its,com.unionpay,com.chinamworld.bocmbci,com.ecitic.bank.mobile","category_sport":",,com.
+2026-05-22 06:54:19.598  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:19.598  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:19.598  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:19.598  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:19.598  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:19.598  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:19.598  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:19.598  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:19.599  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:19.600  2763-2817  SmartPower...0377(4234) system_server                        D  show input method
+2026-05-22 06:54:19.600  2763-2817  SmartPower...0377(4234) system_server                        I  background->visible(317957ms) R(show input method) adj=200.
+2026-05-22 06:54:19.611  4234-4234  InputMethod             dev.yeying.ime                       V  IMS.showSoftInput()
+2026-05-22 06:54:19.612  4234-4234  InputMethodService      dev.yeying.ime                       D  onShowInputRequested: show flags = 1
+2026-05-22 06:54:19.614  4234-4234  InputMethodService      dev.yeying.ime                       I  updateInputViewShown mShowInputRequested = true onEvaluateInputViewShown = truemIsInputViewShown = true mDecorViewVisible = true mInputView= androidx.compose.ui.platform.ComposeView{7ffa92 V.E...... ........ 0,0-1080,853}
+2026-05-22 06:54:19.614  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:19.614  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:19.614  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:19.614  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:19.615  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:19.629  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:19.630  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:19.630  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:54:19.630  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:19.630  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:19.630  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:19.630  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:54:19.631  4234-4234  libc                    dev.yeying.ime                       W  Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+2026-05-22 06:54:19.632  4234-4234  libc                    dev.yeying.ime                       W  Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+2026-05-22 06:54:19.639  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  vri.Setup new sync=wmsSync-VRI[InputMethod]#4
+2026-05-22 06:54:19.670  4234-4287  qdgralloc               dev.yeying.ime                       W  getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+2026-05-22 06:54:19.675  4234-4287  dev.yeying.ime          dev.yeying.ime                       E  FrameInsert open fail: No such file or directory
+2026-05-22 06:54:19.678  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  vri.reportDrawFinished 0 0 Rect(0, 1547 - 1080, 2400)
+2026-05-22 06:54:23.877  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:23.877  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:23.877  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:23.877  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:23.878  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:23.879  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:23.879  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:23.879  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:23.879  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:23.879  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:23.879  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:23.880  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:23.883  4234-4234  InputMethodService      dev.yeying.ime                       V  CALL: hideWindow
+2026-05-22 06:54:23.885  4234-4234  ImeTracker              dev.yeying.ime                       I  system_server:cd5e53af: onHidden
+2026-05-22 06:54:23.889  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:24.395  4234-4287  BufferQueueProducer     dev.yeying.ime                       D  [VRI[InputMethod]#1(BLAST Consumer)1](id:108a00000001,api:1,p:4234,c:4234) disconnect: api 1 (caller=4234)
+2026-05-22 06:54:24.397  2763-12886 SmartPower...0377(4234) system_server                        I  visible->invisible(4797ms) R(become invisible) adj=200.
+2026-05-22 06:54:24.397  2763-12886 SmartPower...0377(4234) system_server                        I  invisible->background(0ms) R(become background) adj=200.
+2026-05-22 06:54:24.402  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:24.402  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:24.402  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:54:24.402  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:24.402  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:24.402  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:24.402  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:54:24.402  4234-4234  dev.yeying.ime          dev.yeying.ime                       W  Binder 0xb400006e68d50ac0 destroyed after setInheritRt before being parceled.
+2026-05-22 06:54:24.402  4234-4234  BufferQueueConsumer     dev.yeying.ime                       D  [VRI[InputMethod]#1(BLAST Consumer)1](id:108a00000001,api:0,p:-1,c:4234) disconnect: caller 4234
+2026-05-22 06:54:25.924  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:25.924  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:25.924  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:25.925  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:27.714 20705-20705 SettingsProvider        com.android.settings                 I  name:default_input_method has changed to dev.yeying.ime/.YeyingImeService, because packageName:com.android.settings, uid:1000, pid: 20705
+2026-05-22 06:54:27.782  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:27.782  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:27.783  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:27.784  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:27.784  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:27.784  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:27.784  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:27.784  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:27.784  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:27.784  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:27.784  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:27.784  2763-4671  SmartPower...0377(4234) system_server                        D  show input method
+2026-05-22 06:54:27.784  2763-4671  SmartPower...0377(4234) system_server                        I  background->visible(3387ms) R(show input method) adj=200.
+2026-05-22 06:54:27.786  4234-4234  InputMethod             dev.yeying.ime                       V  IMS.showSoftInput()
+2026-05-22 06:54:27.786  4234-4234  InputMethodService      dev.yeying.ime                       D  onShowInputRequested: show flags = 0
+2026-05-22 06:54:27.787  4234-4234  InputMethodService      dev.yeying.ime                       I  updateInputViewShown mShowInputRequested = true onEvaluateInputViewShown = truemIsInputViewShown = true mDecorViewVisible = true mInputView= androidx.compose.ui.platform.ComposeView{7ffa92 V.E...... ........ 0,0-1080,853}
+2026-05-22 06:54:27.787  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:27.787  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:27.788  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:27.790  4234-4234  InputMethodService      dev.yeying.ime                       V  CALL: hideWindow
+2026-05-22 06:54:27.791  4234-4234  ImeTracker              dev.yeying.ime                       I  system_server:1b016fa: onHidden
+2026-05-22 06:54:27.802  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:27.802  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:27.802  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:54:27.802  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:27.802  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:27.802  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:27.802  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:54:27.803  4234-4234  libc                    dev.yeying.ime                       W  Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+2026-05-22 06:54:27.805  4234-4234  libc                    dev.yeying.ime                       W  Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+2026-05-22 06:54:27.806  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  vri.Setup new sync=wmsSync-VRI[InputMethod]#6
+2026-05-22 06:54:27.819  4234-4287  qdgralloc               dev.yeying.ime                       W  getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+2026-05-22 06:54:27.823  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  vri.reportDrawFinished 0 0 Rect(0, 1547 - 1080, 2400)
+2026-05-22 06:54:28.299  4234-4287  BufferQueueProducer     dev.yeying.ime                       D  [VRI[InputMethod]#2(BLAST Consumer)2](id:108a00000002,api:1,p:4234,c:4234) disconnect: api 1 (caller=4234)
+2026-05-22 06:54:28.300  2763-4302  SmartPower...0377(4234) system_server                        I  visible->invisible(516ms) R(become invisible) adj=200.
+2026-05-22 06:54:28.300  2763-4302  SmartPower...0377(4234) system_server                        I  invisible->background(0ms) R(become background) adj=200.
+2026-05-22 06:54:28.305  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:28.305  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:28.305  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:54:28.305  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:28.305  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:28.305  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:28.305  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:54:28.307  4234-4234  dev.yeying.ime          dev.yeying.ime                       W  Binder 0xb400006e68d6df20 destroyed after setInheritRt before being parceled.
+2026-05-22 06:54:28.307  4234-4234  BufferQueueConsumer     dev.yeying.ime                       D  [VRI[InputMethod]#2(BLAST Consumer)2](id:108a00000002,api:0,p:-1,c:4234) disconnect: caller 4234
+2026-05-22 06:54:28.581  2763-2817  SmartPower...0377(4234) system_server                        D  show input method
+2026-05-22 06:54:28.581  2763-2817  SmartPower...0377(4234) system_server                        I  background->visible(281ms) R(show input method) adj=200.
+2026-05-22 06:54:28.582  4234-4234  InputMethod             dev.yeying.ime                       V  IMS.showSoftInput()
+2026-05-22 06:54:28.582  4234-4234  InputMethodService      dev.yeying.ime                       D  onShowInputRequested: show flags = 1
+2026-05-22 06:54:28.583  4234-4234  InputMethodService      dev.yeying.ime                       I  updateInputViewShown mShowInputRequested = true onEvaluateInputViewShown = truemIsInputViewShown = true mDecorViewVisible = true mInputView= androidx.compose.ui.platform.ComposeView{7ffa92 V.E...... ........ 0,0-1080,853}
+2026-05-22 06:54:28.583  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:28.583  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:28.583  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating processor: 't9_processor'
+2026-05-22 06:54:28.583  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: _auto_commit
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading dictionary 'rime_ice'.
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  loading prism file: /data/user/0/dev.yeying.ime/files/rime/user/build/t9.prism.bin
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  found double array image of size 11008.
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  stabledb 'custom_phrase_t9' does not exist.
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       E  error creating translator: 'lua_translator'
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  ConcreteEngine::InitializeOptions
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_mode, reset: -1
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: ascii_punct, reset: -1
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: traditionalization, reset: -1
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: emoji, reset: 1
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  updated option: emoji
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: full_shape, reset: -1
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  found switch option: search_single_char, reset: -1
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/previously_selected_schema
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  write: var/schema_access_time/t9
+2026-05-22 06:54:28.584  4234-4234  rime.yuyan              dev.yeying.ime                       I  saving config file '/data/user/0/dev.yeying.ime/files/rime/user/user.yaml'.
+2026-05-22 06:54:28.590  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:28.590  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:28.590  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:54:28.590  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:28.590  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:28.590  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =0 hasIntersection =false
+2026-05-22 06:54:28.590  4234-4234  InsetsSource            dev.yeying.ime                       W  Has no intersection or mTmpFrame.height(), return Insets.NONE mTmpFrame.height() =121 hasIntersection =false
+2026-05-22 06:54:28.590  4234-4234  libc                    dev.yeying.ime                       W  Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+2026-05-22 06:54:28.591  4234-4234  libc                    dev.yeying.ime                       W  Access denied finding property "vendor.display.enable_optimal_refresh_rate"
+2026-05-22 06:54:28.592  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  vri.Setup new sync=wmsSync-VRI[InputMethod]#8
+2026-05-22 06:54:28.604  4234-4287  qdgralloc               dev.yeying.ime                       W  getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+2026-05-22 06:54:28.606  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  vri.reportDrawFinished 0 0 Rect(0, 1547 - 1080, 2400)
+2026-05-22 06:54:29.838  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551911612, downTime=551911612, phoneEventTime=1779404069836 } moveCount:0
+2026-05-22 06:54:29.839  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:29.856  4234-4287  qdgralloc               dev.yeying.ime                       W  getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+2026-05-22 06:54:29.905  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551911680, downTime=551911612, phoneEventTime=1779404069904 } moveCount:0
+2026-05-22 06:54:29.908  2763-12876 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:29.911  4234-4234  rime.yuyan              dev.yeying.ime                       I  initializing opencc: /data/user/0/dev.yeying.ime/files/rime/shared/opencc/emoji.json
+2026-05-22 06:54:29.994  4234-4287  qdgralloc               dev.yeying.ime                       W  getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+2026-05-22 06:54:29.994  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551911756, downTime=551911756, phoneEventTime=1779404069980 } moveCount:0
+2026-05-22 06:54:29.994  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:30.014  4234-4287  qdgralloc               dev.yeying.ime                       W  getInterlacedFlag: getMetaData returned 3, defaulting to interlaced_flag = 0
+2026-05-22 06:54:30.065  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551911839, downTime=551911756, phoneEventTime=1779404070063 } moveCount:0
+2026-05-22 06:54:30.067  2763-13633 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:30.166  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551911941, downTime=551911941, phoneEventTime=1779404070164 } moveCount:0
+2026-05-22 06:54:30.167  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:30.293  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551912068, downTime=551911941, phoneEventTime=1779404070292 } moveCount:3
+2026-05-22 06:54:30.295  2763-13633 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:30.316  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=1, pointerCount=1, eventTime=551912068, downTime=551912068, phoneEventTime=1779404070292 } moveCount:0
+2026-05-22 06:54:30.316  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:30.375  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=1, pointerCount=1, eventTime=551912150, downTime=551912068, phoneEventTime=1779404070374 } moveCount:0
+2026-05-22 06:54:30.377  2763-2800  KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:30.503  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551912276, downTime=551912276, phoneEventTime=1779404070500 } moveCount:0
+2026-05-22 06:54:30.503  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:30.584  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551912359, downTime=551912276, phoneEventTime=1779404070583 } moveCount:0
+2026-05-22 06:54:30.587  2763-13633 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:31.314  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551913088, downTime=551913088, phoneEventTime=1779404071312 } moveCount:0
+2026-05-22 06:54:31.314  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:31.398  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551913171, downTime=551913088, phoneEventTime=1779404071395 } moveCount:0
+2026-05-22 06:54:31.551  4234-4246  dev.yeying.ime          dev.yeying.ime                       I  This is sticky GC, maxfree is 33554432 minfree is 8388608
+2026-05-22 06:54:31.551  4234-4246  dev.yeying.ime          dev.yeying.ime                       W  Reducing the number of considered missed Gc histogram windows from 245 to 100
+2026-05-22 06:54:32.217  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551913992, downTime=551913992, phoneEventTime=1779404072215 } moveCount:0
+2026-05-22 06:54:32.218  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:32.283  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551914058, downTime=551913992, phoneEventTime=1779404072282 } moveCount:0
+2026-05-22 06:54:32.408  2763-13633 PerfShielderService     system_server                        D  dev.yeying.ime|InputMethod|256|551913435391126|188|3|3
+2026-05-22 06:54:32.408 12770-6998  MiuiPerfServiceClient   com.miui.daemon                      W  interceptAndQueuing:4234|dev.yeying.ime|256|188|551913435391126|Slow handle traversal|3
+2026-05-22 06:54:32.778  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551914553, downTime=551914553, phoneEventTime=1779404072777 } moveCount:0
+2026-05-22 06:54:32.779  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:32.835  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551914610, downTime=551914553, phoneEventTime=1779404072834 } moveCount:0
+2026-05-22 06:54:32.837  2763-13633 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:32.963  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551914736, downTime=551914736, phoneEventTime=1779404072960 } moveCount:0
+2026-05-22 06:54:32.963  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:32.974  2763-12887 PerfShielderService     system_server                        D  dev.yeying.ime|InputMethod|122|551914184276594|122|3|1
+2026-05-22 06:54:32.974 12770-6998  MiuiPerfServiceClient   com.miui.daemon                      W  interceptAndQueuing:4234|dev.yeying.ime|122|122|551914184276594|Slow handle traversal|1
+2026-05-22 06:54:33.036  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551914811, downTime=551914736, phoneEventTime=1779404073035 } moveCount:0
+2026-05-22 06:54:33.038  2763-12887 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:33.147  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551914920, downTime=551914920, phoneEventTime=1779404073144 } moveCount:0
+2026-05-22 06:54:33.147  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:33.211  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551914986, downTime=551914920, phoneEventTime=1779404073210 } moveCount:0
+2026-05-22 06:54:33.217  2763-13633 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:33.304  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551915079, downTime=551915079, phoneEventTime=1779404073303 } moveCount:0
+2026-05-22 06:54:33.304  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:33.397  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551915170, downTime=551915079, phoneEventTime=1779404073394 } moveCount:0
+2026-05-22 06:54:33.401  2763-12887 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:33.497  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551915271, downTime=551915271, phoneEventTime=1779404073495 } moveCount:0
+2026-05-22 06:54:33.497  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:33.562  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551915337, downTime=551915271, phoneEventTime=1779404073561 } moveCount:0
+2026-05-22 06:54:33.564  2763-12887 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:33.665  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551915439, downTime=551915439, phoneEventTime=1779404073663 } moveCount:0
+2026-05-22 06:54:33.665  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:33.746  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551915522, downTime=551915439, phoneEventTime=1779404073745 } moveCount:0
+2026-05-22 06:54:33.749  2763-12883 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:34.099  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551915874, downTime=551915874, phoneEventTime=1779404074098 } moveCount:0
+2026-05-22 06:54:34.099  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:34.165  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551915939, downTime=551915874, phoneEventTime=1779404074163 } moveCount:0
+2026-05-22 06:54:34.167  2763-12883 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:34.695  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551916468, downTime=551916468, phoneEventTime=1779404074692 } moveCount:0
+2026-05-22 06:54:34.695  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:34.767  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551916542, downTime=551916468, phoneEventTime=1779404074766 } moveCount:0
+2026-05-22 06:54:34.769  2763-12883 KeyboardFe...::Vibrator system_server                        I  trigger keyboard vibrate for dev.yeying.ime effectId: 1 always: false
+2026-05-22 06:54:35.969  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551917744, downTime=551917744, phoneEventTime=1779404075968 } moveCount:0
+2026-05-22 06:54:35.969  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:36.053  4234-4287  SKIA                    dev.yeying.ime                       I  CreateGraphicsPipeline pipeline cache hit. elpased time: 0.46 ms.
+2026-05-22 06:54:36.056  4234-4287  SKIA                    dev.yeying.ime                       I  CreateGraphicsPipeline pipeline cache hit. elpased time: 0.19 ms.
+2026-05-22 06:54:36.056  4234-4287  SKIA                    dev.yeying.ime                       I  CreateGraphicsPipeline pipeline cache hit. elpased time: 0.13 ms.
+2026-05-22 06:54:36.058  4234-4287  SKIA                    dev.yeying.ime                       I  CreateGraphicsPipeline pipeline cache hit. elpased time: 0.18 ms.
+2026-05-22 06:54:36.108  4234-4245  dev.yeying.ime          dev.yeying.ime                       I  Compiler allocated 5241KB to compile void dev.yeying.ime.ui.keyboard.HandwritingBoardKt.HandwritingBoard(androidx.compose.ui.Modifier, dev.yeying.ime.ui.keyboard.KeyboardViewModel, boolean, kotlin.jvm.functions.Function1, kotlin.jvm.functions.Function0, androidx.compose.runtime.Composer, int, int)
+2026-05-22 06:54:36.427  4234-4287  SKIA                    dev.yeying.ime                       I  CreateGraphicsPipeline pipeline cache hit. elpased time: 0.21 ms.
+2026-05-22 06:54:36.503  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551918278, downTime=551917744, phoneEventTime=1779404076502 } moveCount:57
+2026-05-22 06:54:36.588  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551918363, downTime=551918363, phoneEventTime=1779404076587 } moveCount:0
+2026-05-22 06:54:36.590  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:37.111  4234-23664 MddModelManager         dev.yeying.ime                       I  getDownloadedFilesForModel()
+2026-05-22 06:54:37.112  4234-23666 ProxyAndro...gerBackend dev.yeying.ime                       W  Too many Flogger logs received before configuration. Dropping old logs.
+2026-05-22 06:54:37.119  4234-23666 ProxyAndro...gerBackend dev.yeying.ime                       W  Too many Flogger logs received before configuration. Dropping old logs.
+2026-05-22 06:54:37.119  4234-23666 ProxyAndro...gerBackend dev.yeying.ime                       W  Too many Flogger logs received before configuration. Dropping old logs.
+2026-05-22 06:54:37.127  4234-23665 MddModelManager         dev.yeying.ime                       I  getDownloadedFilesForModel(): started
+2026-05-22 06:54:37.127  4234-23665 MddModelManager         dev.yeying.ime                       I  getDownloadedFilesForModel(): acquired result.
+2026-05-22 06:54:37.183  4234-23664 dev.yeying.ime          dev.yeying.ime                       I  hiddenapi: Accessing hidden field Ljava/io/FileDescriptor;->descriptor:I (runtime_flags=CorePlatformApi, domain=core-platform, api=unsupported) from Lcom/google/mlkit/vision/digitalink/recognition/internal/DigitalInkRecognizerJni; (domain=app) using JNI: allowed
+2026-05-22 06:54:37.183  4234-4298  TransportR...EventStore dev.yeying.ime                       D  Storing event with priority=VERY_LOW, name=FIREBASE_ML_SDK for destination cct
+2026-05-22 06:54:37.185  4234-4298  TransportR...oScheduler dev.yeying.ime                       D  Upload for context TransportContext(cct, VERY_LOW, MSRodHRwczovL2ZpcmViYXNlbG9nZ2luZy5nb29nbGVhcGlzLmNvbS92MGNjL2xvZy9iYXRjaD9mb3JtYXQ9anNvbl9wcm90bzNc) is already scheduled. Returning...
+2026-05-22 06:54:37.201  4234-23664 native                  dev.yeying.ime                       I  I0000 00:00:1779404077.201095   23664 lstm_recognizer.cc:77] Loaded tflite model.
+2026-05-22 06:54:37.205  4234-23664 native                  dev.yeying.ime                       I  I0000 00:00:1779404077.204966   23664 tf_recognizer.cc:69] Loading TfRecognizer
+2026-05-22 06:54:37.210  4234-23664 native                  dev.yeying.ime                       I  I0000 00:00:1779404077.210436   23664 ink_preprocessor.cc:35] Created InkPreprocessor with 4 steps.
+2026-05-22 06:54:37.221  4234-23664 native                  dev.yeying.ime                       I  I0000 00:00:1779404077.221133   23664 tf_recognizer.cc:195] inkhash: 0ac198e7c0668d1e
+2026-05-22 06:54:37.221  4234-23664 native                  dev.yeying.ime                       I  I0000 00:00:1779404077.221569   23664 tf_recognizer.cc:222] LabeledInkCurveProcessor returned 39 timesteps for 0ac198e7c0668d1e.
+2026-05-22 06:54:37.221  4234-23664 tflite                  dev.yeying.ime                       I  Initialized TensorFlow Lite runtime.
+2026-05-22 06:54:37.226  4234-23664 libc                    dev.yeying.ime                       W  Access denied finding property "ro.hardware.chipname"
+2026-05-22 06:54:37.242  4234-23664 native                  dev.yeying.ime                       W  W0000 00:00:1779404077.242674   23664 tf_recognizer.cc:402] Requested external segmentation for 0ac198e7c0668d1e, but this recognizer (lang: zh_cn) does not provide segmentation.
+2026-05-22 06:54:37.370  4234-23664 native                  dev.yeying.ime                       I  I0000 00:00:1779404077.370563   23664 tf_recognizer.cc:351]  1  request  0.28%    0.4ms  overall  0.28%    0.00s  LabeledInkProcessor
+                                                                                                     2  request  5.02%    7.5ms  overall  5.02%    0.01s  GetTfLiteInterpreter
+                                                                                                     3  request  0.10%    0.1ms  overall  0.10%    0.00s  FillingInputsInTfLiteModelRunner
+                                                                                                     4  request  8.60%   12.9ms  overall  8.60%    0.01s  RunTfLiteModelRunner
+                                                                                                     5  request  0.42%    0.6ms  overall  0.42%    0.00s  FillingOutputsInTfLiteModelRunner
+                                                                                                     6  request 85.57%  127.8ms  overall 85.57%    0.13s  Decoder
+                                                                                                        request         149.4ms  overall           0.15s  Total
+2026-05-22 06:54:37.370  4234-23664 native                  dev.yeying.ime                       I  I0000 00:00:1779404077.370678   23664 lstm_recognizer.cc:126] initialized recognizer. TfRecognizer
+2026-05-22 06:54:37.372  4234-23664 native                  dev.yeying.ime                       I  I0000 00:00:1779404077.372113   23664 tf_recognizer.cc:195] inkhash: f9e1f2a49d1ff575
+2026-05-22 06:54:37.372  4234-23664 native                  dev.yeying.ime                       I  I0000 00:00:1779404077.372371   23664 tf_recognizer.cc:222] LabeledInkCurveProcessor returned 3 timesteps for f9e1f2a49d1ff575.
+2026-05-22 06:54:37.372  4234-4298  TransportR...EventStore dev.yeying.ime                       D  Storing event with priority=VERY_LOW, name=FIREBASE_ML_SDK for destination cct
+2026-05-22 06:54:37.374  4234-4298  TransportR...oScheduler dev.yeying.ime                       D  Upload for context TransportContext(cct, VERY_LOW, MSRodHRwczovL2ZpcmViYXNlbG9nZ2luZy5nb29nbGVhcGlzLmNvbS92MGNjL2xvZy9iYXRjaD9mb3JtYXQ9anNvbl9wcm90bzNc) is already scheduled. Returning...
+2026-05-22 06:54:37.375  4234-23664 native                  dev.yeying.ime                       I  I0000 00:00:1779404077.375573   23664 tf_recognizer.cc:351]  1  request  7.00%    0.2ms  overall  7.00%    0.00s  LabeledInkProcessor
+                                                                                                     2  request  0.05%    0.0ms  overall  0.05%    0.00s  GetTfLiteInterpreter
+                                                                                                     3  request  2.86%    0.1ms  overall  2.86%    0.00s  FillingInputsInTfLiteModelRunner
+                                                                                                     4  request 31.47%    1.1ms  overall 31.47%    0.00s  RunTfLiteModelRunner
+                                                                                                     5  request  1.57%    0.1ms  overall  1.57%    0.00s  FillingOutputsInTfLiteModelRunner
+                                                                                                     6  request 57.04%    2.0ms  overall 57.04%    0.00s  Decoder
+                                                                                                        request           3.4ms  overall           0.00s  Total
+2026-05-22 06:54:37.375  4234-23664 native                  dev.yeying.ime                       I  I0000 00:00:1779404077.375617   23664 helper.cc:160] Recognition result: 亻 with score: -104.784
+2026-05-22 06:54:37.379  4234-4298  TransportR...EventStore dev.yeying.ime                       D  Storing event with priority=VERY_LOW, name=FIREBASE_ML_SDK for destination cct
+2026-05-22 06:54:37.380  4234-4298  TransportR...oScheduler dev.yeying.ime                       D  Upload for context TransportContext(cct, VERY_LOW, MSRodHRwczovL2ZpcmViYXNlbG9nZ2luZy5nb29nbGVhcGlzLmNvbS92MGNjL2xvZy9iYXRjaD9mb3JtYXQ9anNvbl9wcm90bzNc) is already scheduled. Returning...
+2026-05-22 06:54:37.604  4234-4246  dev.yeying.ime          dev.yeying.ime                       I  This is non sticky GC, maxfree is 33554432 minfree is 8388608
+2026-05-22 06:54:37.694  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551919468, downTime=551918363, phoneEventTime=1779404077692 } moveCount:117
+2026-05-22 06:54:38.298  4234-23689 native                  dev.yeying.ime                       I  I0000 00:00:1779404078.298041   23689 tf_recognizer.cc:195] inkhash: 37523be98bb2eb0c
+2026-05-22 06:54:38.299  4234-23689 native                  dev.yeying.ime                       I  I0000 00:00:1779404078.299058   23689 tf_recognizer.cc:222] LabeledInkCurveProcessor returned 10 timesteps for 37523be98bb2eb0c.
+2026-05-22 06:54:38.318  4234-23689 native                  dev.yeying.ime                       I  I0000 00:00:1779404078.318300   23689 tf_recognizer.cc:351]  1  request  4.58%    0.9ms  overall  4.93%    0.00s  LabeledInkProcessor
+                                                                                                     2  request  0.01%    0.0ms  overall  0.01%    0.00s  GetTfLiteInterpreter
+                                                                                                     3  request  0.58%    0.1ms  overall  0.92%    0.00s  FillingInputsInTfLiteModelRunner
+                                                                                                     4  request 20.44%    4.1ms  overall 22.05%    0.01s  RunTfLiteModelRunner
+                                                                                                     5  request  0.99%    0.2ms  overall  1.07%    0.00s  FillingOutputsInTfLiteModelRunner
+                                                                                                     6  request 73.40%   14.8ms  overall 71.01%    0.02s  Decoder
+                                                                                                        request          20.1ms  overall           0.02s  Total
+2026-05-22 06:54:38.318  4234-23689 native                  dev.yeying.ime                       I  I0000 00:00:1779404078.318387   23689 helper.cc:160] Recognition result: 你 with score: -411.128
+2026-05-22 06:54:39.516  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_DOWN, id[0]=0, pointerCount=1, eventTime=551921290, downTime=551921290, phoneEventTime=1779404079514 } moveCount:0
+2026-05-22 06:54:39.516  4234-4234  VRI[InputMethod]        dev.yeying.ime                       D  getMiuiFreeformStackInfo mTmpFrames.miuiFreeFormStackInfo: null
+2026-05-22 06:54:39.575  4234-4234  MIUIInput               dev.yeying.ime                       I  [MotionEvent] ViewRootImpl windowName 'InputMethod', { action=ACTION_UP, id[0]=0, pointerCount=1, eventTime=551921350, downTime=551921290, phoneEventTime=1779404079574 } moveCount:0

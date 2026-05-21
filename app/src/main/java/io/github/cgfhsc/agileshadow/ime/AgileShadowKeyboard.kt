@@ -1,0 +1,79 @@
+package io.github.cgfhsc.agileshadow.ime
+
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.DARK_KEYBOARD_BG
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KEYBOARD_BG
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.EditPanel
+import androidx.compose.foundation.background
+import io.github.cgfhsc.agileshadow.ime.ui.candidate.ExpandedCandidateView
+import io.github.cgfhsc.agileshadow.ime.ui.candidate.ToolbarCandidateBar
+import io.github.cgfhsc.agileshadow.ime.data.clipboard.ClipboardPanel
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.HandwritingBoard
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardPickerPanel
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardType
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardViewModel
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.NumberKeyboard
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.QwertyKeyboard
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.T9Keyboard
+import io.github.cgfhsc.agileshadow.ime.ui.symbol.EmojiPanel
+import io.github.cgfhsc.agileshadow.ime.ui.symbol.SymbolPanel
+import io.github.cgfhsc.agileshadow.ime.ui.tools.ToolsPanel
+
+@Composable
+fun AgileShadowKeyboard(
+    onCommitText: (String) -> Unit = {},
+    onDeleteChar: () -> Unit = {},
+    onSendEnter: () -> Unit = {},
+    onPerformAction: (Int) -> Unit = {},
+    onHideKeyboard: () -> Unit = {},
+    onViewModelReady: (KeyboardViewModel) -> Unit = {},
+) {
+    val viewModel = remember {
+        KeyboardViewModel(
+            onCommitText = onCommitText,
+            onDeleteChar = onDeleteChar,
+            onSendEnter = onSendEnter,
+        ).also { onViewModelReady(it) }
+    }
+
+    val state by viewModel.state.collectAsState()
+    val isDark = isSystemInDarkTheme()
+
+    Column(modifier = Modifier.fillMaxWidth().background(if (isDark) DARK_KEYBOARD_BG else KEYBOARD_BG)) {
+        ToolbarCandidateBar(viewModel, isDark = isDark, onHideKeyboard = onHideKeyboard, onCommitText = onCommitText)
+
+        Box(modifier = Modifier.fillMaxWidth().height(260.dp)) {
+            if (state.candidatesExpanded) {
+                ExpandedCandidateView(viewModel, isDark = isDark)
+            } else when (state.activeKeyboard) {
+                KeyboardType.QWERTY, KeyboardType.ENGLISH -> QwertyKeyboard(viewModel, isDark = isDark)
+                KeyboardType.T9 -> T9Keyboard(viewModel, isDark = isDark)
+                KeyboardType.NUMBER -> NumberKeyboard(viewModel, isDark = isDark)
+                KeyboardType.SYMBOL -> SymbolPanel(viewModel, isDark = isDark)
+                KeyboardType.EMOJI -> EmojiPanel(viewModel, isDark = isDark)
+                KeyboardType.HANDWRITING -> HandwritingBoard(
+                    viewModel = viewModel,
+                    isDark = isDark,
+                    onCommitText = onCommitText,
+                    onDeleteChar = onDeleteChar,
+                )
+                KeyboardType.TOOLS -> ToolsPanel(viewModel, isDark = isDark)
+                KeyboardType.KEYBOARD_PICKER -> KeyboardPickerPanel(viewModel, isDark = isDark)
+                KeyboardType.EDIT -> EditPanel(isDark = isDark, onSendKey = onPerformAction)
+                KeyboardType.CLIPBOARD -> ClipboardPanel(onCommitText = onCommitText)
+            }
+        }
+    }
+}

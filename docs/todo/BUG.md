@@ -26,4 +26,4 @@ NumberKeyboard 中间列用了 `weight(3f)` 而 T9 是 `weight(4f)`，导致按�
 
 ## BUG-006：降低按键和背景的模糊度
 
-窗口背景模糊半径从 60 降低到 30-40（`YeyingImeService.kt:78`），同时降低 LiquidGlass 各层 alpha 参数，提升按键清晰度。涉及文件：`LiquidGlass.kt:14-22`
+窗口背景模糊半径从 60 降低到 30-40（`AgileShadowImeService.kt:78`），同时降低 LiquidGlass 各层 alpha 参数，提升按键清晰度。涉及文件：`LiquidGlass.kt:14-22`
