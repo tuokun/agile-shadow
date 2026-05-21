@@ -19,8 +19,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dev.yeying.ime.ui.keyboard.GlassKeyButton
 import dev.yeying.ime.ui.keyboard.KeyboardAction
 import dev.yeying.ime.ui.keyboard.KeyboardViewModel
 import kotlinx.coroutines.launch
@@ -72,6 +74,7 @@ fun SymbolPanel(
                 Text(
                     text = category.label,
                     fontSize = 14.sp,
+                    color = Color(0xFF333333),
                     modifier = Modifier
                         .clickable { scope.launch { pagerState.animateScrollToPage(index) } }
                         .padding(4.dp),
@@ -94,16 +97,13 @@ fun SymbolPanel(
                 verticalArrangement = Arrangement.spacedBy(2.dp),
             ) {
                 items(category.symbols) { symbol ->
-                    Box(
-                        modifier = Modifier
-                            .size(32.dp)
-                            .clickable {
-                                viewModel.onAction(KeyboardAction.DirectCommit(symbol))
-                            },
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        Text(text = symbol, fontSize = 18.sp)
-                    }
+                    GlassKeyButton(
+                        label = symbol,
+                        onClick = { viewModel.onAction(KeyboardAction.DirectCommit(symbol)) },
+                        modifier = Modifier.fillMaxWidth(),
+                        height = 32.dp,
+                        showBorder = false,
+                    )
                 }
             }
         }

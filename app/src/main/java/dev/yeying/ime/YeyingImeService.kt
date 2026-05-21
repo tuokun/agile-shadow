@@ -72,11 +72,7 @@ class YeyingImeService : InputMethodService() {
             decorView.setViewTreeLifecycleOwner(bridge)
             decorView.setViewTreeViewModelStoreOwner(bridge)
             decorView.setViewTreeSavedStateRegistryOwner(bridge)
-            
-            // Apply background blur for Android 12+
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                win.setBackgroundBlurRadius(60)
-            }
+
             win.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT))
         }
 

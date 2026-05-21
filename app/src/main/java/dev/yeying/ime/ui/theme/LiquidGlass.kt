@@ -12,12 +12,12 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 data class GlassParams(
-    val baseAlpha: Float = 0.40f,
-    val glassHighAlpha: Float = 0.30f,
-    val glassLowAlpha: Float = 0.10f,
-    val specularAlpha: Float = 0.45f,
-    val innerGlowAlpha: Float = 0.08f,
-    val borderAlpha: Float = 0.08f,
+    val baseAlpha: Float = 0.15f,
+    val glassHighAlpha: Float = 0.20f,
+    val glassLowAlpha: Float = 0.06f,
+    val specularAlpha: Float = 0.30f,
+    val innerGlowAlpha: Float = 0.05f,
+    val borderAlpha: Float = 0.06f,
     val keyBackground: Color? = null,
 )
 
@@ -25,11 +25,11 @@ fun Modifier.liquidGlass(
     cornerRadius: Dp = 16.dp,
     isDark: Boolean = false,
     params: GlassParams = if (isDark) GlassParams(
-        baseAlpha = 0.50f,
-        glassHighAlpha = 0.12f,
-        glassLowAlpha = 0.04f,
-        specularAlpha = 0.18f,
-        innerGlowAlpha = 0.03f,
+        baseAlpha = 0.25f,
+        glassHighAlpha = 0.10f,
+        glassLowAlpha = 0.03f,
+        specularAlpha = 0.12f,
+        innerGlowAlpha = 0.02f,
     ) else GlassParams(),
 ): Modifier = this.drawBehind {
     val r = CornerRadius(cornerRadius.toPx())

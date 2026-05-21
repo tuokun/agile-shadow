@@ -8,9 +8,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Backspace
+import androidx.compose.material.icons.automirrored.outlined.Backspace
+import androidx.compose.material.icons.automirrored.outlined.KeyboardReturn
 import androidx.compose.material.icons.outlined.KeyboardCapslock
-import androidx.compose.material.icons.outlined.KeyboardReturn
 import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.SpaceBar
 import androidx.compose.runtime.Composable
@@ -18,9 +18,15 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 private val NUMBER_ROW = listOf("1","2","3","4","5","6","7","8","9","0")
+
+private val FUNCTION_CODES = setOf(
+    KEYCODE_SHIFT, KEYCODE_DELETE, KEYCODE_ENTER, KEYCODE_SWITCH_LANG,
+    KEYCODE_SYMBOL, KEYCODE_NUMBER, KEYCODE_SPACE,
+)
 
 @Composable
 fun QwertyKeyboard(
@@ -28,6 +34,7 @@ fun QwertyKeyboard(
     modifier: Modifier = Modifier,
 ) {
     val state by viewModel.state.collectAsState()
+    val isEnglish = state.activeKeyboard == KeyboardType.ENGLISH
 
     Column(
         modifier = modifier.fillMaxWidth().padding(horizontal = 4.dp),
@@ -55,31 +62,51 @@ fun QwertyKeyboard(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 row.forEach { key ->
+                    val isPeriod = key.label == "。" || key.label == "."
+                    val displayLabel = when {
+                        isPeriod && isEnglish -> "."
+                        isPeriod && !isEnglish -> "。"
+                        else -> key.label
+                    }
+                    val displayCode = when {
+                        isPeriod && isEnglish -> '.'.code
+                        isPeriod && !isEnglish -> '。'.code
+                        else -> key.code
+                    }
+
                     val label: String
-                    val icon = when (key.code) {
+                    val icon = when (displayCode) {
                         KEYCODE_SHIFT -> { label = ""; Icons.Outlined.KeyboardCapslock }
-                        KEYCODE_DELETE -> { label = ""; Icons.Outlined.Backspace }
-                        KEYCODE_ENTER -> { label = ""; Icons.Outlined.KeyboardReturn }
+                        KEYCODE_DELETE -> { label = ""; Icons.AutoMirrored.Outlined.Backspace }
+                        KEYCODE_ENTER -> { label = ""; Icons.AutoMirrored.Outlined.KeyboardReturn }
                         KEYCODE_SWITCH_LANG -> {
                             label = ""
                             Icons.Outlined.Language
                         }
                         KEYCODE_SPACE -> { label = ""; Icons.Outlined.SpaceBar }
-                        else -> { label = key.label; null }
+                        else -> { label = displayLabel; null }
                     }
-                    val subLabel = when (key.code) {
-                        KEYCODE_SWITCH_LANG -> if (state.activeKeyboard == KeyboardType.ENGLISH) "EN" else "中"
+                    val subLabel = when (displayCode) {
+                        KEYCODE_SWITCH_LANG -> if (isEnglish) "EN" else "中"
                         else -> null
                     }
+                    val isToolbar = displayCode in FUNCTION_CODES && displayCode != KEYCODE_SPACE || isPeriod || key.label == ","
+                    val isConfirm = displayCode == KEYCODE_ENTER
                     GlassKeyButton(
                         label = label,
-                        onClick = { viewModel.onAction(KeyboardAction.KeyPress(key.code)) },
+                        onClick = { viewModel.onAction(KeyboardAction.KeyPress(displayCode)) },
                         icon = icon,
                         subLabel = subLabel,
                         width = key.width,
                         modifier = if (key.width == 0.dp) Modifier.weight(1f) else Modifier,
                         height = 42.dp,
-                        isActive = key.code == KEYCODE_SHIFT && state.capsState != CapsState.NONE,
+                        isActive = displayCode == KEYCODE_SHIFT && state.capsState != CapsState.NONE,
+                        keyBackgroundColor = when {
+                            isConfirm -> CONFIRM_BG
+                            isToolbar -> TOOLBAR_BG
+                            else -> null
+                        },
+                        textColor = if (isConfirm) Color.White else DEFAULT_TEXT,
                     )
                 }
             }

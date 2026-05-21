@@ -21,7 +21,7 @@ object T9Layout {
     )
 
     val rightFunctions = listOf(
-        T9Key("⌫", "删除", KEYCODE_DELETE),
+        T9Key("⌫", code = KEYCODE_DELETE),
         T9Key("重输", code = KEYCODE_CLEAR),
         T9Key("@", code = KEYCODE_AT),
     )

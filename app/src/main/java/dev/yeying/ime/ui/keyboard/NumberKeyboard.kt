@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
 
 private val CENTER_KEY_HEIGHT = 52.dp
 private val CENTER_ROW_GAP = 4.dp
@@ -45,13 +46,14 @@ fun NumberKeyboard(
                         onClick = { viewModel.onAction(KeyboardAction.DirectCommit(sym)) },
                         modifier = Modifier.weight(1f).fillMaxWidth(),
                         height = 0.dp,
+                        keyBackgroundColor = TOOLBAR_BG,
                     )
                 }
             }
 
             // 中列：数字 3x3
             Column(
-                modifier = Modifier.weight(3f).fillMaxHeight(),
+                modifier = Modifier.weight(4f).fillMaxHeight(),
                 verticalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
             ) {
                 listOf(
@@ -86,18 +88,21 @@ fun NumberKeyboard(
                     onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_DELETE)) },
                     modifier = Modifier.weight(1f).fillMaxWidth(),
                     height = 0.dp,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
                 GlassKeyButton(
                     label = ".",
                     onClick = { viewModel.onAction(KeyboardAction.DirectCommit(".")) },
                     modifier = Modifier.weight(1f).fillMaxWidth(),
                     height = 0.dp,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
                 GlassKeyButton(
                     label = "@",
                     onClick = { viewModel.onAction(KeyboardAction.DirectCommit("@")) },
                     modifier = Modifier.weight(1f).fillMaxWidth(),
                     height = 0.dp,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
             }
         }
@@ -113,9 +118,10 @@ fun NumberKeyboard(
                 onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(KeyboardType.SYMBOL)) },
                 modifier = Modifier.weight(1f),
                 height = 44.dp,
+                keyBackgroundColor = TOOLBAR_BG,
             )
             Row(
-                modifier = Modifier.weight(3f),
+                modifier = Modifier.weight(4f),
                 horizontalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
             ) {
                 GlassKeyButton(
@@ -123,6 +129,7 @@ fun NumberKeyboard(
                     onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(viewModel.state.value.previousKeyboard)) },
                     modifier = Modifier.weight(1f),
                     height = 44.dp,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
                 GlassKeyButton(
                     label = "",
@@ -136,6 +143,7 @@ fun NumberKeyboard(
                     onClick = { viewModel.onAction(KeyboardAction.DirectCommit("0")) },
                     modifier = Modifier.weight(1f),
                     height = 44.dp,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
             }
             GlassKeyButton(
@@ -143,6 +151,8 @@ fun NumberKeyboard(
                 onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_ENTER)) },
                 modifier = Modifier.weight(1f),
                 height = 44.dp,
+                keyBackgroundColor = CONFIRM_BG,
+                textColor = Color.White,
             )
         }
 

@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
 
 private val CENTER_KEY_HEIGHT = 52.dp
 private val CENTER_ROW_GAP = 4.dp
@@ -68,6 +69,7 @@ fun T9Keyboard(
                             onClick = { viewModel.onAction(KeyboardAction.KeyPress(key.code)) },
                             modifier = Modifier.weight(1f).fillMaxWidth(),
                             height = 0.dp,
+                            keyBackgroundColor = TOOLBAR_BG,
                         )
                     }
                 }
@@ -118,6 +120,7 @@ fun T9Keyboard(
                         },
                         modifier = Modifier.weight(1f).fillMaxWidth(),
                         height = 0.dp,
+                        keyBackgroundColor = TOOLBAR_BG,
                     )
                 }
             }
@@ -134,6 +137,7 @@ fun T9Keyboard(
                 onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_SYMBOL)) },
                 modifier = Modifier.weight(1f),
                 height = 44.dp,
+                keyBackgroundColor = TOOLBAR_BG,
             )
             Row(
                 modifier = Modifier.weight(4f),
@@ -144,6 +148,7 @@ fun T9Keyboard(
                     onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_NUMBER)) },
                     modifier = Modifier.weight(1f),
                     height = 44.dp,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
                 GlassKeyButton(
                     label = "",
@@ -160,6 +165,7 @@ fun T9Keyboard(
                     onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_SWITCH_LANG)) },
                     modifier = Modifier.weight(1f),
                     height = 44.dp,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
             }
             GlassKeyButton(
@@ -167,6 +173,8 @@ fun T9Keyboard(
                 onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_ENTER)) },
                 modifier = Modifier.weight(1f),
                 height = 44.dp,
+                keyBackgroundColor = CONFIRM_BG,
+                textColor = Color.White,
             )
         }
 

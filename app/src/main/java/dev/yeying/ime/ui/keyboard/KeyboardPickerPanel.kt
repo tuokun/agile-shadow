@@ -40,7 +40,8 @@ fun KeyboardPickerPanel(
                     onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(type)) },
                     modifier = Modifier.weight(1f),
                     height = 52.dp,
-                    isActive = state.previousKeyboard == type,
+                    isActive = state.lastChineseKeyboard == type,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
             }
         }

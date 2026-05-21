@@ -1,6 +1,8 @@
 package dev.yeying.ime.ui.candidate
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -17,6 +20,7 @@ import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -27,6 +31,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Modifier
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.EmojiEmotions
@@ -34,11 +39,14 @@ import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Keyboard
 import androidx.compose.material.icons.outlined.KeyboardArrowDown
+import androidx.compose.material.icons.outlined.KeyboardArrowRight
+import androidx.compose.material.icons.outlined.KeyboardArrowUp
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.yeying.ime.ui.keyboard.GlassKeyButton
+import dev.yeying.ime.ui.keyboard.CANDIDATE_BG
 import dev.yeying.ime.ui.keyboard.KEYCODE_DELETE
 import dev.yeying.ime.ui.keyboard.KeyboardAction
 import dev.yeying.ime.ui.keyboard.KeyboardType
@@ -119,13 +127,21 @@ private fun CandidateRow(
                 )
             }
         }
-        Text(
-            text = if (candidatesExpanded) "△" else "▽",
-            fontSize = 18.sp,
+        Box(
             modifier = Modifier
-                .clickable { viewModel.toggleCandidatesExpanded() }
-                .padding(horizontal = 6.dp),
-        )
+                .size(48.dp)
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null,
+                ) { viewModel.toggleCandidatesExpanded() },
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                imageVector = if (candidatesExpanded) Icons.Outlined.KeyboardArrowUp else Icons.Outlined.KeyboardArrowRight,
+                contentDescription = if (candidatesExpanded) "收起" else "展开",
+                modifier = Modifier.size(26.dp),
+            )
+        }
     }
 }
 
@@ -150,7 +166,7 @@ fun ExpandedCandidateView(
         if (reachedEnd && state.hasNextPage) viewModel.nextPage()
     }
 
-    Box(modifier = modifier.fillMaxWidth().height(248.dp)) {
+    Box(modifier = modifier.fillMaxWidth().height(248.dp).background(Color(0xFFEEF0F3))) {
         LazyVerticalGrid(
             columns = GridCells.Adaptive(minSize = 56.dp),
             state = gridState,
@@ -204,60 +220,78 @@ private fun ToolbarRow(
         // 工具面板
         val toolsTarget = if (state.activeKeyboard == KeyboardType.TOOLS) state.previousKeyboard else KeyboardType.TOOLS
         GlassKeyButton(
-            label = "工具",
+            label = "",
             icon = Icons.Outlined.Menu,
             onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(toolsTarget)) },
             modifier = Modifier.weight(1f),
             height = 36.dp,
+            keyBackgroundColor = CANDIDATE_BG,
+            showBorder = false,
+            iconSize = 24.dp,
         )
 
         // 键盘方案选择
         val pickerTarget = if (state.activeKeyboard == KeyboardType.KEYBOARD_PICKER) state.previousKeyboard else KeyboardType.KEYBOARD_PICKER
         GlassKeyButton(
-            label = "键盘",
+            label = "",
             icon = Icons.Outlined.Keyboard,
             onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(pickerTarget)) },
             modifier = Modifier.weight(1f),
             height = 36.dp,
+            keyBackgroundColor = CANDIDATE_BG,
+            showBorder = false,
+            iconSize = 24.dp,
         )
 
         // 表情
         val emojiTarget = if (state.activeKeyboard == KeyboardType.EMOJI) state.previousKeyboard else KeyboardType.EMOJI
         GlassKeyButton(
-            label = "表情",
+            label = "",
             icon = Icons.Outlined.EmojiEmotions,
             onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(emojiTarget)) },
             modifier = Modifier.weight(1f),
             height = 36.dp,
+            keyBackgroundColor = CANDIDATE_BG,
+            showBorder = false,
+            iconSize = 24.dp,
         )
 
         // 编辑
         val editTarget = if (state.activeKeyboard == KeyboardType.EDIT) state.previousKeyboard else KeyboardType.EDIT
         GlassKeyButton(
-            label = "编辑",
+            label = "",
             icon = Icons.Outlined.Edit,
             onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(editTarget)) },
             modifier = Modifier.weight(1f),
             height = 36.dp,
+            keyBackgroundColor = CANDIDATE_BG,
+            showBorder = false,
+            iconSize = 24.dp,
         )
 
         // 剪贴板
         val clipboardTarget = if (state.activeKeyboard == KeyboardType.CLIPBOARD) state.previousKeyboard else KeyboardType.CLIPBOARD
         GlassKeyButton(
-            label = "剪贴板",
+            label = "",
             icon = Icons.Outlined.ContentPaste,
             onClick = { viewModel.onAction(KeyboardAction.SwitchKeyboard(clipboardTarget)) },
             modifier = Modifier.weight(1f),
             height = 36.dp,
+            keyBackgroundColor = CANDIDATE_BG,
+            showBorder = false,
+            iconSize = 24.dp,
         )
 
         // 收起键盘
         GlassKeyButton(
-            label = "收起",
+            label = "",
             icon = Icons.Outlined.KeyboardArrowDown,
             onClick = onHideKeyboard,
             modifier = Modifier.weight(1f),
             height = 36.dp,
+            keyBackgroundColor = CANDIDATE_BG,
+            showBorder = false,
+            iconSize = 24.dp,
         )
     }
 }

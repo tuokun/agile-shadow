@@ -55,6 +55,7 @@ fun EditPanel(
                         onClick = { onSendKey(KeyEvent.KEYCODE_DPAD_LEFT) },
                         modifier = Modifier.weight(1f),
                         height = KeyH * 3 + 8.dp,
+                        keyBackgroundColor = TOOLBAR_BG,
                     )
                     Column(
                         modifier = Modifier.weight(1f),
@@ -67,12 +68,14 @@ fun EditPanel(
                             onClick = { onSendKey(KeyEvent.KEYCODE_DPAD_UP) },
                             modifier = Modifier.fillMaxWidth(),
                             height = KeyH,
+                            keyBackgroundColor = TOOLBAR_BG,
                         )
                         GlassKeyButton(
                             label = "选择",
                             onClick = { onSendKey(android.R.id.edit) },
                             modifier = Modifier.fillMaxWidth(),
                             height = KeyH,
+                            keyBackgroundColor = TOOLBAR_BG,
                         )
                         GlassKeyButton(
                             label = "",
@@ -80,6 +83,7 @@ fun EditPanel(
                             onClick = { onSendKey(KeyEvent.KEYCODE_DPAD_DOWN) },
                             modifier = Modifier.fillMaxWidth(),
                             height = KeyH,
+                            keyBackgroundColor = TOOLBAR_BG,
                         )
                     }
                     GlassKeyButton(
@@ -88,6 +92,7 @@ fun EditPanel(
                         onClick = { onSendKey(KeyEvent.KEYCODE_DPAD_RIGHT) },
                         modifier = Modifier.weight(1f),
                         height = KeyH * 3 + 8.dp,
+                        keyBackgroundColor = TOOLBAR_BG,
                     )
                 }
                 // 句首 + 句尾（与右侧删除对齐）
@@ -102,6 +107,7 @@ fun EditPanel(
                         onClick = { onSendKey(KeyEvent.KEYCODE_MOVE_HOME) },
                         modifier = Modifier.weight(1f),
                         height = 44.dp,
+                        keyBackgroundColor = TOOLBAR_BG,
                     )
                     GlassKeyButton(
                         label = "句尾",
@@ -110,6 +116,7 @@ fun EditPanel(
                         onClick = { onSendKey(KeyEvent.KEYCODE_MOVE_END) },
                         modifier = Modifier.weight(1f),
                         height = 44.dp,
+                        keyBackgroundColor = TOOLBAR_BG,
                     )
                 }
             }
@@ -126,6 +133,7 @@ fun EditPanel(
                     onClick = { onSendKey(android.R.id.copy) },
                     modifier = Modifier.fillMaxWidth(),
                     height = KeyH,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
                 GlassKeyButton(
                     label = "粘贴",
@@ -134,6 +142,7 @@ fun EditPanel(
                     onClick = { onSendKey(android.R.id.paste) },
                     modifier = Modifier.fillMaxWidth(),
                     height = KeyH,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
                 GlassKeyButton(
                     label = "剪切",
@@ -142,6 +151,7 @@ fun EditPanel(
                     onClick = { onSendKey(android.R.id.cut) },
                     modifier = Modifier.fillMaxWidth(),
                     height = KeyH,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
                 GlassKeyButton(
                     label = "删除",
@@ -150,6 +160,7 @@ fun EditPanel(
                     onClick = { onSendKey(KeyEvent.KEYCODE_DEL) },
                     modifier = Modifier.fillMaxWidth(),
                     height = 44.dp,
+                    keyBackgroundColor = TOOLBAR_BG,
                 )
             }
         }

@@ -17,6 +17,7 @@ data class KeyboardState(
     val previousKeyboard: KeyboardType = KeyboardType.T9,
     val clipboardSuggestion: String? = null,
     val handwritingCandidates: List<String> = emptyList(),
+    val lastChineseKeyboard: KeyboardType = KeyboardType.T9,
 )
 
 sealed class KeyboardAction {

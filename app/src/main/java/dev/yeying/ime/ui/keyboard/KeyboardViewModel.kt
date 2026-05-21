@@ -84,11 +84,7 @@ class KeyboardViewModel(
             }
             KEYCODE_SHIFT -> {
                 _state.update { s ->
-                    s.copy(capsState = when (s.capsState) {
-                        CapsState.NONE -> CapsState.ONCE
-                        CapsState.ONCE -> CapsState.LOCK
-                        CapsState.LOCK -> CapsState.NONE
-                    })
+                    s.copy(capsState = if (s.capsState == CapsState.NONE) CapsState.LOCK else CapsState.NONE)
                 }
             }
             KEYCODE_SYMBOL -> {
@@ -102,7 +98,7 @@ class KeyboardViewModel(
                     _state.update { it.copy(activeKeyboard = target) }
                 } else {
                     lastChineseKeyboard = current
-                    _state.update { it.copy(activeKeyboard = KeyboardType.ENGLISH) }
+                    _state.update { it.copy(activeKeyboard = KeyboardType.ENGLISH, lastChineseKeyboard = current) }
                 }
             }
             KEYCODE_NUMBER -> {
@@ -117,8 +113,25 @@ class KeyboardViewModel(
                 onSendEnter()
                 refreshState()
             }
+            KEYCODE_SPACE -> {
+                if (_state.value.composingText.isNotEmpty()) {
+                    RimeEngine.instance.selectCandidate(0)
+                    val committed = RimeEngine.instance.commitIfNeeded()
+                    if (committed != null) {
+                        onCommitText(committed)
+                        inputKeyTracker.clear()
+                    }
+                    accumulatedCandidates.clear()
+                    refreshState()
+                } else {
+                    onCommitText(" ")
+                }
+            }
             else -> {
-                if (_state.value.activeKeyboard == KeyboardType.ENGLISH) {
+                val caps = _state.value.capsState
+                if (caps != CapsState.NONE) {
+                    onCommitText(action.keycode.toChar().uppercaseChar().toString())
+                } else if (_state.value.activeKeyboard == KeyboardType.ENGLISH) {
                     onCommitText(action.keycode.toChar().toString())
                 } else {
                     engine.processKey(action.keycode, action.mask)
@@ -139,6 +152,7 @@ class KeyboardViewModel(
             if (text != null) {
                 onCommitText(text)
                 clearHandwritingCandidates()
+                _state.update { it.copy(candidatesExpanded = false) }
             }
             return
         }
@@ -171,6 +185,14 @@ class KeyboardViewModel(
         _state.update { s ->
             val prev = if (action.type in PANEL_TYPES && s.activeKeyboard !in PANEL_TYPES) s.activeKeyboard else s.previousKeyboard
             s.copy(activeKeyboard = action.type, previousKeyboard = prev)
+        }
+
+        when (action.type) {
+            KeyboardType.T9, KeyboardType.QWERTY, KeyboardType.HANDWRITING -> {
+                lastChineseKeyboard = action.type
+                _state.update { it.copy(lastChineseKeyboard = action.type) }
+            }
+            else -> {}
         }
     }
 
@@ -229,14 +251,29 @@ class KeyboardViewModel(
 
     fun resetToHome() {
         val engine = RimeEngine.instance
+        val target = lastChineseKeyboard
         if (engine.isInitialized) {
             engine.clearComposition()
-            engine.selectSchema(SCHEMA_T9)
+            when (target) {
+                KeyboardType.T9 -> engine.selectSchema(SCHEMA_T9)
+                else -> engine.selectSchema(SCHEMA_RIME_ICE)
+            }
         }
         accumulatedCandidates.clear()
         lastComposingText = ""
         inputKeyTracker.clear()
-        _state.update { KeyboardState() }
+        _state.update { it.copy(
+            activeKeyboard = target,
+            lastChineseKeyboard = target,
+            candidates = emptyList(),
+            composingText = "",
+            hasNextPage = false,
+            page = 0,
+            pinyins = emptyList(),
+            clipboardSuggestion = null,
+            handwritingCandidates = emptyList(),
+            capsState = CapsState.NONE,
+        ) }
     }
 
     fun nextPage() {

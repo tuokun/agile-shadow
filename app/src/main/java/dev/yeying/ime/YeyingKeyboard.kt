@@ -11,8 +11,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import dev.yeying.ime.ui.keyboard.EditPanel
+import androidx.compose.foundation.background
 import dev.yeying.ime.ui.candidate.ExpandedCandidateView
 import dev.yeying.ime.ui.candidate.ToolbarCandidateBar
 import dev.yeying.ime.data.clipboard.ClipboardPanel
@@ -26,7 +28,6 @@ import dev.yeying.ime.ui.keyboard.T9Keyboard
 import dev.yeying.ime.ui.symbol.EmojiPanel
 import dev.yeying.ime.ui.symbol.SymbolPanel
 import dev.yeying.ime.ui.tools.ToolsPanel
-import dev.yeying.ime.ui.theme.liquidGlass
 
 @Composable
 fun YeyingKeyboard(
@@ -48,7 +49,7 @@ fun YeyingKeyboard(
     val state by viewModel.state.collectAsState()
     val isDark = isSystemInDarkTheme()
 
-    Column(modifier = Modifier.fillMaxWidth().liquidGlass(cornerRadius = 0.dp, isDark = isDark)) {
+    Column(modifier = Modifier.fillMaxWidth().background(if (isDark) Color(0xFF303030) else Color(0xFFEEF0F3))) {
         ToolbarCandidateBar(viewModel, onHideKeyboard = onHideKeyboard, onCommitText = onCommitText)
 
         Box(modifier = Modifier.fillMaxWidth().height(260.dp)) {

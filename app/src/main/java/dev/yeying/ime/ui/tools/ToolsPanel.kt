@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import dev.yeying.ime.ui.keyboard.GlassKeyButton
+import dev.yeying.ime.ui.keyboard.TOOLBAR_BG
 import dev.yeying.ime.ui.keyboard.KeyboardAction
 import dev.yeying.ime.ui.keyboard.KeyboardType
 import dev.yeying.ime.ui.keyboard.KeyboardViewModel
@@ -77,6 +78,7 @@ fun ToolsPanel(
                 onClick = item.action,
                 modifier = Modifier.fillMaxWidth(),
                 height = 52.dp,
+                keyBackgroundColor = TOOLBAR_BG,
             )
         }
     }
