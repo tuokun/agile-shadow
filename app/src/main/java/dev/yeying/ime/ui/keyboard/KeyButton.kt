@@ -9,16 +9,12 @@ import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowBack
-import androidx.compose.material.icons.outlined.ContentPaste
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,6 +36,12 @@ val CONFIRM_BG = Color(0xFF3482FF)
 val KEYBOARD_BG = Color(0xFFEEF0F3)
 val CANDIDATE_BG = Color.Transparent
 val DEFAULT_TEXT = Color(0xFF333333)
+val DARK_KEYBOARD_BG = Color(0xFF303030)
+
+val CENTER_KEY_HEIGHT = 52.dp
+val CENTER_ROW_GAP = 4.dp
+val MAIN_HEIGHT = CENTER_KEY_HEIGHT * 3 + CENTER_ROW_GAP * 2
+val KEYBOARD_BOTTOM_SPACER = 28.dp
 
 @Composable
 fun GlassKeyButton(
@@ -122,31 +124,3 @@ fun GlassKeyButton(
     }
 }
 
-@Composable
-fun KeyboardBottomBar(
-    onClipboardClick: () -> Unit = {},
-    isInClipboard: Boolean = false,
-    onBack: () -> Unit = {},
-    modifier: Modifier = Modifier,
-) {
-    Box(modifier = modifier.fillMaxWidth().height(28.dp)) {
-        Row(
-            modifier = Modifier.fillMaxWidth().align(Alignment.Center),
-        ) {
-            Spacer(modifier = Modifier.weight(5f))
-            Box(
-                modifier = Modifier.weight(1f),
-                contentAlignment = Alignment.Center,
-            ) {
-                Icon(
-                    imageVector = if (isInClipboard) Icons.AutoMirrored.Outlined.ArrowBack else Icons.Outlined.ContentPaste,
-                    contentDescription = if (isInClipboard) "返回" else "剪贴板",
-                    modifier = Modifier
-                        .size(24.dp)
-                        .clip(RoundedCornerShape(4.dp))
-                        .clickable(onClick = if (isInClipboard) onBack else onClipboardClick),
-                )
-            }
-        }
-    }
-}

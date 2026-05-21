@@ -165,6 +165,6 @@ fun EditPanel(
             }
         }
 
-        Spacer(modifier = Modifier.height(28.dp))
+        Spacer(modifier = Modifier.height(KEYBOARD_BOTTOM_SPACER))
     }
 }

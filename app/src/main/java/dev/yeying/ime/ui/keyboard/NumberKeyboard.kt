@@ -17,10 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
 
-private val CENTER_KEY_HEIGHT = 52.dp
-private val CENTER_ROW_GAP = 4.dp
-private val MAIN_HEIGHT = CENTER_KEY_HEIGHT * 3 + CENTER_ROW_GAP * 2 // 164dp
-
 @Composable
 fun NumberKeyboard(
     viewModel: KeyboardViewModel,
@@ -156,6 +152,6 @@ fun NumberKeyboard(
             )
         }
 
-        Spacer(modifier = Modifier.height(28.dp))
+        Spacer(modifier = Modifier.height(KEYBOARD_BOTTOM_SPACER))
     }
 }

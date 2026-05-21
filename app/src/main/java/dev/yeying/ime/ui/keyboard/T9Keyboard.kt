@@ -22,10 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
 
-private val CENTER_KEY_HEIGHT = 52.dp
-private val CENTER_ROW_GAP = 4.dp
-private val MAIN_HEIGHT = CENTER_KEY_HEIGHT * 3 + CENTER_ROW_GAP * 2 // 164dp
-
 @Composable
 fun T9Keyboard(
     viewModel: KeyboardViewModel,
@@ -37,12 +33,10 @@ fun T9Keyboard(
         modifier = modifier.fillMaxWidth().padding(horizontal = 4.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        // 主区域：三列（左标点 + 中九键 + 右功能）
         Row(
             modifier = Modifier.fillMaxWidth().height(MAIN_HEIGHT),
             horizontalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
         ) {
-            // 左列：拼音组合（输入时）或标点符号（空闲时）
             Column(
                 modifier = Modifier.weight(1f).fillMaxHeight(),
                 verticalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
@@ -75,7 +69,6 @@ fun T9Keyboard(
                 }
             }
 
-            // 中列：九键网格
             Column(
                 modifier = Modifier.weight(4f).fillMaxHeight(),
                 verticalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
@@ -98,7 +91,6 @@ fun T9Keyboard(
                 }
             }
 
-            // 右列：功能键
             Column(
                 modifier = Modifier.weight(1f).fillMaxHeight(),
                 verticalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
@@ -126,7 +118,6 @@ fun T9Keyboard(
             }
         }
 
-        // 底部工具栏（镜像上方三列结构：左1 + 中4 + 右1）
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
@@ -178,6 +169,6 @@ fun T9Keyboard(
             )
         }
 
-        Spacer(modifier = Modifier.height(28.dp))
+        Spacer(modifier = Modifier.height(KEYBOARD_BOTTOM_SPACER))
     }
 }

@@ -3,13 +3,9 @@ package dev.yeying.ime
 import android.content.ClipboardManager
 import android.content.Context
 import android.inputmethodservice.InputMethodService
-import android.os.Build
 import android.util.Log
 import android.view.View
 import androidx.compose.ui.platform.ComposeView
-import androidx.lifecycle.setViewTreeLifecycleOwner
-import androidx.lifecycle.setViewTreeViewModelStoreOwner
-import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import dev.yeying.ime.bridge.ComposeBridge
 import dev.yeying.ime.data.clipboard.ClipboardDatabase
 import dev.yeying.ime.data.clipboard.ClipboardItem
@@ -66,15 +62,7 @@ class YeyingImeService : InputMethodService() {
         clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         clipboardManager.addPrimaryClipChangedListener(clipboardListener)
 
-        // Set owners on the window decor view to ensure Compose popups/dialogs work
-        window?.window?.let { win ->
-            val decorView = win.decorView
-            decorView.setViewTreeLifecycleOwner(bridge)
-            decorView.setViewTreeViewModelStoreOwner(bridge)
-            decorView.setViewTreeSavedStateRegistryOwner(bridge)
-
-            win.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT))
-        }
+        window?.window?.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT))
 
         RimeEngine.instance.startup(this)
     }

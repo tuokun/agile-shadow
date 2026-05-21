@@ -66,12 +66,6 @@ fun HandwritingBoard(
         initResult = success to if (success) "" else "初始化失败，请检查网络后重试"
     }
 
-    DisposableEffect(Unit) {
-        onDispose {
-            // 不清除候选词，展开候选词视图时 HandwritingBoard 会离开组合树
-        }
-    }
-
     Column(
         modifier = modifier.fillMaxWidth().padding(horizontal = 4.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -238,7 +232,7 @@ fun HandwritingBoard(
             )
         }
 
-        Spacer(modifier = Modifier.height(28.dp))
+        Spacer(modifier = Modifier.height(KEYBOARD_BOTTOM_SPACER))
     }
 }
 

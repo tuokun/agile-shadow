@@ -13,6 +13,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import dev.yeying.ime.ui.keyboard.DARK_KEYBOARD_BG
+import dev.yeying.ime.ui.keyboard.KEYBOARD_BG
 import dev.yeying.ime.ui.keyboard.EditPanel
 import androidx.compose.foundation.background
 import dev.yeying.ime.ui.candidate.ExpandedCandidateView
@@ -49,7 +51,7 @@ fun YeyingKeyboard(
     val state by viewModel.state.collectAsState()
     val isDark = isSystemInDarkTheme()
 
-    Column(modifier = Modifier.fillMaxWidth().background(if (isDark) Color(0xFF303030) else Color(0xFFEEF0F3))) {
+    Column(modifier = Modifier.fillMaxWidth().background(if (isDark) DARK_KEYBOARD_BG else KEYBOARD_BG)) {
         ToolbarCandidateBar(viewModel, onHideKeyboard = onHideKeyboard, onCommitText = onCommitText)
 
         Box(modifier = Modifier.fillMaxWidth().height(260.dp)) {

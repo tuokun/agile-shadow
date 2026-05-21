@@ -19,13 +19,8 @@ sealed class InputRecord {
 class InputKeyTracker {
     private val records = mutableListOf<InputRecord>()
 
-    private val numToT9 = mapOf(
-        '2' to 'A', '3' to 'D', '4' to 'G', '5' to 'J',
-        '6' to 'M', '7' to 'P', '8' to 'T', '9' to 'W',
-    )
-
     fun pushT9Key(keycode: Int): Char? {
-        val t9Letter = numToT9[keycode.toChar()] ?: return null
+        val t9Letter = T9Mapper.numKeyToT9Letter(keycode) ?: return null
         if (records.lastOrNull() == InputRecord.SelectPinyinAction) {
             records.removeLastOrNull()
         }
