@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,9 +8,23 @@ plugins {
     alias(libs.plugins.room)
 }
 
+val keystoreProps = Properties().apply {
+    val f = rootProject.file("local.properties")
+    if (f.exists()) load(f.inputStream())
+}
+
 android {
     namespace = "io.github.cgfhsc.agileshadow.ime"
     compileSdk = libs.versions.projectCompileSdk.get().toInt()
+
+    signingConfigs {
+        create("release") {
+            storeFile = rootProject.file(keystoreProps["storeFile"] as String)
+            storePassword = keystoreProps["storePassword"] as String
+            keyAlias = keystoreProps["keyAlias"] as String
+            keyPassword = keystoreProps["keyPassword"] as String
+        }
+    }
 
     defaultConfig {
         applicationId = "io.github.cgfhsc.agileshadow.ime"
@@ -16,12 +32,17 @@ android {
         targetSdk = libs.versions.projectTargetSdk.get().toInt()
         versionCode = libs.versions.projectVersionCode.get().toInt()
         versionName = libs.versions.projectVersionName.get()
+
+        ndk {
+            abiFilters += "arm64-v8a"
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
