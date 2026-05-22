@@ -26,6 +26,7 @@ import androidx.compose.material.icons.rounded.KeyboardAlt
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Code
 import androidx.compose.material.icons.rounded.Feedback
+import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -67,6 +68,7 @@ fun SettingsScreen(
     val darkTheme by prefs.darkTheme.collectAsState(initial = false)
     val followSystem by prefs.followSystemTheme.collectAsState(initial = false)
     val defaultKeyboard by prefs.defaultKeyboard.collectAsState(initial = KeyboardType.QWERTY)
+    val excludeFromRecents by prefs.excludeFromRecents.collectAsState(initial = false)
 
     var showKeyboardPicker by remember { mutableStateOf(false) }
 
@@ -104,13 +106,30 @@ fun SettingsScreen(
         ) {
             Spacer(Modifier.height(4.dp))
 
-            // 键盘分组
+            // 常规分组
+            SectionLabel("常规")
             SettingsGroup {
                 SettingItem(
                     icon = Icons.Rounded.KeyboardAlt,
                     title = "默认键盘",
                     subtitle = keyboardDisplayName(defaultKeyboard),
                     onClick = { showKeyboardPicker = true },
+                )
+                SettingDivider()
+                SettingItem(
+                    icon = Icons.Rounded.VisibilityOff,
+                    title = "后台隐藏",
+                    subtitle = "在「最近任务」隐藏卡片",
+                    trailing = {
+                        Switch(
+                            checked = excludeFromRecents,
+                            onCheckedChange = { scope.launch { prefs.setExcludeFromRecents(it) } },
+                            colors = SwitchDefaults.colors(
+                                checkedTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
+                                checkedBorderColor = MaterialTheme.colorScheme.primary,
+                            ),
+                        )
+                    },
                 )
             }
 

@@ -17,6 +17,7 @@ class Prefs(private val context: Context) {
         private val KEY_DEFAULT_KEYBOARD = intPreferencesKey("default_keyboard")
         private val KEY_DARK_THEME = booleanPreferencesKey("dark_theme")
         private val KEY_FOLLOW_SYSTEM_THEME = booleanPreferencesKey("follow_system_theme")
+        private val KEY_EXCLUDE_FROM_RECENTS = booleanPreferencesKey("exclude_from_recents")
     }
 
     val defaultKeyboard: Flow<KeyboardType> = context.dataStore.data.map { prefs ->
@@ -26,6 +27,7 @@ class Prefs(private val context: Context) {
 
     val darkTheme: Flow<Boolean> = context.dataStore.data.map { it[KEY_DARK_THEME] ?: false }
     val followSystemTheme: Flow<Boolean> = context.dataStore.data.map { it[KEY_FOLLOW_SYSTEM_THEME] ?: false }
+    val excludeFromRecents: Flow<Boolean> = context.dataStore.data.map { it[KEY_EXCLUDE_FROM_RECENTS] ?: false }
 
     suspend fun setDefaultKeyboard(type: KeyboardType) {
         context.dataStore.edit { it[KEY_DEFAULT_KEYBOARD] = type.ordinal }
@@ -37,5 +39,9 @@ class Prefs(private val context: Context) {
 
     suspend fun setFollowSystemTheme(enabled: Boolean) {
         context.dataStore.edit { it[KEY_FOLLOW_SYSTEM_THEME] = enabled }
+    }
+
+    suspend fun setExcludeFromRecents(enabled: Boolean) {
+        context.dataStore.edit { it[KEY_EXCLUDE_FROM_RECENTS] = enabled }
     }
 }

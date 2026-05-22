@@ -1,6 +1,6 @@
 package io.github.cgfhsc.agileshadow.ime
 
-import androidx.compose.foundation.isSystemInDarkTheme
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,7 +12,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import io.github.cgfhsc.agileshadow.ime.data.Prefs
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.DARK_KEYBOARD_BG
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KEYBOARD_BG
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.EditPanel
@@ -29,6 +31,7 @@ import io.github.cgfhsc.agileshadow.ime.ui.keyboard.QwertyKeyboard
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.T9Keyboard
 import io.github.cgfhsc.agileshadow.ime.ui.symbol.EmojiPanel
 import io.github.cgfhsc.agileshadow.ime.ui.symbol.SymbolPanel
+import io.github.cgfhsc.agileshadow.ime.ui.theme.AgileShadowTheme
 import io.github.cgfhsc.agileshadow.ime.ui.tools.ToolsPanel
 
 @Composable
@@ -49,10 +52,18 @@ fun AgileShadowKeyboard(
     }
 
     val state by viewModel.state.collectAsState()
-    val isDark = isSystemInDarkTheme()
+
+    val context = LocalContext.current
+    val prefs = remember { Prefs(context) }
+    val darkTheme by prefs.darkTheme.collectAsState(initial = false)
+    val followSystem by prefs.followSystemTheme.collectAsState(initial = false)
+    val isSystemDark = (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+            Configuration.UI_MODE_NIGHT_YES
+    val isDark = if (followSystem) isSystemDark else darkTheme
 
     val isFullPanel = state.candidatesExpanded || state.activeKeyboard in setOf(KeyboardType.SYMBOL, KeyboardType.EMOJI)
 
+    AgileShadowTheme(isDark = isDark) {
     Column(modifier = Modifier.fillMaxWidth().background(if (isDark) DARK_KEYBOARD_BG else KEYBOARD_BG)) {
         if (!isFullPanel) {
             ToolbarCandidateBar(viewModel, isDark = isDark, onHideKeyboard = onHideKeyboard, onCommitText = onCommitText)
@@ -83,5 +94,6 @@ fun AgileShadowKeyboard(
                 KeyboardType.CLIPBOARD -> ClipboardPanel(onCommitText = onCommitText)
             }
         }
+    }
     }
 }

@@ -15,7 +15,6 @@ import io.github.cgfhsc.agileshadow.ime.data.clipboard.ClipboardItem
 import io.github.cgfhsc.agileshadow.ime.engine.HandwritingEngine
 import io.github.cgfhsc.agileshadow.ime.engine.RimeEngine
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardViewModel
-import io.github.cgfhsc.agileshadow.ime.ui.theme.AgileShadowTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -83,8 +82,7 @@ class AgileShadowImeService : InputMethodService() {
         val composeView = ComposeView(this)
         bridge.onStart()
         return bridge.createComposeView(composeView) {
-            AgileShadowTheme {
-                AgileShadowKeyboard(
+            AgileShadowKeyboard(
                     onCommitText = { text ->
                         currentInputConnection?.commitText(text, 1)
                     },
@@ -122,7 +120,6 @@ class AgileShadowImeService : InputMethodService() {
                     },
                 )
             }
-        }
     }
 
     override fun onStartInput(attribute: android.view.inputmethod.EditorInfo?, restarting: Boolean) {
