@@ -165,6 +165,10 @@ class KeyboardViewModel(
         }
         accumulatedCandidates.clear()
         refreshState()
+
+        if (_state.value.composingText.isEmpty() && _state.value.candidates.isEmpty()) {
+            _state.update { it.copy(candidatesExpanded = false) }
+        }
     }
 
     private fun handleSwitchKeyboard(action: KeyboardAction.SwitchKeyboard) {

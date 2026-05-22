@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material.icons.outlined.LockOpen
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -27,7 +28,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.GlassKeyButton
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KEYBOARD_BOTTOM_SPACER
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.TOOLBAR_BG
@@ -35,6 +38,7 @@ import io.github.cgfhsc.agileshadow.ime.ui.keyboard.TOOLBAR_BG
 data class SymbolGridCategory(
     val label: String,
     val items: List<String>,
+    val icon: ImageVector? = null,
 )
 
 private val SIDEBAR_BG = Color(0xFFE4E7EB)
@@ -52,6 +56,7 @@ internal fun CategorizedGridPanel(
     onBack: (() -> Unit)? = null,
     isLocked: Boolean = false,
     onLockToggle: (() -> Unit)? = null,
+    plainItem: Boolean = false,
 ) {
     val (selectedIndex, setSelectedIndex) = remember { mutableIntStateOf(0) }
 
@@ -88,6 +93,23 @@ internal fun CategorizedGridPanel(
                                     .clickable { setSelectedIndex(index) },
                                 contentAlignment = Alignment.Center,
                             ) {
+                                GlassKeyButton(
+                                    isDark = isDark,
+                                    label = category.label,
+                                    onClick = { setSelectedIndex(index) },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 2.dp),
+                                    height = 0.dp,
+                                    icon = category.icon,
+                                    iconSize = 22.dp,
+                                    isActive = false,
+                                    showBorder = false,
+                                    keyBackgroundColor = sidebarBg,
+                                    textColor = if (selected) {
+                                        if (isDark) DARK_ACCENT else ACCENT
+                                    } else Color.Unspecified,
+                                )
                                 if (selected) {
                                     Box(
                                         modifier = Modifier
@@ -100,25 +122,6 @@ internal fun CategorizedGridPanel(
                                             ),
                                     )
                                 }
-                                GlassKeyButton(
-                                    isDark = isDark,
-                                    label = category.label,
-                                    onClick = { setSelectedIndex(index) },
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(horizontal = 2.dp),
-                                    height = 0.dp,
-                                    isActive = selected,
-                                    showBorder = false,
-                                    keyBackgroundColor = if (selected) {
-                                        if (isDark) Color(0xFF323335) else Color.White
-                                    } else {
-                                        sidebarBg
-                                    },
-                                    textColor = if (selected) {
-                                        if (isDark) DARK_ACCENT else ACCENT
-                                    } else Color.Unspecified,
-                                )
                             }
                         }
                     }
@@ -160,24 +163,40 @@ internal fun CategorizedGridPanel(
 
         // Right grid
         val category = categories[selectedIndex]
+        val gridSpacing = if (plainItem) 2.dp else 3.dp
         LazyVerticalGrid(
             columns = GridCells.Fixed(columns),
             modifier = Modifier
                 .weight(5f)
                 .fillMaxHeight()
                 .padding(horizontal = 2.dp, vertical = 4.dp),
-            horizontalArrangement = Arrangement.spacedBy(3.dp),
-            verticalArrangement = Arrangement.spacedBy(3.dp),
+            horizontalArrangement = Arrangement.spacedBy(gridSpacing),
+            verticalArrangement = Arrangement.spacedBy(gridSpacing),
         ) {
             items(category.items) { item ->
-                GlassKeyButton(
-                    isDark = isDark,
-                    label = item,
-                    onClick = { onItemClick(item) },
-                    modifier = Modifier.fillMaxWidth(),
-                    height = 49.dp,
-                    showBorder = false,
-                )
+                if (plainItem) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(49.dp)
+                            .clickable(onClick = { onItemClick(item) }),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Text(
+                            text = item,
+                            fontSize = 22.sp,
+                        )
+                    }
+                } else {
+                    GlassKeyButton(
+                        isDark = isDark,
+                        label = item,
+                        onClick = { onItemClick(item) },
+                        modifier = Modifier.fillMaxWidth(),
+                        height = 49.dp,
+                        showBorder = false,
+                    )
+                }
             }
         }
         }

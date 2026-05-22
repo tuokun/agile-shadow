@@ -1,5 +1,12 @@
 package io.github.cgfhsc.agileshadow.ime.ui.symbol
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Celebration
+import androidx.compose.material.icons.outlined.DirectionsCar
+import androidx.compose.material.icons.outlined.EmojiEmotions
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.Nature
+import androidx.compose.material.icons.outlined.PanTool
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -22,38 +29,38 @@ private val emojiCategories = listOf(
         "😳", "🥺", "🥹", "😦", "😧", "😨", "😰", "😥", "😢", "😭",
         "😱", "😖", "😣", "😞", "😓", "😩", "😫", "🥱", "😤", "😡",
         "😠", "🤬", "😈", "👿", "💀", "☠️", "💩", "🤡", "👹", "👺",
-    )),
+    ), icon = Icons.Outlined.EmojiEmotions),
     SymbolGridCategory("手势", listOf(
         "👍", "👎", "👌", "✌️", "🤞", "🫰", "🤟", "🤘", "🤙", "👈",
         "👉", "👆", "🖕", "👇", "☝️", "🫵", "👋", "🤚", "🖐️", "✋",
         "🖖", "🫱", "🫲", "🫳", "🫴", "👏", "🙌", "🫶", "👐", "🤲",
         "🤝", "🙏", "✍️", "💅", "🤳", "💪", "🦾", "🦿", "🦵", "🦶",
-    )),
+    ), icon = Icons.Outlined.PanTool),
     SymbolGridCategory("心形", listOf(
         "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎", "💔",
         "❤️‍🔥", "❤️‍🩹", "❣️", "💕", "💞", "💓", "💗", "💖", "💘", "💝",
         "💟", "♥️", "🫀", "💌", "💋", "💍", "💎", "🔮", "🪄", "✨",
-    )),
+    ), icon = Icons.Outlined.Favorite),
     SymbolGridCategory("自然", listOf(
         "☀️", "🌙", "⭐", "🌟", "💫", "✨", "🔥", "🌈", "☁️", "⛅",
         "⛈️", "🌤️", "🌥️", "🌦️", "🌧️", "🌨️", "🌩️", "🌪️", "🌫️", "🌬️",
         "🌸", "💮", "🌹", "🥀", "🌺", "🌻", "🌼", "🌷", "🌱", "🪴",
         "🌲", "🌳", "🌴", "🌵", "🌾", "🌿", "☘️", "🍀", "🍁", "🍂",
         "🍃", "🪹", "🪺", "🍄", "🍎", "🍐", "🍊", "🍋", "🍌", "🍉",
-    )),
+    ), icon = Icons.Outlined.Nature),
     SymbolGridCategory("物品", listOf(
         "🎉", "🎊", "🎈", "🎁", "🎀", "🏆", "🥇", "🥈", "🥉", "🏅",
         "🎵", "🎶", "🎸", "🎹", "🎺", "🎻", "🥁", "📱", "💻", "🖥️",
         "📷", "📹", "🎬", "🎮", "🕹️", "🎲", "♟️", "🎯", "🏀", "⚽",
         "🏈", "⚾", "🥎", "🎾", "🏐", "🏉", "🥏", "🎱", "🪀", "🏓",
         "🏠", "🏢", "🏣", "🏤", "🏥", "🏦", "🏨", "🏩", "🏪", "🏫",
-    )),
+    ), icon = Icons.Outlined.Celebration),
     SymbolGridCategory("交通", listOf(
         "🚗", "🚕", "🚙", "🚌", "🚎", "🏎️", "🚓", "🚑", "🚒", "🚐",
         "🛻", "🚚", "🚛", "🚜", "🏍️", "🛵", "🚲", "🛴", "🛹", "🛼",
         "✈️", "🛩️", "🛫", "🛬", "🪂", "💺", "🚁", "🚟", "🚠", "🚡",
         "🚀", "🛸", "🚢", "⛵", "🚤", "🛥️", "🛳️", "⛴️", "🚡", "🗺️",
-    )),
+    ), icon = Icons.Outlined.DirectionsCar),
 )
 
 @Composable
@@ -79,5 +86,6 @@ fun EmojiPanel(
         onBack = { viewModel.onAction(KeyboardAction.SwitchKeyboard(state.previousKeyboard)) },
         isLocked = isLocked,
         onLockToggle = { isLocked = !isLocked },
+        plainItem = true,
     )
 }

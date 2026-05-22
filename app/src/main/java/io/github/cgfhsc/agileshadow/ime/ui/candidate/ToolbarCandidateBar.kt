@@ -48,6 +48,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -56,6 +58,7 @@ import io.github.cgfhsc.agileshadow.ime.ui.keyboard.CANDIDATE_BG
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.GlassKeyButton
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KEYBOARD_BG
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.DARK_KEYBOARD_BG
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.DARK_KEY_BG
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.DEFAULT_TEXT
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KEYCODE_DELETE
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardAction
@@ -188,15 +191,16 @@ fun ExpandedCandidateView(
     Column(modifier = modifier.fillMaxWidth()) {
         Row(modifier = Modifier.weight(1f)) {
             // 左侧候选词网格
+            val candidateBg = if (isDark) DARK_KEY_BG else Color.White
+            val dividerColor = if (isDark) Color(0xFF484848) else Color(0xFFD0D0D0)
             LazyVerticalGrid(
                 columns = GridCells.Fixed(5),
                 state = gridState,
                 modifier = Modifier
                     .weight(5f)
                     .fillMaxHeight()
-                    .padding(horizontal = 2.dp, vertical = 4.dp),
-                horizontalArrangement = Arrangement.spacedBy(3.dp),
-                verticalArrangement = Arrangement.spacedBy(3.dp),
+                    .padding(start = 3.dp, end = 0.dp, top = 4.dp, bottom = 5.dp),
+                contentPadding = PaddingValues(top = 3.dp),
             ) {
                 itemsIndexed(
                     state.candidates,
@@ -211,14 +215,24 @@ fun ExpandedCandidateView(
                         GridItemSpan(cols)
                     },
                 ) { index, candidate ->
-                    GlassKeyButton(
-                        isDark = isDark,
-                        label = candidate.text,
-                        onClick = { viewModel.onAction(KeyboardAction.CandidateSelect(index)) },
-                        modifier = Modifier.fillMaxWidth(),
-                        height = 49.dp,
-                        showBorder = false,
-                    )
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(51.dp)
+                            .background(candidateBg)
+                            .drawBehind {
+                                val stroke = 0.5.dp.toPx()
+                                drawLine(dividerColor, Offset(0f, size.height), Offset(size.width, size.height), stroke)
+                            }
+                            .clickable { viewModel.onAction(KeyboardAction.CandidateSelect(index)) },
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Text(
+                            text = candidate.text,
+                            fontSize = 16.sp,
+                            color = if (isDark) Color.White else Color(0xFF333333),
+                        )
+                    }
                 }
             }
 
