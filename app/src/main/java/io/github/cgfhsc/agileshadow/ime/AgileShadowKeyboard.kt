@@ -51,10 +51,14 @@ fun AgileShadowKeyboard(
     val state by viewModel.state.collectAsState()
     val isDark = isSystemInDarkTheme()
 
-    Column(modifier = Modifier.fillMaxWidth().background(if (isDark) DARK_KEYBOARD_BG else KEYBOARD_BG)) {
-        ToolbarCandidateBar(viewModel, isDark = isDark, onHideKeyboard = onHideKeyboard, onCommitText = onCommitText)
+    val isFullPanel = !state.candidatesExpanded && state.activeKeyboard in setOf(KeyboardType.SYMBOL, KeyboardType.EMOJI)
 
-        Box(modifier = Modifier.fillMaxWidth().height(260.dp)) {
+    Column(modifier = Modifier.fillMaxWidth().background(if (isDark) DARK_KEYBOARD_BG else KEYBOARD_BG)) {
+        if (!isFullPanel) {
+            ToolbarCandidateBar(viewModel, isDark = isDark, onHideKeyboard = onHideKeyboard, onCommitText = onCommitText)
+        }
+
+        Box(modifier = Modifier.fillMaxWidth().height(if (isFullPanel) 310.dp else 260.dp)) {
             if (state.candidatesExpanded) {
                 ExpandedCandidateView(viewModel, isDark = isDark)
             } else when (state.activeKeyboard) {
