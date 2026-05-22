@@ -51,7 +51,7 @@ fun AgileShadowKeyboard(
     val state by viewModel.state.collectAsState()
     val isDark = isSystemInDarkTheme()
 
-    val isFullPanel = !state.candidatesExpanded && state.activeKeyboard in setOf(KeyboardType.SYMBOL, KeyboardType.EMOJI)
+    val isFullPanel = state.candidatesExpanded || state.activeKeyboard in setOf(KeyboardType.SYMBOL, KeyboardType.EMOJI)
 
     Column(modifier = Modifier.fillMaxWidth().background(if (isDark) DARK_KEYBOARD_BG else KEYBOARD_BG)) {
         if (!isFullPanel) {
@@ -60,7 +60,11 @@ fun AgileShadowKeyboard(
 
         Box(modifier = Modifier.fillMaxWidth().height(if (isFullPanel) 310.dp else 260.dp)) {
             if (state.candidatesExpanded) {
-                ExpandedCandidateView(viewModel, isDark = isDark)
+                ExpandedCandidateView(
+                    viewModel = viewModel,
+                    isDark = isDark,
+                    isHandwriting = state.handwritingCandidates.isNotEmpty(),
+                )
             } else when (state.activeKeyboard) {
                 KeyboardType.QWERTY, KeyboardType.ENGLISH -> QwertyKeyboard(viewModel, isDark = isDark)
                 KeyboardType.T9 -> T9Keyboard(viewModel, isDark = isDark)
