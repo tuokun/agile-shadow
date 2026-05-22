@@ -159,7 +159,7 @@ fun SettingsScreen(
                     enabled = !followSystem,
                     trailing = {
                         Switch(
-                            checked = if (followSystem) darkTheme else darkTheme,
+                            checked = darkTheme,
                             onCheckedChange = { scope.launch { prefs.setDarkTheme(it) } },
                             enabled = !followSystem,
                             colors = SwitchDefaults.colors(

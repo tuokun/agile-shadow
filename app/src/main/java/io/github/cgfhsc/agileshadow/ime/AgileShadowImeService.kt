@@ -17,13 +17,15 @@ import io.github.cgfhsc.agileshadow.ime.engine.RimeEngine
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 class AgileShadowImeService : InputMethodService() {
 
     private val bridge = ComposeBridge()
     private var keyboardViewModel: KeyboardViewModel? = null
-    private val scope = CoroutineScope(Dispatchers.IO)
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private lateinit var clipboardDb: ClipboardDatabase
     private lateinit var clipboardManager: ClipboardManager
 
@@ -122,11 +124,6 @@ class AgileShadowImeService : InputMethodService() {
             }
     }
 
-    override fun onStartInput(attribute: android.view.inputmethod.EditorInfo?, restarting: Boolean) {
-        super.onStartInput(attribute, restarting)
-        if (!restarting) keyboardViewModel?.resetToHome()
-    }
-
     override fun onStartInputView(attribute: android.view.inputmethod.EditorInfo?, restarting: Boolean) {
         super.onStartInputView(attribute, restarting)
         if (!restarting) keyboardViewModel?.resetToHome()
@@ -140,7 +137,9 @@ class AgileShadowImeService : InputMethodService() {
     }
 
     override fun onDestroy() {
+        scope.cancel()
         clipboardManager.removePrimaryClipChangedListener(clipboardListener)
+        HandwritingEngine.getInstance().release()
         bridge.onDestroy()
         RimeEngine.instance.shutdown()
         super.onDestroy()

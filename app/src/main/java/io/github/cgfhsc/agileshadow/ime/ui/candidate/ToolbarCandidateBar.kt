@@ -55,16 +55,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.CANDIDATE_BG
-import io.github.cgfhsc.agileshadow.ime.ui.keyboard.GlassKeyButton
-import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KEYBOARD_BG
-import io.github.cgfhsc.agileshadow.ime.ui.keyboard.DARK_KEYBOARD_BG
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.DARK_KEY_BG
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.DARK_TOOLBAR_BG
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.DEFAULT_TEXT
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.GlassKeyButton
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KEYCODE_DELETE
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.TOOLBAR_BG
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardAction
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardType
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardViewModel
-import io.github.cgfhsc.agileshadow.ime.ui.keyboard.TOOLBAR_BG
 
 @Composable
 fun ToolbarCandidateBar(
@@ -77,7 +76,7 @@ fun ToolbarCandidateBar(
     val state by viewModel.state.collectAsState()
 
     val suggestion = state.clipboardSuggestion
-    val textColor = if (isDark) Color.White else Color(0xFF333333)
+    val textColor = if (isDark) Color.White else DEFAULT_TEXT
 
     if (state.composingText.isNotEmpty() || state.candidates.isNotEmpty()) {
         CandidateRow(viewModel, state.candidates, state.hasNextPage, state.candidatesExpanded, isDark, textColor, modifier)
@@ -230,7 +229,7 @@ fun ExpandedCandidateView(
                         Text(
                             text = candidate.text,
                             fontSize = 16.sp,
-                            color = if (isDark) Color.White else Color(0xFF333333),
+                            color = if (isDark) Color.White else DEFAULT_TEXT,
                         )
                     }
                 }
@@ -279,7 +278,7 @@ fun ExpandedCandidateView(
                 } else {
                     // 拼音模式：拼音候选滚动区 + 删除 + 返回
                     if (state.pinyins.isNotEmpty()) {
-                        val sidebarBg = if (isDark) Color(0xFF252628) else Color(0xFFE4E7EB)
+                        val sidebarBg = if (isDark) DARK_TOOLBAR_BG else TOOLBAR_BG
                         Box(
                             modifier = Modifier
                                 .weight(1f)

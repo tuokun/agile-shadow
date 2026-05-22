@@ -3,6 +3,13 @@ package io.github.cgfhsc.agileshadow.ime.ui.keyboard
 import com.yuyan.inputmethod.core.CandidateListItem
 
 enum class KeyboardType { T9, QWERTY, ENGLISH, NUMBER, SYMBOL, EMOJI, HANDWRITING, TOOLS, KEYBOARD_PICKER, EDIT, CLIPBOARD }
+
+val KeyboardType.isPanel: Boolean get() = this in setOf(
+    KeyboardType.TOOLS, KeyboardType.KEYBOARD_PICKER,
+    KeyboardType.SYMBOL, KeyboardType.EMOJI,
+    KeyboardType.NUMBER, KeyboardType.HANDWRITING,
+    KeyboardType.EDIT, KeyboardType.CLIPBOARD,
+)
 enum class CapsState { NONE, ONCE, LOCK }
 
 data class KeyboardState(

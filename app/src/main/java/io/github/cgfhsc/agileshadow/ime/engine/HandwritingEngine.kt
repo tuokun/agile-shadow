@@ -17,12 +17,12 @@ class HandwritingEngine private constructor() {
     var isInitialized = false
         private set
 
-    private val TAG = "HandwritingEngine"
     private var recognizer: DigitalInkRecognizer? = null
     private var inkBuilder: Ink.Builder = Ink.builder()
     private var strokeBuilder: Ink.Stroke.Builder? = null
 
     companion object {
+        private const val TAG = "HandwritingEngine"
         private var instance: HandwritingEngine? = null
 
         fun getInstance(): HandwritingEngine =

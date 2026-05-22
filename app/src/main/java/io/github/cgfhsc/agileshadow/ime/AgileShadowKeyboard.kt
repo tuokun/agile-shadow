@@ -34,6 +34,8 @@ import io.github.cgfhsc.agileshadow.ime.ui.symbol.SymbolPanel
 import io.github.cgfhsc.agileshadow.ime.ui.theme.AgileShadowTheme
 import io.github.cgfhsc.agileshadow.ime.ui.tools.ToolsPanel
 
+private val FULL_PANEL_TYPES = setOf(KeyboardType.SYMBOL, KeyboardType.EMOJI)
+
 @Composable
 fun AgileShadowKeyboard(
     onCommitText: (String) -> Unit = {},
@@ -61,7 +63,7 @@ fun AgileShadowKeyboard(
             Configuration.UI_MODE_NIGHT_YES
     val isDark = if (followSystem) isSystemDark else darkTheme
 
-    val isFullPanel = state.candidatesExpanded || state.activeKeyboard in setOf(KeyboardType.SYMBOL, KeyboardType.EMOJI)
+    val isFullPanel = state.candidatesExpanded || state.activeKeyboard in FULL_PANEL_TYPES
 
     AgileShadowTheme(isDark = isDark) {
     Column(modifier = Modifier.fillMaxWidth().background(if (isDark) DARK_KEYBOARD_BG else KEYBOARD_BG)) {

@@ -20,12 +20,6 @@ class KeyboardViewModel(
     companion object {
         private const val SCHEMA_T9 = "t9"
         private const val SCHEMA_RIME_ICE = "rime_ice"
-        private val PANEL_TYPES = setOf(
-            KeyboardType.TOOLS, KeyboardType.KEYBOARD_PICKER,
-            KeyboardType.SYMBOL, KeyboardType.EMOJI,
-            KeyboardType.NUMBER, KeyboardType.HANDWRITING,
-            KeyboardType.EDIT, KeyboardType.CLIPBOARD,
-        )
     }
 
     private val backspaceKeycode by lazy { Rime.getRimeKeycodeByName("BackSpace") }
@@ -175,19 +169,17 @@ class KeyboardViewModel(
         val engine = RimeEngine.instance
 
         if (engine.isInitialized) {
-            when (action.type) {
-                KeyboardType.T9 -> engine.selectSchema(SCHEMA_T9)
-                in PANEL_TYPES -> { /* keep current schema */ }
-                else -> {
-                    if (_state.value.activeKeyboard == KeyboardType.T9) {
-                        engine.selectSchema(SCHEMA_RIME_ICE)
-                    }
+            when {
+                action.type == KeyboardType.T9 -> engine.selectSchema(SCHEMA_T9)
+                action.type.isPanel -> { /* keep current schema */ }
+                _state.value.activeKeyboard == KeyboardType.T9 -> {
+                    engine.selectSchema(SCHEMA_RIME_ICE)
                 }
             }
         }
 
         _state.update { s ->
-            val prev = if (action.type in PANEL_TYPES && s.activeKeyboard !in PANEL_TYPES) s.activeKeyboard else s.previousKeyboard
+            val prev = if (action.type.isPanel && !s.activeKeyboard.isPanel) s.activeKeyboard else s.previousKeyboard
             s.copy(activeKeyboard = action.type, previousKeyboard = prev, candidatesExpanded = false)
         }
 
