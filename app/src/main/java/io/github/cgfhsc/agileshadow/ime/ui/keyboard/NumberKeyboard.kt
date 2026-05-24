@@ -86,6 +86,7 @@ fun NumberKeyboard(
                     modifier = Modifier.weight(1f).fillMaxWidth(),
                     height = 0.dp,
                     keyBackgroundColor = TOOLBAR_BG,
+                    repeatable = true,
                 )
                 GlassKeyButton(
                         isDark = isDark,                    label = ".",

@@ -265,4 +265,15 @@ object T9Mapper {
 
     fun pinyinToT9(pinyin: String): String =
         pinyin.map { charToT9[it.lowercaseChar()] ?: it }.joinToString("")
+
+    /** 将 T9 字母序列递归分解为拼音字符串 */
+    fun decomposeT9(t9Letters: String): String {
+        if (t9Letters.isEmpty()) return ""
+        for (length in minOf(t9Letters.length, 6) downTo 1) {
+            pinyinMap[t9Letters.substring(0, length)]?.firstOrNull()?.let { pinyin ->
+                return pinyin + decomposeT9(t9Letters.substring(length))
+            }
+        }
+        return decomposeT9(t9Letters.substring(1))
+    }
 }

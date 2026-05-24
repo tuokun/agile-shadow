@@ -109,6 +109,7 @@ fun T9Keyboard(
                         label = if (icon != null) "" else key.label,
                         icon = icon,
                         subLabel = key.subLabel.ifEmpty { null },
+                        repeatable = key.code == KEYCODE_DELETE,
                         onClick = {
                             when (key.code) {
                                 KEYCODE_CLEAR -> viewModel.onAction(KeyboardAction.ClearComposition)

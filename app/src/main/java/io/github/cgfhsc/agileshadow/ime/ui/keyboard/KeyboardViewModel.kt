@@ -234,6 +234,15 @@ class KeyboardViewModel(
             emptyList()
         }
 
+        val composingDisplay = when {
+            newComposingText.isEmpty() -> ""
+            _state.value.activeKeyboard == KeyboardType.T9 -> {
+                val hint = accumulatedCandidates.firstOrNull()?.comment?.ifEmpty { null }
+                hint ?: inputKeyTracker.buildComposingDisplay()
+            }
+            else -> newComposingText
+        }
+
         _state.update { s ->
             s.copy(
                 candidates = accumulatedCandidates.toList(),
@@ -241,6 +250,7 @@ class KeyboardViewModel(
                 hasNextPage = hasNext,
                 page = newPage,
                 pinyins = pinyinList,
+                composingDisplay = composingDisplay,
             )
         }
     }

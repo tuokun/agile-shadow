@@ -96,4 +96,28 @@ class InputKeyTracker {
     }
 
     fun clear() = records.clear()
+
+    fun buildComposingDisplay(): String {
+        val parts = mutableListOf<String>()
+        val unresolved = StringBuilder()
+        for (record in records) {
+            when (record) {
+                is InputRecord.PinyinKey -> {
+                    flushUnresolved(unresolved, parts)
+                    parts.add(record.pinyin)
+                }
+                is InputRecord.T9Key -> if (!record.consumed) unresolved.append(record.keyChar)
+                else -> {}
+            }
+        }
+        flushUnresolved(unresolved, parts)
+        return parts.joinToString("")
+    }
+
+    private fun flushUnresolved(buffer: StringBuilder, parts: MutableList<String>) {
+        if (buffer.isNotEmpty()) {
+            parts.add(T9Mapper.decomposeT9(buffer.toString()))
+            buffer.clear()
+        }
+    }
 }

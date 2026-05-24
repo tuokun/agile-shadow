@@ -104,6 +104,7 @@ fun QwertyKeyboard(
                         modifier = if (key.width == 0.dp) Modifier.weight(1f) else Modifier,
                         height = 42.dp,
                         isActive = displayCode == KEYCODE_SHIFT && state.capsState != CapsState.NONE,
+                        repeatable = displayCode == KEYCODE_DELETE,
                         keyBackgroundColor = when {
                             isConfirm -> CONFIRM_BG
                             isToolbar -> TOOLBAR_BG

@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -47,6 +49,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.offset
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
@@ -93,6 +97,33 @@ fun ToolbarCandidateBar(
         )
     } else {
         ToolbarRow(viewModel, state, isDark, modifier, onHideKeyboard)
+    }
+}
+
+/** 拼音标签：浮在键盘左上角的独立小块 */
+@Composable
+internal fun ComposingTag(
+    text: String,
+    textColor: Color,
+    isDark: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    val borderColor = if (isDark) Color(0x153A3A3E) else Color(0x15D8D8D8)
+    val bgColor = if (isDark) Color(0xFF2A2A2E) else Color(0xFFF0F0F2)
+    Box(
+        modifier = modifier
+            .background(bgColor, RoundedCornerShape(4.dp))
+            .border(0.5.dp, borderColor, RoundedCornerShape(4.dp))
+            .padding(horizontal = 4.dp),
+    ) {
+        Text(
+            text = text,
+            fontSize = 12.sp,
+            color = textColor,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            lineHeight = 14.sp,
+        )
     }
 }
 
