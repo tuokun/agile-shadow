@@ -276,4 +276,26 @@ object T9Mapper {
         }
         return decomposeT9(t9Letters.substring(1))
     }
+
+    /**
+     * 根据候选词拼音注释和实际输入组合长度，生成拼音显示文本。
+     * 取 comment 的拼音但截断到每段实际输入长度，避免未输完就显示完整拼音。
+     */
+    fun getT9Composition(composition: String, comment: String): String {
+        if (comment.isEmpty()) return composition
+        val asciiBuilder = StringBuilder()
+        val nonAsciiBuilder = StringBuilder()
+        for (ch in composition) if (ch.code <= 0xFF) asciiBuilder.append(ch) else nonAsciiBuilder.append(ch)
+        val compositionList = asciiBuilder.split("'")
+        val commentParts = comment.split("'").filter { it.isNotEmpty() }
+        return if (commentParts.size == compositionList.size) {
+            buildString {
+                append(nonAsciiBuilder)
+                commentParts.zip(compositionList).forEach { (pinyin, compo) ->
+                    append(pinyin.take(compo.length))
+                    append("'")
+                }
+            }
+        } else composition.lowercase()
+    }
 }

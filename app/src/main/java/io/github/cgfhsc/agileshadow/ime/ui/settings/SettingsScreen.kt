@@ -315,7 +315,7 @@ private fun Chevron() {
 }
 
 private fun keyboardDisplayName(type: KeyboardType): String = when (type) {
-    KeyboardType.QWERTY -> "QWERTY 全键"
-    KeyboardType.T9 -> "T9 九宫格"
+    KeyboardType.QWERTY -> "拼音26键"
+    KeyboardType.T9 -> "拼音9键"
     else -> type.name
 }

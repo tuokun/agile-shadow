@@ -40,7 +40,7 @@ class KeyboardViewModel(
             is KeyboardAction.CandidateSelect -> handleCandidateSelect(action)
             is KeyboardAction.SwitchKeyboard -> handleSwitchKeyboard(action)
             is KeyboardAction.ClearComposition -> handleClearComposition()
-            is KeyboardAction.DirectCommit -> onCommitText(action.text)
+            is KeyboardAction.DirectCommit -> handleDirectCommit(action.text)
             is KeyboardAction.SelectPinyin -> handleSelectPinyin(action)
         }
     }
@@ -205,10 +205,17 @@ class KeyboardViewModel(
         refreshState()
     }
 
-    private fun handleClearComposition() {
+    private fun handleClearComposition() = clearCompositionState()
+
+    private fun handleDirectCommit(text: String) {
+        if (_state.value.composingText.isNotEmpty()) clearCompositionState()
+        onCommitText(text)
+    }
+
+    private fun clearCompositionState() {
         RimeEngine.instance.clearComposition()
-        accumulatedCandidates.clear()
         inputKeyTracker.clear()
+        accumulatedCandidates.clear()
         refreshState()
     }
 
@@ -237,8 +244,9 @@ class KeyboardViewModel(
         val composingDisplay = when {
             newComposingText.isEmpty() -> ""
             _state.value.activeKeyboard == KeyboardType.T9 -> {
-                val hint = accumulatedCandidates.firstOrNull()?.comment?.ifEmpty { null }
-                hint ?: inputKeyTracker.buildComposingDisplay()
+                val comment = accumulatedCandidates.firstOrNull()?.comment?.ifEmpty { null }
+                if (comment != null) T9Mapper.getT9Composition(newComposingText, comment)
+                else inputKeyTracker.buildComposingDisplay()
             }
             else -> newComposingText
         }

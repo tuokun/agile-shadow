@@ -5,6 +5,7 @@ object T9Layout {
         val label: String,
         val subLabel: String = "",
         val code: Int,
+        val popupItems: List<String> = emptyList(),
     )
 
     val leftPunctuation = listOf(
@@ -15,9 +16,21 @@ object T9Layout {
     )
 
     val center9Keys = listOf(
-        listOf(T9Key("1", code = KEYCODE_T9_1), T9Key("ABC", "2", KEYCODE_T9_2), T9Key("DEF", "3", KEYCODE_T9_3)),
-        listOf(T9Key("GHI", "4", KEYCODE_T9_4), T9Key("JKL", "5", KEYCODE_T9_5), T9Key("MNO", "6", KEYCODE_T9_6)),
-        listOf(T9Key("PQRS", "7", KEYCODE_T9_7), T9Key("TUV", "8", KEYCODE_T9_8), T9Key("WXYZ", "9", KEYCODE_T9_9)),
+        listOf(
+            T9Key("1", code = KEYCODE_T9_1),
+            T9Key("ABC", "2", KEYCODE_T9_2, listOf("A", "B", "C", "2")),
+            T9Key("DEF", "3", KEYCODE_T9_3, listOf("D", "E", "F", "3")),
+        ),
+        listOf(
+            T9Key("GHI", "4", KEYCODE_T9_4, listOf("G", "H", "I", "4")),
+            T9Key("JKL", "5", KEYCODE_T9_5, listOf("J", "K", "L", "5")),
+            T9Key("MNO", "6", KEYCODE_T9_6, listOf("M", "N", "O", "6")),
+        ),
+        listOf(
+            T9Key("PQRS", "7", KEYCODE_T9_7, listOf("P", "Q", "R", "S", "7")),
+            T9Key("TUV", "8", KEYCODE_T9_8, listOf("T", "U", "V", "8")),
+            T9Key("WXYZ", "9", KEYCODE_T9_9, listOf("W", "X", "Y", "Z", "9")),
+        ),
     )
 
     val rightFunctions = listOf(

@@ -46,8 +46,8 @@ fun KeyboardPickerBottomSheet(
             )
 
             val keyboardOptions = listOf(
-                KeyboardType.QWERTY to "QWERTY 全键",
-                KeyboardType.T9 to "T9 九宫格",
+                KeyboardType.QWERTY to "拼音26键",
+                KeyboardType.T9 to "拼音9键",
             )
 
             keyboardOptions.forEachIndexed { index, (type, label) ->

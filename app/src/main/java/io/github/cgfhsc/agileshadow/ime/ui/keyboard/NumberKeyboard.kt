@@ -130,15 +130,15 @@ fun NumberKeyboard(
                     keyBackgroundColor = TOOLBAR_BG,
                 )
                 GlassKeyButton(
-                        isDark = isDark,                    label = "",
-                    icon = Icons.Outlined.SpaceBar,
-                    onClick = { viewModel.onAction(KeyboardAction.DirectCommit(" ")) },
+                        isDark = isDark,                    label = "0",
+                    onClick = { viewModel.onAction(KeyboardAction.DirectCommit("0")) },
                     modifier = Modifier.weight(1f),
                     height = 44.dp,
                 )
                 GlassKeyButton(
-                        isDark = isDark,                    label = "0",
-                    onClick = { viewModel.onAction(KeyboardAction.DirectCommit("0")) },
+                        isDark = isDark,                    label = "",
+                    icon = Icons.Outlined.SpaceBar,
+                    onClick = { viewModel.onAction(KeyboardAction.DirectCommit(" ")) },
                     modifier = Modifier.weight(1f),
                     height = 44.dp,
                     keyBackgroundColor = TOOLBAR_BG,

@@ -82,14 +82,27 @@ fun T9Keyboard(
                         horizontalArrangement = Arrangement.spacedBy(CENTER_ROW_GAP),
                     ) {
                         row.forEach { key ->
-                            GlassKeyButton(
-                        isDark = isDark,
-                        label = key.label,
-                                subLabel = key.subLabel.ifEmpty { null },
-                                onClick = { viewModel.onAction(KeyboardAction.KeyPress(key.code)) },
-                                modifier = Modifier.weight(1f),
-                                height = CENTER_KEY_HEIGHT,
-                            )
+                            if (key.popupItems.isNotEmpty()) {
+                                T9PopupKeyButton(
+                                    isDark = isDark,
+                                    label = key.label,
+                                    subLabel = key.subLabel.ifEmpty { null },
+                                    popupItems = key.popupItems,
+                                    onClick = { viewModel.onAction(KeyboardAction.KeyPress(key.code)) },
+                                    onPopupSelect = { viewModel.onAction(KeyboardAction.DirectCommit(it)) },
+                                    modifier = Modifier.weight(1f),
+                                    height = CENTER_KEY_HEIGHT,
+                                )
+                            } else {
+                                GlassKeyButton(
+                                    isDark = isDark,
+                                    label = key.label,
+                                    subLabel = key.subLabel.ifEmpty { null },
+                                    onClick = { viewModel.onAction(KeyboardAction.KeyPress(key.code)) },
+                                    modifier = Modifier.weight(1f),
+                                    height = CENTER_KEY_HEIGHT,
+                                )
+                            }
                         }
                     }
                 }
