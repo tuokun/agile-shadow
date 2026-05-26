@@ -196,7 +196,7 @@ private fun CandidateRow(
     }
 }
 
-/** 全屏候选词视图：左侧候选词网格 + 右侧操作栏 */
+/** 全屏候选词视图：左拼音 + 中间候选词网格 + 右侧操作栏 */
 @Composable
 fun ExpandedCandidateView(
     viewModel: KeyboardViewModel,
@@ -220,14 +220,47 @@ fun ExpandedCandidateView(
 
     Column(modifier = modifier.fillMaxWidth()) {
         Row(modifier = Modifier.weight(1f)) {
-            // 左侧候选词网格
+            // 左侧拼音区（仅 T9 拼音模式显示）
+            if (!isHandwriting && state.pinyins.isNotEmpty()) {
+                val sidebarBg = if (isDark) DARK_TOOLBAR_BG else TOOLBAR_BG
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .padding(start = 3.dp, top = 4.dp, bottom = 5.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(sidebarBg),
+                ) {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.spacedBy(2.dp),
+                        contentPadding = PaddingValues(vertical = 3.dp),
+                    ) {
+                        itemsIndexed(state.pinyins) { index, pinyin ->
+                            GlassKeyButton(
+                                isDark = isDark,
+                                label = pinyin,
+                                onClick = { viewModel.onAction(KeyboardAction.SelectPinyin(index)) },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 2.dp),
+                                height = 38.dp,
+                                showBorder = false,
+                                keyBackgroundColor = sidebarBg,
+                            )
+                        }
+                    }
+                }
+            }
+
+            // 中间候选词网格
             val candidateBg = if (isDark) DARK_KEY_BG else Color.White
             val dividerColor = if (isDark) Color(0xFF484848) else Color(0xFFD0D0D0)
             LazyVerticalGrid(
-                columns = GridCells.Fixed(5),
+                columns = GridCells.Fixed(4),
                 state = gridState,
                 modifier = Modifier
-                    .weight(5f)
+                    .weight(4f)
                     .fillMaxHeight()
                     .padding(start = 3.dp, end = 0.dp, top = 4.dp, bottom = 5.dp),
                 contentPadding = PaddingValues(top = 3.dp),
@@ -240,7 +273,7 @@ fun ExpandedCandidateView(
                         val cols = when {
                             len <= 2 -> 1
                             len <= 5 -> 2
-                            else -> 5
+                            else -> 4
                         }
                         GridItemSpan(cols)
                     },
@@ -275,14 +308,11 @@ fun ExpandedCandidateView(
                 verticalArrangement = Arrangement.spacedBy(3.dp),
             ) {
                 if (isHandwriting) {
-                    // 手写模式：三个按钮均分高度
                     GlassKeyButton(
                         isDark = isDark,
                         label = "",
                         icon = Icons.AutoMirrored.Outlined.Backspace,
-                        onClick = {
-                            viewModel.clearHandwritingCandidates()
-                        },
+                        onClick = { viewModel.clearHandwritingCandidates() },
                         modifier = Modifier.weight(1f).fillMaxWidth(),
                         height = 0.dp,
                         keyBackgroundColor = TOOLBAR_BG,
@@ -307,39 +337,14 @@ fun ExpandedCandidateView(
                         keyBackgroundColor = TOOLBAR_BG,
                     )
                 } else {
-                    // 拼音模式：拼音候选滚动区 + 删除 + 返回
-                    if (state.pinyins.isNotEmpty()) {
-                        val sidebarBg = if (isDark) DARK_TOOLBAR_BG else TOOLBAR_BG
-                        Box(
-                            modifier = Modifier
-                                .weight(1f)
-                                .fillMaxWidth()
-                                .clip(RoundedCornerShape(8.dp))
-                                .background(sidebarBg),
-                        ) {
-                            LazyColumn(
-                                modifier = Modifier.fillMaxWidth(),
-                                verticalArrangement = Arrangement.spacedBy(2.dp),
-                                contentPadding = PaddingValues(vertical = 3.dp),
-                            ) {
-                                itemsIndexed(state.pinyins) { index, pinyin ->
-                                    GlassKeyButton(
-                                        isDark = isDark,
-                                        label = pinyin,
-                                        onClick = { viewModel.onAction(KeyboardAction.SelectPinyin(index)) },
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(horizontal = 2.dp),
-                                        height = 38.dp,
-                                        showBorder = false,
-                                        keyBackgroundColor = sidebarBg,
-                                    )
-                                }
-                            }
-                        }
-                    } else {
-                        Spacer(modifier = Modifier.weight(1f))
-                    }
+                    GlassKeyButton(
+                        isDark = isDark,
+                        label = "返回",
+                        onClick = { viewModel.toggleCandidatesExpanded() },
+                        modifier = Modifier.weight(1f).fillMaxWidth(),
+                        height = 0.dp,
+                        keyBackgroundColor = TOOLBAR_BG,
+                    )
                     GlassKeyButton(
                         isDark = isDark,
                         label = "",
@@ -347,16 +352,19 @@ fun ExpandedCandidateView(
                         onClick = {
                             viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_DELETE))
                         },
-                        modifier = Modifier.fillMaxWidth(),
-                        height = 44.dp,
+                        modifier = Modifier.weight(1f).fillMaxWidth(),
+                        height = 0.dp,
                         keyBackgroundColor = TOOLBAR_BG,
                     )
                     GlassKeyButton(
                         isDark = isDark,
-                        label = "返回",
-                        onClick = { viewModel.toggleCandidatesExpanded() },
-                        modifier = Modifier.fillMaxWidth(),
-                        height = 44.dp,
+                        label = "重输",
+                        onClick = {
+                            viewModel.onAction(KeyboardAction.ClearComposition)
+                            viewModel.toggleCandidatesExpanded()
+                        },
+                        modifier = Modifier.weight(1f).fillMaxWidth(),
+                        height = 0.dp,
                         keyBackgroundColor = TOOLBAR_BG,
                     )
                 }

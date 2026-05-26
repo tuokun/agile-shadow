@@ -65,14 +65,20 @@ fun QwertyKeyboard(
             ) {
                 row.forEach { key ->
                     val isPeriod = key.label == "。" || key.label == "."
+                    val isComma = key.label == "," || key.label == "，"
                     val displayLabel = when {
                         isPeriod && isEnglish -> "."
                         isPeriod && !isEnglish -> "。"
+                        isComma && isEnglish -> ","
+                        isComma && !isEnglish -> "，"
+                        state.capsState != CapsState.NONE && key.label.length == 1 && key.label[0].isLetter() -> key.label.uppercase()
                         else -> key.label
                     }
                     val displayCode = when {
                         isPeriod && isEnglish -> '.'.code
                         isPeriod && !isEnglish -> '。'.code
+                        isComma && isEnglish -> ','.code
+                        isComma && !isEnglish -> '，'.code
                         else -> key.code
                     }
 
@@ -94,24 +100,36 @@ fun QwertyKeyboard(
                     }
                     val isToolbar = displayCode in FUNCTION_CODES && displayCode != KEYCODE_SPACE || isPeriod || key.label == ","
                     val isConfirm = displayCode == KEYCODE_ENTER
-                    GlassKeyButton(
-                        isDark = isDark,
-                        label = label,
-                        onClick = { viewModel.onAction(KeyboardAction.KeyPress(displayCode)) },
-                        icon = icon,
-                        subLabel = subLabel,
-                        width = key.width,
-                        modifier = if (key.width == 0.dp) Modifier.weight(1f) else Modifier,
-                        height = 42.dp,
-                        isActive = displayCode == KEYCODE_SHIFT && state.capsState != CapsState.NONE,
-                        repeatable = displayCode == KEYCODE_DELETE,
-                        keyBackgroundColor = when {
-                            isConfirm -> CONFIRM_BG
-                            isToolbar -> TOOLBAR_BG
-                            else -> null
-                        },
-                        textColor = if (isConfirm) Color.White else DEFAULT_TEXT,
-                    )
+                    val isLetterKey = icon == null && displayCode !in FUNCTION_CODES && !isPeriod && key.label != ","
+
+                    if (isLetterKey) {
+                        QwertyKeyButton(
+                            isDark = isDark,
+                            label = label,
+                            onClick = { viewModel.onAction(KeyboardAction.KeyPress(displayCode)) },
+                            modifier = if (key.width == 0.dp) Modifier.weight(1f) else Modifier,
+                            height = 42.dp,
+                        )
+                    } else {
+                        GlassKeyButton(
+                            isDark = isDark,
+                            label = label,
+                            onClick = { viewModel.onAction(KeyboardAction.KeyPress(displayCode)) },
+                            icon = icon,
+                            subLabel = subLabel,
+                            width = key.width,
+                            modifier = if (key.width == 0.dp) Modifier.weight(1f) else Modifier,
+                            height = 42.dp,
+                            isActive = displayCode == KEYCODE_SHIFT && state.capsState != CapsState.NONE,
+                            repeatable = displayCode == KEYCODE_DELETE,
+                            keyBackgroundColor = when {
+                                isConfirm -> CONFIRM_BG
+                                isToolbar -> TOOLBAR_BG
+                                else -> null
+                            },
+                            textColor = if (isConfirm) Color.White else DEFAULT_TEXT,
+                        )
+                    }
                 }
             }
         }

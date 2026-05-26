@@ -1,5 +1,6 @@
 package io.github.cgfhsc.agileshadow.ime.ui.keyboard
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.yuyan.inputmethod.core.CandidateListItem
 import com.yuyan.inputmethod.core.Rime
@@ -198,9 +199,21 @@ class KeyboardViewModel(
         if (action.index < 0 || action.index >= _state.value.pinyins.size) return
 
         val pinyin = _state.value.pinyins[action.index]
-        val pinyinKey = inputKeyTracker.pushPinyinSelectAction(pinyin) ?: return
+        Log.d("PinyinDebug", "handleSelectPinyin: index=${action.index}, pinyin=$pinyin")
+        Log.d("PinyinDebug", "  records before: ${inputKeyTracker.dumpRecords()}")
 
-        engine.replaceKey(pinyinKey.posInInput, pinyinKey.t9Keys().length, pinyinKey.rimeKey())
+        val pinyinKey = inputKeyTracker.pushPinyinSelectAction(pinyin)
+        if (pinyinKey == null) {
+            Log.e("PinyinDebug", "  pushPinyinSelectAction returned NULL!")
+            return
+        }
+
+        Log.d("PinyinDebug", "  pinyinKey: pinyin=${pinyinKey.pinyin}, posInInput=${pinyinKey.posInInput}, t9Keys=${pinyinKey.t9Keys()}, rimeKey=${pinyinKey.rimeKey()}")
+        Log.d("PinyinDebug", "  records after: ${inputKeyTracker.dumpRecords()}")
+
+        val replaceResult = engine.replaceKey(pinyinKey.posInInput, pinyinKey.t9Keys().length, pinyinKey.rimeKey())
+        Log.d("PinyinDebug", "  replaceKey($${pinyinKey.posInInput}, ${pinyinKey.t9Keys().length}, ${pinyinKey.rimeKey()}) = $replaceResult")
+
         engine.commitIfNeeded()?.let { onCommitText(it) }
         refreshState()
     }
@@ -226,6 +239,8 @@ class KeyboardViewModel(
         val hasNext = ctx?.menu?.isLastPage == false
         val newPage = ctx?.menu?.pageNo ?: 0
 
+        Log.d("PinyinDebug", "refreshState: composingText=[$newComposingText], candidates=${newPageCandidates.size}, page=$newPage")
+
         if (!isPaging && newComposingText != lastComposingText) {
             accumulatedCandidates = newPageCandidates.toMutableList()
             lastComposingText = newComposingText
@@ -241,6 +256,9 @@ class KeyboardViewModel(
             emptyList()
         }
 
+        Log.d("PinyinDebug", "  unresolvedT9=[$unresolvedT9], pinyinList=$pinyinList")
+        Log.d("PinyinDebug", "  records: ${inputKeyTracker.dumpRecords()}")
+
         val composingDisplay = when {
             newComposingText.isEmpty() -> ""
             _state.value.activeKeyboard == KeyboardType.T9 -> {
@@ -250,6 +268,8 @@ class KeyboardViewModel(
             }
             else -> newComposingText
         }
+
+        Log.d("PinyinDebug", "  composingDisplay=[$composingDisplay]")
 
         _state.update { s ->
             s.copy(

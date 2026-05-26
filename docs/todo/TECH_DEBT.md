@@ -15,20 +15,18 @@
 - 自行设计/委托设计 emoji 图标集
 - 等待社区出现合规的类 Apple 风格字体
 
-## 2. T9PopupKeyButton 视觉逻辑重复
+## 2. 候选词展开视图"全/字"切换按钮
 
-**文件**: `app/src/main/java/io/github/cgfhsc/agileshadow/ime/ui/keyboard/KeyButton.kt`
+**文件**: `app/src/main/java/io/github/cgfhsc/agileshadow/ime/ui/candidate/ToolbarCandidateBar.kt`（`ExpandedCandidateView`）
 
-`T9PopupKeyButton` 与 `GlassKeyButton` 重复了按键背景色计算、暗色主题颜色解析、边框颜色逻辑、按下状态视觉效果。可提取共享的颜色解析函数或创建基础按键 Composable。
+在候选词展开视图的右侧操作栏增加"全/字"切换按钮：
+- "全"模式：显示当前所有候选词（含词组），即现有行为
+- "字"模式：过滤 `state.candidates` 只显示 `text.length == 1` 的单字候选词
 
-## 3. 拖拽时重组频率
+**方案**：
+- `KeyboardState` 增加 `singleCharMode: Boolean` 状态
+- `ExpandedCandidateView` 根据状态过滤候选词列表
+- 在右侧操作栏添加切换按钮
 
-**文件**: `app/src/main/java/io/github/cgfhsc/agileshadow/ime/ui/keyboard/KeyButton.kt`
+**搁置原因**：需要确认 Rime 引擎在单字模式下是否能返回足够的单字候选词，否则用户体验可能不佳。
 
-`T9PopupKeyButton` 中 `highlightedIndex` 在每次指针移动事件时更新，触发整个弹出面板的重组。可考虑用 `Modifier.graphicsLayer` 或降低更新频率来优化。
-
-## 4. T9Mapper.getT9Composition 字符串分配
-
-**文件**: `app/src/main/java/io/github/cgfhsc/agileshadow/ime/engine/T9Mapper.kt`
-
-该方法在每次 T9 按键时调用，内部创建了多个 StringBuilder 和中间 List（两次 split + filter + buildString）。在高频输入场景下可优化为单次遍历构建结果字符串。

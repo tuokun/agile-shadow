@@ -295,11 +295,11 @@ object T9Mapper {
         var pStart = 0
         var matched = 0
         while (cStart < composition.length && pStart < comment.length) {
-            while (pStart < comment.length && comment[pStart] == '\'') pStart++
+            while (pStart < comment.length && (comment[pStart] == '\'' || comment[pStart] == ' ')) pStart++
             var cEnd = cStart
-            while (cEnd < composition.length && composition[cEnd] != '\'') cEnd++
+            while (cEnd < composition.length && composition[cEnd] != '\'' && composition[cEnd] != ' ') cEnd++
             var pEnd = pStart
-            while (pEnd < comment.length && comment[pEnd] != '\'') pEnd++
+            while (pEnd < comment.length && comment[pEnd] != '\'' && comment[pEnd] != ' ') pEnd++
 
             val compoLen = cEnd - cStart
             val pinyinLen = pEnd - pStart

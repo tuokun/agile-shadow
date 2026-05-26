@@ -363,3 +363,91 @@ fun T9PopupKeyButton(
     }
 }
 
+/** 26键字母按键：按下时在上方弹出放大字母反馈 */
+@Composable
+fun QwertyKeyButton(
+    label: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    height: Dp = 44.dp,
+    isDark: Boolean = false,
+) {
+    val view = LocalView.current
+    val scope = rememberCoroutineScope()
+    val shape = RoundedCornerShape(8.dp)
+
+    var showPopup by remember { mutableStateOf(false) }
+    var keySize by remember { mutableStateOf<androidx.compose.ui.unit.IntSize?>(null) }
+
+    val base = resolveKeyColors(isDark)
+    val textColor = base.text
+    val borderColor = base.border
+    val popupBg = if (isDark) Color(0xFF3A3A3E) else Color(0xFFFFFFFF)
+
+    Box(modifier = modifier) {
+        Box(
+            modifier = Modifier
+                .onSizeChanged { keySize = it }
+                .then(if (height > 0.dp) Modifier.height(height) else Modifier)
+                .fillMaxWidth()
+                .clip(shape)
+                .background(base.background, shape)
+                .border(1.dp, borderColor, shape)
+                .pointerInput(Unit) {
+                    awaitEachGesture {
+                        val down = awaitFirstDown(requireUnconsumed = false)
+                        view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                        showPopup = true
+
+                        val up = waitForUpOrCancellation()
+                        showPopup = false
+                        if (up != null) {
+                            onClick()
+                        }
+                    }
+                },
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                text = label,
+                fontSize = 18.sp,
+                color = textColor,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center,
+            )
+        }
+
+        if (showPopup && keySize != null) {
+            val size = keySize!!
+            val density = androidx.compose.ui.platform.LocalDensity.current
+            val popupWidthPx = (size.width * 1.3f).toInt()
+            val popupHeightPx = (size.height * 1.3f).toInt()
+            val popupOffsetX = (size.width - popupWidthPx) / 2
+            val gapPx = with(density) { 4.dp.roundToPx() }
+            val popupOffsetY = -(popupHeightPx + gapPx)
+
+            Popup(
+                alignment = Alignment.TopStart,
+                offset = IntOffset(popupOffsetX, popupOffsetY),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .width(with(density) { popupWidthPx.toDp() })
+                        .height(with(density) { popupHeightPx.toDp() })
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(popupBg, RoundedCornerShape(8.dp))
+                        .border(1.dp, borderColor, RoundedCornerShape(8.dp)),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = label,
+                        fontSize = 22.sp,
+                        color = textColor,
+                        textAlign = TextAlign.Center,
+                    )
+                }
+            }
+        }
+    }
+}
+

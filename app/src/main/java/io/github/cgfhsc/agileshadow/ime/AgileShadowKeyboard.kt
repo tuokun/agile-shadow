@@ -78,7 +78,7 @@ fun AgileShadowKeyboard(
 
     val isFullPanel = state.candidatesExpanded || state.activeKeyboard in FULL_PANEL_TYPES
 
-    val showComposing = !isFullPanel && state.composingDisplay.isNotEmpty()
+    val showComposing = state.composingDisplay.isNotEmpty()
 
     AgileShadowTheme(isDark = isDark) {
     Box(modifier = Modifier.fillMaxWidth()) {

@@ -35,7 +35,7 @@ class InputKeyTracker {
         val startIndex = (0..(records.size - t9KeysNeeded.size)).indexOfFirst { i ->
             t9KeysNeeded.indices.all { j ->
                 val record = records[i + j]
-                record is InputRecord.T9Key && !record.consumed && record.keyChar == t9KeysNeeded[j].keyChar
+                record is InputRecord.T9Key && record.keyChar == t9KeysNeeded[j].keyChar
             }
         }
         if (startIndex < 0) return null
@@ -77,6 +77,7 @@ class InputKeyTracker {
 
     fun updateConsumedFlags(compositionText: String) {
         val unresolvedCount = compositionText.count { it in 'A'..'Z' || it in '2'..'9' }
+        android.util.Log.d("PinyinDebug", "  updateConsumedFlags: composition=[$compositionText], unresolvedCount=$unresolvedCount")
         var remaining = unresolvedCount
         for (i in records.indices.reversed()) {
             val record = records[i]
@@ -97,6 +98,16 @@ class InputKeyTracker {
 
     fun clear() = records.clear()
 
+    fun hasPinyinKeys(): Boolean = records.any { it is InputRecord.PinyinKey }
+
+    fun dumpRecords(): String = records.mapIndexed { i, r ->
+        when (r) {
+            is InputRecord.T9Key -> "[$i]T9(${r.keyChar},c=${r.consumed})"
+            is InputRecord.PinyinKey -> "[$i]PY(${r.pinyin},pos=${r.posInInput})"
+            InputRecord.SelectPinyinAction -> "[$i]SEL"
+        }
+    }.joinToString(" ")
+
     fun buildComposingDisplay(): String {
         val parts = mutableListOf<String>()
         val unresolved = StringBuilder()
@@ -106,7 +117,7 @@ class InputKeyTracker {
                     flushUnresolved(unresolved, parts)
                     parts.add(record.pinyin)
                 }
-                is InputRecord.T9Key -> if (!record.consumed) unresolved.append(record.keyChar)
+                is InputRecord.T9Key -> unresolved.append(record.keyChar)
                 else -> {}
             }
         }
