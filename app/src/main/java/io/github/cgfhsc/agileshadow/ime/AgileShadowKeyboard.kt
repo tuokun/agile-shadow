@@ -6,14 +6,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import io.github.cgfhsc.agileshadow.ime.data.Prefs
@@ -24,6 +28,9 @@ import io.github.cgfhsc.agileshadow.ime.ui.keyboard.EditPanel
 import androidx.compose.foundation.background
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.window.Popup
+import androidx.compose.ui.zIndex
 import io.github.cgfhsc.agileshadow.ime.ui.candidate.ComposingTag
 import io.github.cgfhsc.agileshadow.ime.ui.candidate.ExpandedCandidateView
 import io.github.cgfhsc.agileshadow.ime.ui.candidate.ToolbarCandidateBar
@@ -74,16 +81,7 @@ fun AgileShadowKeyboard(
     val showComposing = !isFullPanel && state.composingDisplay.isNotEmpty()
 
     AgileShadowTheme(isDark = isDark) {
-    Column(modifier = Modifier.fillMaxWidth()) {
-        if (showComposing) {
-            ComposingTag(
-                state.composingDisplay,
-                if (isDark) Color.White else DEFAULT_TEXT,
-                isDark,
-                Modifier,
-            )
-        }
-
+    Box(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.fillMaxWidth()
             .drawBehind {
                 val color = if (isDark) Color(0xFF2E2E32) else Color(0xFFD5D5D5)
@@ -118,6 +116,20 @@ fun AgileShadowKeyboard(
                     KeyboardType.KEYBOARD_PICKER -> KeyboardPickerPanel(viewModel, isDark = isDark)
                     KeyboardType.EDIT -> EditPanel(isDark = isDark, onSendKey = onPerformAction)
                     KeyboardType.CLIPBOARD -> ClipboardPanel(onCommitText = onCommitText)
+                }
+            }
+        }
+
+        if (showComposing) {
+            var tagHeight by remember { mutableStateOf(0) }
+            Popup(alignment = Alignment.TopStart, offset = IntOffset(0, -tagHeight)) {
+                Box(modifier = Modifier.onSizeChanged { tagHeight = it.height }) {
+                    ComposingTag(
+                        state.composingDisplay,
+                        if (isDark) Color.White else DEFAULT_TEXT,
+                        isDark,
+                        Modifier,
+                    )
                 }
             }
         }
