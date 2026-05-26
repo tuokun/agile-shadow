@@ -70,6 +70,20 @@ val CENTER_ROW_GAP = 4.dp
 val MAIN_HEIGHT = CENTER_KEY_HEIGHT * 3 + CENTER_ROW_GAP * 2
 val KEYBOARD_BOTTOM_SPACER = 28.dp
 
+private data class KeyColors(
+    val background: Color,
+    val border: Color,
+    val text: Color,
+)
+
+private fun resolveKeyColors(isDark: Boolean) = KeyColors(
+    background = if (isDark) DARK_KEY_BG else Color.White,
+    border = if (isDark) DARK_BORDER else Color(0xFFE0E4E8),
+    text = if (isDark) DARK_DEFAULT_TEXT else DEFAULT_TEXT,
+)
+
+private fun Color.darkened() = Color(red * 0.88f, green * 0.88f, blue * 0.88f)
+
 @Composable
 fun GlassKeyButton(
     label: String,
@@ -91,25 +105,21 @@ fun GlassKeyButton(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val shape = RoundedCornerShape(8.dp)
+    val base = resolveKeyColors(isDark)
 
     val resolvedKeyBg = when {
         isDark && keyBackgroundColor == TOOLBAR_BG -> DARK_TOOLBAR_BG
         isDark && keyBackgroundColor == CONFIRM_BG -> DARK_CONFIRM_BG
         else -> keyBackgroundColor
     }
-    val defaultBg = if (isDark) DARK_KEY_BG else Color(0xFFFFFFFF)
-    val bgColor = resolvedKeyBg ?: defaultBg
-    val displayBg = when {
-        isPressed || isActive -> Color(bgColor.red * 0.88f, bgColor.green * 0.88f, bgColor.blue * 0.88f)
-        else -> bgColor
-    }
+    val bgColor = resolvedKeyBg ?: base.background
+    val displayBg = if (isPressed || isActive) bgColor.darkened() else bgColor
     val resolvedTextColor = when {
         textColor != DEFAULT_TEXT -> textColor
-        isDark -> DARK_DEFAULT_TEXT
-        else -> DEFAULT_TEXT
+        else -> base.text
     }
     val borderColor = if (isDark) DARK_BORDER else {
-        if (keyBackgroundColor != null) Color(0xFFCDD2D8) else Color(0xFFE0E4E8)
+        if (keyBackgroundColor != null) Color(0xFFCDD2D8) else base.border
     }
 
     val baseModifier = modifier
@@ -233,13 +243,10 @@ fun T9PopupKeyButton(
     var highlightedIndex by remember { mutableIntStateOf(0) }
     var keySize by remember { mutableStateOf<androidx.compose.ui.unit.IntSize?>(null) }
 
-    val defaultBg = if (isDark) DARK_KEY_BG else Color(0xFFFFFFFF)
-    val displayBg = when {
-        isPressed || showPopup -> Color(defaultBg.red * 0.88f, defaultBg.green * 0.88f, defaultBg.blue * 0.88f)
-        else -> defaultBg
-    }
-    val textColor = if (isDark) DARK_DEFAULT_TEXT else DEFAULT_TEXT
-    val borderColor = if (isDark) DARK_BORDER else Color(0xFFE0E4E8)
+    val base = resolveKeyColors(isDark)
+    val displayBg = if (isPressed || showPopup) base.background.darkened() else base.background
+    val textColor = base.text
+    val borderColor = base.border
 
     val initialIndex = (popupItems.size - 1) / 2
 
@@ -283,7 +290,7 @@ fun T9PopupKeyButton(
                                 val dx = change.position.x - down.position.x - popupOffsetX
                                 val itemWidth = popupWidth / popupItems.size
                                 val newIndex = (dx / itemWidth).roundToInt().coerceIn(0, popupItems.size - 1)
-                                highlightedIndex = newIndex
+                                if (newIndex != highlightedIndex) highlightedIndex = newIndex
                             }
                         }
 

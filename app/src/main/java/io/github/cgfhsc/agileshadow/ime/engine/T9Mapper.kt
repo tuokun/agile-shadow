@@ -283,19 +283,34 @@ object T9Mapper {
      */
     fun getT9Composition(composition: String, comment: String): String {
         if (comment.isEmpty()) return composition
-        val asciiBuilder = StringBuilder()
-        val nonAsciiBuilder = StringBuilder()
-        for (ch in composition) if (ch.code <= 0xFF) asciiBuilder.append(ch) else nonAsciiBuilder.append(ch)
-        val compositionList = asciiBuilder.split("'")
-        val commentParts = comment.split("'").filter { it.isNotEmpty() }
-        return if (commentParts.size == compositionList.size) {
-            buildString {
-                append(nonAsciiBuilder)
-                commentParts.zip(compositionList).forEach { (pinyin, compo) ->
-                    append(pinyin.take(compo.length))
-                    append("'")
-                }
-            }
-        } else composition.lowercase()
+
+        val result = StringBuilder(composition.length + 8)
+        var i = 0
+        while (i < composition.length && composition[i].code > 0xFF) {
+            result.append(composition[i])
+            i++
+        }
+
+        var cStart = i
+        var pStart = 0
+        var matched = 0
+        while (cStart < composition.length && pStart < comment.length) {
+            while (pStart < comment.length && comment[pStart] == '\'') pStart++
+            var cEnd = cStart
+            while (cEnd < composition.length && composition[cEnd] != '\'') cEnd++
+            var pEnd = pStart
+            while (pEnd < comment.length && comment[pEnd] != '\'') pEnd++
+
+            val compoLen = cEnd - cStart
+            val pinyinLen = pEnd - pStart
+            result.append(comment, pStart, pStart + minOf(compoLen, pinyinLen))
+            result.append('\'')
+
+            matched++
+            cStart = cEnd + 1
+            pStart = pEnd + 1
+        }
+
+        return if (matched > 0) result.toString() else composition.lowercase()
     }
 }
