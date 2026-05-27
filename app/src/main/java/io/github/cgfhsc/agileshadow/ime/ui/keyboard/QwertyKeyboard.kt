@@ -34,8 +34,9 @@ fun QwertyKeyboard(
     modifier: Modifier = Modifier,
     isDark: Boolean = false,
 ) {
-    val state by viewModel.state.collectAsState()
-    val isEnglish = state.activeKeyboard == KeyboardType.ENGLISH
+    val activeKeyboard by viewModel.activeKeyboardFlow.collectAsState()
+    val capsState by viewModel.capsStateFlow.collectAsState()
+    val isEnglish = activeKeyboard == KeyboardType.ENGLISH
 
     Column(
         modifier = modifier.fillMaxWidth().padding(horizontal = 4.dp),
@@ -71,7 +72,7 @@ fun QwertyKeyboard(
                         isPeriod && !isEnglish -> "。"
                         isComma && isEnglish -> ","
                         isComma && !isEnglish -> "，"
-                        state.capsState != CapsState.NONE && key.label.length == 1 && key.label[0].isLetter() -> key.label.uppercase()
+                        capsState != CapsState.NONE && key.label.length == 1 && key.label[0].isLetter() -> key.label.uppercase()
                         else -> key.label
                     }
                     val displayCode = when {
@@ -120,7 +121,7 @@ fun QwertyKeyboard(
                             width = key.width,
                             modifier = if (key.width == 0.dp) Modifier.weight(1f) else Modifier,
                             height = 42.dp,
-                            isActive = displayCode == KEYCODE_SHIFT && state.capsState != CapsState.NONE,
+                            isActive = displayCode == KEYCODE_SHIFT && capsState != CapsState.NONE,
                             repeatable = displayCode == KEYCODE_DELETE,
                             keyBackgroundColor = when {
                                 isConfirm -> CONFIRM_BG

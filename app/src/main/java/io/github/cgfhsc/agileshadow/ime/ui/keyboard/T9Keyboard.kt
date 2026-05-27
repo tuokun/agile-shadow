@@ -29,6 +29,7 @@ fun T9Keyboard(
     isDark: Boolean = false,
 ) {
     val state by viewModel.state.collectAsState()
+    val activeKeyboard by viewModel.activeKeyboardFlow.collectAsState()
 
     Column(
         modifier = modifier.fillMaxWidth().padding(horizontal = 4.dp),
@@ -175,7 +176,7 @@ fun T9Keyboard(
                         isDark = isDark,
                         label = "",
                     icon = langIcon,
-                    subLabel = if (state.activeKeyboard == KeyboardType.ENGLISH) "EN" else "中",
+                    subLabel = if (activeKeyboard == KeyboardType.ENGLISH) "EN" else "中",
                     onClick = { viewModel.onAction(KeyboardAction.KeyPress(KEYCODE_SWITCH_LANG)) },
                     modifier = Modifier.weight(1f),
                     height = 44.dp,

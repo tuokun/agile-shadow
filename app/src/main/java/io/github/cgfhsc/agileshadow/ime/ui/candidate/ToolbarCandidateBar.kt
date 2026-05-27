@@ -166,7 +166,7 @@ private fun CandidateRow(
             modifier = Modifier.weight(1f),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            itemsIndexed(candidates) { index, candidate ->
+            itemsIndexed(candidates, key = { _, it -> it.text }) { index, candidate ->
                 Text(
                     text = candidate.text,
                     fontSize = 18.sp,

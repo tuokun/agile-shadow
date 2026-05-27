@@ -8,8 +8,13 @@ import io.github.cgfhsc.agileshadow.ime.engine.InputKeyTracker
 import io.github.cgfhsc.agileshadow.ime.engine.InputRecord
 import io.github.cgfhsc.agileshadow.ime.engine.RimeEngine
 import io.github.cgfhsc.agileshadow.ime.engine.T9Mapper
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
 class KeyboardViewModel(
@@ -28,6 +33,16 @@ class KeyboardViewModel(
 
     private val _state = MutableStateFlow(KeyboardState())
     val state: StateFlow<KeyboardState> = _state
+
+    val activeKeyboardFlow: StateFlow<KeyboardType> = _state
+        .map { it.activeKeyboard }
+        .distinctUntilChanged()
+        .stateIn(viewModelScope, SharingStarted.Eagerly, KeyboardType.T9)
+
+    val capsStateFlow: StateFlow<CapsState> = _state
+        .map { it.capsState }
+        .distinctUntilChanged()
+        .stateIn(viewModelScope, SharingStarted.Eagerly, CapsState.NONE)
 
     // 累积候选词（跨页追加，新输入时重置）
     private var accumulatedCandidates = mutableListOf<CandidateListItem>()

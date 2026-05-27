@@ -67,6 +67,7 @@ fun AgileShadowKeyboard(
     }
 
     val state by viewModel.state.collectAsState()
+    val activeKeyboard by viewModel.activeKeyboardFlow.collectAsState()
 
     val context = LocalContext.current
     val prefs = remember { Prefs(context) }
@@ -76,7 +77,7 @@ fun AgileShadowKeyboard(
             Configuration.UI_MODE_NIGHT_YES
     val isDark = if (followSystem) isSystemDark else darkTheme
 
-    val isFullPanel = state.candidatesExpanded || state.activeKeyboard in FULL_PANEL_TYPES
+    val isFullPanel = state.candidatesExpanded || activeKeyboard in FULL_PANEL_TYPES
 
     val showComposing = state.composingDisplay.isNotEmpty()
 
@@ -100,7 +101,7 @@ fun AgileShadowKeyboard(
                         isDark = isDark,
                         isHandwriting = state.handwritingCandidates.isNotEmpty(),
                     )
-                } else when (state.activeKeyboard) {
+                } else when (activeKeyboard) {
                     KeyboardType.QWERTY, KeyboardType.ENGLISH -> QwertyKeyboard(viewModel, isDark = isDark)
                     KeyboardType.T9 -> T9Keyboard(viewModel, isDark = isDark)
                     KeyboardType.NUMBER -> NumberKeyboard(viewModel, isDark = isDark)
