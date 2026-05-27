@@ -6,6 +6,12 @@
 - 符号/Emoji 面板、剪贴板管理
 - 内置 [雾凇拼音](https://github.com/iDvel/rime-ice) 词库，用户可自行替换
 
+## 预览
+
+| T9 拼音 | 全键拼音 |
+|:-:|:-:|
+| ![T9](docs/screenshot_t9.png) | ![QWERTY](docs/screenshot_qwerty.png) |
+
 ## 架构
 
 ```
@@ -20,11 +26,15 @@
 └─────────────────────────────────────┘
 ```
 
+## 系统要求
+
+- Android 12+（API 31）
+- 仅支持 arm64-v8a 设备
+
 ## 技术栈
 
 - Kotlin / Jetpack Compose
 - Rime 输入法引擎 (JNI)
-- Android minSdk 31+ (arm64-v8a)
 
 ## 开源引用
 
@@ -35,6 +45,10 @@
 | [语燕输入法 ](https://github.com/gurecn/yuyansdk) | Rime JNI 桥接层与原生库 |
 
 详见 `NOTICE` 文件。
+
+## 自定义词库
+
+内置词库位于 `app/src/main/assets/rime/`，基于 [雾凇拼音](https://github.com/iDvel/rime-ice)。替换该目录下的词库文件后重新构建即可。
 
 ## License
 

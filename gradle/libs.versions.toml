@@ -15,8 +15,8 @@ mlkitDigitalInk = "19.0.0"
 projectMinSdk = "31"
 projectTargetSdk = "35"
 projectCompileSdk = "35"
-projectVersionCode = "32"
-projectVersionName = "0.5.14"
+projectVersionCode = "33"
+projectVersionName = "0.5.15"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }

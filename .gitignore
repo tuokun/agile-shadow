@@ -7,7 +7,10 @@ keystore/
 .DS_Store
 *.apk
 *.aab
+logcat.txt
+skills-lock.json
 .claude/
 .agents/
 .superpowers/
 .codegraph/
+.gitnexus/
