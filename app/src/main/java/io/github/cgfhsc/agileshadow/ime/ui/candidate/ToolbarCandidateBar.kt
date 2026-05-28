@@ -83,7 +83,7 @@ fun ToolbarCandidateBar(
     val textColor = if (isDark) Color.White else DEFAULT_TEXT
 
     if (state.composingText.isNotEmpty() || state.candidates.isNotEmpty()) {
-        CandidateRow(viewModel, state.candidates, state.hasNextPage, state.candidatesExpanded, isDark, textColor, modifier)
+        CandidateRow(viewModel, state.candidates, state.hasNextPage, state.candidatesExpanded, isDark, textColor, modifier, state.composingText)
     } else if (suggestion != null) {
         ClipboardSuggestionRow(
             text = suggestion,
@@ -137,6 +137,7 @@ private fun CandidateRow(
     isDark: Boolean,
     textColor: Color,
     modifier: Modifier,
+    composingText: String = "",
 ) {
     val listState = rememberLazyListState()
 
@@ -151,10 +152,8 @@ private fun CandidateRow(
         if (reachedEnd && hasNextPage) viewModel.nextPage()
     }
 
-    var prevCount by remember { mutableStateOf(0) }
-    LaunchedEffect(candidates.size) {
-        if (candidates.size < prevCount) listState.scrollToItem(0)
-        prevCount = candidates.size
+    LaunchedEffect(composingText) {
+        listState.scrollToItem(0)
     }
 
     Row(

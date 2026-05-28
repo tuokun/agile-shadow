@@ -46,6 +46,7 @@ class KeyboardViewModel(
 
     // 累积候选词（跨页追加，新输入时重置）
     private var accumulatedCandidates = mutableListOf<CandidateListItem>()
+    private var page0Candidates = mutableListOf<CandidateListItem>()
     private var lastComposingText = ""
     private val inputKeyTracker = InputKeyTracker()
     private var lastChineseKeyboard = KeyboardType.T9
@@ -244,6 +245,7 @@ class KeyboardViewModel(
         RimeEngine.instance.clearComposition()
         inputKeyTracker.clear()
         accumulatedCandidates.clear()
+        page0Candidates.clear()
         refreshState()
     }
 
@@ -258,10 +260,11 @@ class KeyboardViewModel(
 
         if (!isPaging && newComposingText != lastComposingText) {
             accumulatedCandidates = newPageCandidates.toMutableList()
-            lastComposingText = newComposingText
+            page0Candidates = newPageCandidates.toMutableList()
         } else if (newPage != _state.value.page && newPageCandidates.isNotEmpty()) {
             accumulatedCandidates.addAll(newPageCandidates)
         }
+        lastComposingText = newComposingText
 
         inputKeyTracker.updateConsumedFlags(newComposingText)
         val unresolvedT9 = inputKeyTracker.getUnresolvedT9Sequence()
@@ -309,6 +312,7 @@ class KeyboardViewModel(
             }
         }
         accumulatedCandidates.clear()
+        page0Candidates.clear()
         lastComposingText = ""
         inputKeyTracker.clear()
         _state.update { it.copy(
@@ -334,7 +338,14 @@ class KeyboardViewModel(
     }
 
     fun toggleCandidatesExpanded() {
+        val wasExpanded = _state.value.candidatesExpanded
         _state.update { it.copy(candidatesExpanded = !it.candidatesExpanded) }
+        if (wasExpanded && _state.value.composingText.isNotEmpty()) {
+            accumulatedCandidates = page0Candidates.toMutableList()
+            _state.update { s ->
+                s.copy(candidates = accumulatedCandidates.toList(), page = 0)
+            }
+        }
     }
 
     fun setClipboardSuggestion(text: String?) {
