@@ -14,6 +14,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,6 +39,7 @@ import io.github.cgfhsc.agileshadow.ime.ui.candidate.ToolbarCandidateBar
 import io.github.cgfhsc.agileshadow.ime.data.clipboard.ClipboardPanel
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.HandwritingBoard
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardPickerPanel
+import io.github.cgfhsc.agileshadow.ime.ui.keyboard.LocalNavigationBarBottom
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardType
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.KeyboardViewModel
 import io.github.cgfhsc.agileshadow.ime.ui.keyboard.NumberKeyboard
@@ -56,6 +59,8 @@ fun AgileShadowKeyboard(
     onSendEnter: () -> Unit = {},
     onPerformAction: (Int) -> Unit = {},
     onHideKeyboard: () -> Unit = {},
+    navigationBarBottom: Int = 0,
+    onNavigationBarThemeChanged: (Boolean) -> Unit = {},
     onViewModelReady: (KeyboardViewModel) -> Unit = {},
 ) {
     val viewModel = remember {
@@ -77,11 +82,19 @@ fun AgileShadowKeyboard(
             Configuration.UI_MODE_NIGHT_YES
     val isDark = if (followSystem) isSystemDark else darkTheme
 
+    SideEffect { onNavigationBarThemeChanged(isDark) }
+
     val isFullPanel = state.candidatesExpanded || activeKeyboard in FULL_PANEL_TYPES
+    val keyboardHeight = when {
+        isFullPanel -> 310.dp
+        navigationBarBottom > 0 -> 216.dp
+        else -> 260.dp
+    }
 
     val showComposing = state.composingDisplay.isNotEmpty()
 
     AgileShadowTheme(isDark = isDark) {
+    CompositionLocalProvider(LocalNavigationBarBottom provides navigationBarBottom) {
     Box(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.fillMaxWidth()
             .drawBehind {
@@ -94,7 +107,7 @@ fun AgileShadowKeyboard(
                 ToolbarCandidateBar(viewModel, isDark = isDark, onHideKeyboard = onHideKeyboard, onCommitText = onCommitText)
             }
 
-            Box(modifier = Modifier.fillMaxWidth().height(if (isFullPanel) 310.dp else 260.dp)) {
+            Box(modifier = Modifier.fillMaxWidth().height(keyboardHeight)) {
                 if (state.candidatesExpanded) {
                     ExpandedCandidateView(
                         viewModel = viewModel,
@@ -134,6 +147,7 @@ fun AgileShadowKeyboard(
                 }
             }
         }
+    }
     }
     }
 }

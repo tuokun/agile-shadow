@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -47,6 +48,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.runtime.compositionLocalOf
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -69,6 +71,16 @@ val CENTER_KEY_HEIGHT = 52.dp
 val CENTER_ROW_GAP = 4.dp
 val MAIN_HEIGHT = CENTER_KEY_HEIGHT * 3 + CENTER_ROW_GAP * 2
 val KEYBOARD_BOTTOM_SPACER = 28.dp
+val LocalNavigationBarBottom = compositionLocalOf { 0 }
+
+@Composable
+fun KeyboardBottomSpacer() {
+    Spacer(
+        modifier = Modifier.height(
+            if (LocalNavigationBarBottom.current > 0) 0.dp else KEYBOARD_BOTTOM_SPACER,
+        ),
+    )
+}
 
 private data class KeyColors(
     val background: Color,

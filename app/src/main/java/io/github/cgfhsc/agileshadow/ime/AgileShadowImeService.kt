@@ -6,6 +6,9 @@ import android.inputmethodservice.InputMethodService
 import android.util.Log
 import android.view.View
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.lifecycle.setViewTreeViewModelStoreOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
@@ -28,6 +31,7 @@ class AgileShadowImeService : InputMethodService() {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private lateinit var clipboardDb: ClipboardDatabase
     private lateinit var clipboardManager: ClipboardManager
+    private var navigationBarBottom by mutableIntStateOf(0)
 
     // 缓存最近复制内容，用于候选栏建议
     private var lastClipboardText: String? = null
@@ -102,6 +106,17 @@ class AgileShadowImeService : InputMethodService() {
                         sendDownUpKeyEvents(android.view.KeyEvent.KEYCODE_ENTER)
                     },
                     onHideKeyboard = { requestHideSelf(0) },
+                    navigationBarBottom = navigationBarBottom,
+                    onNavigationBarThemeChanged = { isDark ->
+                        window?.window?.let { win ->
+                            win.navigationBarColor = android.graphics.Color.parseColor(
+                                if (isDark) "#17181A" else "#EEF0F3",
+                            )
+                            @Suppress("DEPRECATION")
+                            win.decorView.systemUiVisibility = if (isDark) 0 else
+                                android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                        }
+                    },
                     onViewModelReady = { keyboardViewModel = it },
                     onPerformAction = { action ->
                         when (action) {
@@ -126,6 +141,13 @@ class AgileShadowImeService : InputMethodService() {
 
     override fun onStartInputView(attribute: android.view.inputmethod.EditorInfo?, restarting: Boolean) {
         super.onStartInputView(attribute, restarting)
+        val decorView = window?.window?.decorView
+        decorView?.post {
+            navigationBarBottom = decorView.rootWindowInsets
+                ?.getInsetsIgnoringVisibility(android.view.WindowInsets.Type.navigationBars())
+                ?.bottom
+                ?: 0
+        }
         if (!restarting) keyboardViewModel?.resetToHome()
 
         // 键盘弹出时，30秒内复制的文字显示在候选栏

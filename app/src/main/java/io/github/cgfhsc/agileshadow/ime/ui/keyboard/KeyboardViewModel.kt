@@ -24,8 +24,8 @@ class KeyboardViewModel(
 ) : ViewModel() {
 
     companion object {
-        private const val SCHEMA_T9 = "t9"
-        private const val SCHEMA_RIME_ICE = "rime_ice"
+        private const val SCHEMA_T9 = "t9_pinyin"
+        private const val SCHEMA_PINYIN = "pinyin"
     }
 
     private val backspaceKeycode by lazy { Rime.getRimeKeycodeByName("BackSpace") }
@@ -190,7 +190,7 @@ class KeyboardViewModel(
                 action.type == KeyboardType.T9 -> engine.selectSchema(SCHEMA_T9)
                 action.type.isPanel -> { /* keep current schema */ }
                 _state.value.activeKeyboard == KeyboardType.T9 -> {
-                    engine.selectSchema(SCHEMA_RIME_ICE)
+                    engine.selectSchema(SCHEMA_PINYIN)
                 }
             }
         }
@@ -308,7 +308,7 @@ class KeyboardViewModel(
             engine.clearComposition()
             when (target) {
                 KeyboardType.T9 -> engine.selectSchema(SCHEMA_T9)
-                else -> engine.selectSchema(SCHEMA_RIME_ICE)
+                else -> engine.selectSchema(SCHEMA_PINYIN)
             }
         }
         accumulatedCandidates.clear()

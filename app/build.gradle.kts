@@ -12,17 +12,21 @@ val keystoreProps = Properties().apply {
     val f = rootProject.file("local.properties")
     if (f.exists()) load(f.inputStream())
 }
+val releaseSigningKeys = listOf("storeFile", "storePassword", "keyAlias", "keyPassword")
+val hasReleaseSigning = releaseSigningKeys.all { !keystoreProps.getProperty(it).isNullOrBlank() }
 
 android {
     namespace = "io.github.cgfhsc.agileshadow.ime"
     compileSdk = libs.versions.projectCompileSdk.get().toInt()
 
-    signingConfigs {
-        create("release") {
-            storeFile = rootProject.file(keystoreProps["storeFile"] as String)
-            storePassword = keystoreProps["storePassword"] as String
-            keyAlias = keystoreProps["keyAlias"] as String
-            keyPassword = keystoreProps["keyPassword"] as String
+    if (hasReleaseSigning) {
+        signingConfigs {
+            create("release") {
+                storeFile = rootProject.file(keystoreProps.getProperty("storeFile"))
+                storePassword = keystoreProps.getProperty("storePassword")
+                keyAlias = keystoreProps.getProperty("keyAlias")
+                keyPassword = keystoreProps.getProperty("keyPassword")
+            }
         }
     }
 
@@ -39,10 +43,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            signingConfig = signingConfigs.getByName("release")
+            if (hasReleaseSigning) {
+                signingConfig = signingConfigs.getByName("release")
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

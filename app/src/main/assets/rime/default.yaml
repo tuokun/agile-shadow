@@ -4,8 +4,8 @@
 config_version: '2026-02-06'
 
 schema_list:
-  - schema: rime_ice               # 雾凇拼音（全拼）
-  - schema: t9                     # 中文九键
+  - schema: pinyin                 # 全拼
+  - schema: t9_pinyin              # 中文九键
 
 menu:
   page_size: 30

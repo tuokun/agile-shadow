@@ -1,12 +1,14 @@
 package io.github.cgfhsc.agileshadow.ime.engine
 
 import android.content.Context
+import android.util.Log
 import com.yuyan.inputmethod.core.Rime
 import java.io.File
 
 class RimeEngine private constructor() {
 
     companion object {
+        private const val TAG = "RimeEngine"
         val instance: RimeEngine by lazy { RimeEngine() }
     }
 
@@ -14,12 +16,20 @@ class RimeEngine private constructor() {
         private set
 
     fun startup(context: Context, fullCheck: Boolean = false) {
-        val sharedDir = copyAssetsToShared(context)
-        val userDir = File(context.filesDir, "rime/user").apply { mkdirs() }.absolutePath
+        val rimeDir = copyAssetsToRimeDir(context)
+        // 发行包携带已编译的词库。首次复制资源时执行部署会尝试恢复
+        // user.yaml 中的历史方案，并覆盖这些预编译文件。
+        val needsFullCheck = fullCheck
 
-        Rime.startupRime(context, sharedDir, userDir, fullCheck)
+        Rime.startupRime(context, rimeDir, rimeDir, needsFullCheck)
         Rime.setRimePageSize(30)
-        isInitialized = true
+        val status = getStatus()
+        isInitialized = status != null
+        if (status == null) {
+            Log.e(TAG, "Rime startup failed: schema=${getCurrentSchema()}")
+        } else {
+            Log.i(TAG, "Rime started: schema=${status.schemaId}")
+        }
     }
 
     fun shutdown() {
@@ -63,16 +73,17 @@ class RimeEngine private constructor() {
         return null
     }
 
-    private fun copyAssetsToShared(context: Context): String {
-        val sharedDir = File(context.filesDir, "rime/shared")
-        val versionFile = File(sharedDir, "rime_version.txt")
+    private fun copyAssetsToRimeDir(context: Context): String {
+        val rimeDir = context.getExternalFilesDir("rime") ?: File(context.filesDir, "rime")
+        val versionFile = File(rimeDir, "rime_version.txt")
+        val assetsUpdated = !rimeDir.exists() || readVersion(versionFile) != readAssetVersion(context)
 
-        if (!sharedDir.exists() || readVersion(versionFile) != readAssetVersion(context)) {
+        if (assetsUpdated) {
             val currentVersion = readAssetVersion(context)
-            copyAssetDir(context, "rime", sharedDir)
+            copyAssetDir(context, "rime", rimeDir)
             versionFile.writeText(currentVersion.toString())
         }
-        return sharedDir.absolutePath
+        return rimeDir.absolutePath
     }
 
     private fun readAssetVersion(context: Context): Int {

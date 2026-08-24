@@ -14,3 +14,7 @@ skills-lock.json
 .superpowers/
 .codegraph/
 .gitnexus/
+device-*.png
+app/src/main/assets/rime/build/
+app/src/main/assets/rime/installation.yaml
+app/src/main/assets/rime/user.yaml
