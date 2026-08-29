@@ -81,6 +81,7 @@ fun AgileShadowKeyboard(
     val isSystemDark = (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
             Configuration.UI_MODE_NIGHT_YES
     val isDark = if (followSystem) isSystemDark else darkTheme
+    SideEffect { onNavigationBarThemeChanged(isDark) }
 
     SideEffect { onNavigationBarThemeChanged(isDark) }
 

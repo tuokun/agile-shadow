@@ -8,24 +8,33 @@ plugins {
     alias(libs.plugins.room)
 }
 
-val keystoreProps = Properties().apply {
-    val f = rootProject.file("local.properties")
-    if (f.exists()) load(f.inputStream())
+val releaseKeystoreFile = rootProject.file("keystore.properties")
+val releaseKeystoreProperties = Properties().apply {
+    if (releaseKeystoreFile.isFile) {
+        releaseKeystoreFile.inputStream().use(::load)
+    }
 }
-val releaseSigningKeys = listOf("storeFile", "storePassword", "keyAlias", "keyPassword")
-val hasReleaseSigning = releaseSigningKeys.all { !keystoreProps.getProperty(it).isNullOrBlank() }
+val releaseKeystoreKeys = listOf("storeFile", "storePassword", "keyAlias", "keyPassword")
+val isReleaseKeystoreConfigured = releaseKeystoreFile.isFile &&
+    releaseKeystoreKeys.all { !releaseKeystoreProperties.getProperty(it).isNullOrBlank() }
+
+fun requireReleaseKeystore() {
+    check(isReleaseKeystoreConfigured) {
+        "Release 构建需要根目录 keystore.properties，包含 storeFile、storePassword、keyAlias、keyPassword。"
+    }
+}
 
 android {
     namespace = "io.github.cgfhsc.agileshadow.ime"
     compileSdk = libs.versions.projectCompileSdk.get().toInt()
 
-    if (hasReleaseSigning) {
-        signingConfigs {
-            create("release") {
-                storeFile = rootProject.file(keystoreProps.getProperty("storeFile"))
-                storePassword = keystoreProps.getProperty("storePassword")
-                keyAlias = keystoreProps.getProperty("keyAlias")
-                keyPassword = keystoreProps.getProperty("keyPassword")
+    signingConfigs {
+        create("release") {
+            if (isReleaseKeystoreConfigured) {
+                storeFile = rootProject.file(releaseKeystoreProperties.getProperty("storeFile"))
+                storePassword = releaseKeystoreProperties.getProperty("storePassword")
+                keyAlias = releaseKeystoreProperties.getProperty("keyAlias")
+                keyPassword = releaseKeystoreProperties.getProperty("keyPassword")
             }
         }
     }
@@ -50,7 +59,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            if (hasReleaseSigning) {
+            if (isReleaseKeystoreConfigured) {
                 signingConfig = signingConfigs.getByName("release")
             }
             proguardFiles(
@@ -76,6 +85,12 @@ android {
 
     dependenciesInfo {
         includeInApk = false
+    }
+}
+
+tasks.configureEach {
+    if (name.contains("Release", ignoreCase = true)) {
+        doFirst { requireReleaseKeystore() }
     }
 }
 

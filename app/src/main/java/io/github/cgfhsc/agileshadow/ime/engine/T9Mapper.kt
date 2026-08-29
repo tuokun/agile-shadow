@@ -303,14 +303,53 @@ object T9Mapper {
 
             val compoLen = cEnd - cStart
             val pinyinLen = pEnd - pStart
-            result.append(comment, pStart, pStart + minOf(compoLen, pinyinLen))
+            val matchedLength = minOf(compoLen, pinyinLen)
+            result.append(comment, pStart, pStart + matchedLength)
             result.append('\'')
+            if (matchedLength < compoLen) {
+                result.append(decomposeT9(composition.substring(cStart + matchedLength, cEnd)))
+                result.append('\'')
+            }
 
             matched++
             cStart = cEnd + 1
             pStart = pEnd + 1
         }
 
+        while (cStart < composition.length) {
+            while (cStart < composition.length && (composition[cStart] == '\'' || composition[cStart] == ' ')) cStart++
+            if (cStart >= composition.length) break
+            var cEnd = cStart
+            while (cEnd < composition.length && composition[cEnd] != '\'' && composition[cEnd] != ' ') cEnd++
+            result.append(decomposeT9(composition.substring(cStart, cEnd)))
+            result.append('\'')
+            cStart = cEnd + 1
+        }
+
         return if (matched > 0) result.toString() else composition.lowercase()
+    }
+
+    /** 根据候选注音为 26 键拼音补齐音节分隔符。 */
+    fun getQwertyComposition(composition: String, comment: String): String {
+        if (comment.isBlank() || composition.isEmpty()) return composition
+
+        var remaining = composition.count { it.isLetter() }
+        if (remaining == 0) return composition
+
+        val result = StringBuilder(composition.length + 8)
+        for (pinyin in comment.split(Regex("['\\s]+"))) {
+            if (pinyin.isEmpty() || remaining <= 0) continue
+            val length = minOf(remaining, pinyin.length)
+            result.append(pinyin, 0, length)
+            result.append('\'')
+            remaining -= length
+        }
+
+        if (result.isEmpty()) return composition
+        return if (!composition.endsWith('\'') && result.endsWith('\'')) {
+            result.dropLast(1).toString()
+        } else {
+            result.toString()
+        }
     }
 }

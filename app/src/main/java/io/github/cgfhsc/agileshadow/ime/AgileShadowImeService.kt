@@ -80,7 +80,10 @@ class AgileShadowImeService : InputMethodService() {
             win.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT))
         }
 
-        scope.launch { RimeEngine.instance.startup(this@AgileShadowImeService) }
+        scope.launch {
+            RimeEngine.instance.startup(this@AgileShadowImeService)
+            keyboardViewModel?.resetToHome()
+        }
         scope.launch { HandwritingEngine.getInstance().init(this@AgileShadowImeService) }
     }
 
@@ -103,7 +106,7 @@ class AgileShadowImeService : InputMethodService() {
                         }
                     },
                     onSendEnter = {
-                        sendDownUpKeyEvents(android.view.KeyEvent.KEYCODE_ENTER)
+                        performEnterOrEditorAction()
                     },
                     onHideKeyboard = { requestHideSelf(0) },
                     navigationBarBottom = navigationBarBottom,
@@ -117,7 +120,10 @@ class AgileShadowImeService : InputMethodService() {
                                 android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
                         }
                     },
-                    onViewModelReady = { keyboardViewModel = it },
+                    onViewModelReady = {
+                        keyboardViewModel = it
+                        it.resetToHome()
+                    },
                     onPerformAction = { action ->
                         when (action) {
                             android.R.id.selectAll, android.R.id.cut, android.R.id.copy, android.R.id.paste -> {
@@ -136,7 +142,25 @@ class AgileShadowImeService : InputMethodService() {
                         }
                     },
                 )
-            }
+        }
+    }
+
+    private fun performEnterOrEditorAction() {
+        val info = currentInputEditorInfo
+        val connection = currentInputConnection
+        val options = info?.imeOptions ?: 0
+        val customAction = info?.actionId?.takeIf { it != 0 }
+        val standardAction = options and android.view.inputmethod.EditorInfo.IME_MASK_ACTION
+        val action = customAction ?: standardAction
+        val noEnterAction = options and android.view.inputmethod.EditorInfo.IME_FLAG_NO_ENTER_ACTION != 0
+        val hasEditorAction = customAction != null || standardAction !in setOf(
+            android.view.inputmethod.EditorInfo.IME_ACTION_NONE,
+            android.view.inputmethod.EditorInfo.IME_ACTION_UNSPECIFIED,
+        )
+
+        val handled = !noEnterAction && hasEditorAction &&
+            connection?.performEditorAction(action) == true
+        if (!handled) sendDownUpKeyEvents(android.view.KeyEvent.KEYCODE_ENTER)
     }
 
     override fun onStartInputView(attribute: android.view.inputmethod.EditorInfo?, restarting: Boolean) {

@@ -1,8 +1,13 @@
 *.iml
 .gradle/
 build/
+app/src/main/assets/rime/build/
+!app/src/main/assets/rime/build/
+!app/src/main/assets/rime/build/*.bin
 local.properties
-keystore/
+keystore.properties
+*.jks
+*.keystore
 .idea/
 .DS_Store
 *.apk
@@ -15,6 +20,7 @@ skills-lock.json
 .codegraph/
 .gitnexus/
 device-*.png
-app/src/main/assets/rime/build/
 app/src/main/assets/rime/installation.yaml
 app/src/main/assets/rime/user.yaml
+/reference/
+/docs/

@@ -145,7 +145,12 @@ class KeyboardViewModel(
                 } else if (_state.value.activeKeyboard == KeyboardType.ENGLISH) {
                     onCommitText(action.keycode.toChar().toString())
                 } else {
-                    engine.processKey(action.keycode, action.mask)
+                    val rimeKeycode = if (_state.value.activeKeyboard == KeyboardType.T9) {
+                        T9Mapper.numKeyToT9Letter(action.keycode)?.code ?: action.keycode
+                    } else {
+                        action.keycode
+                    }
+                    engine.processKey(rimeKeycode, action.mask)
                     if (_state.value.activeKeyboard == KeyboardType.T9) {
                         inputKeyTracker.pushT9Key(action.keycode)
                     }
@@ -283,6 +288,10 @@ class KeyboardViewModel(
                 val comment = accumulatedCandidates.firstOrNull()?.comment?.ifEmpty { null }
                 if (comment != null) T9Mapper.getT9Composition(newComposingText, comment)
                 else inputKeyTracker.buildComposingDisplay()
+            }
+            _state.value.activeKeyboard == KeyboardType.QWERTY -> {
+                val comment = accumulatedCandidates.firstOrNull { it.comment.isNotBlank() }?.comment.orEmpty()
+                T9Mapper.getQwertyComposition(newComposingText, comment)
             }
             else -> newComposingText
         }

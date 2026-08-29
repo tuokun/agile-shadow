@@ -63,7 +63,7 @@ fun T9Keyboard(
                         GlassKeyButton(
                         isDark = isDark,
                         label = key.label,
-                            onClick = { viewModel.onAction(KeyboardAction.KeyPress(key.code)) },
+                            onClick = { viewModel.onAction(KeyboardAction.DirectCommit(key.label)) },
                             modifier = Modifier.weight(1f).fillMaxWidth(),
                             height = 0.dp,
                             keyBackgroundColor = TOOLBAR_BG,

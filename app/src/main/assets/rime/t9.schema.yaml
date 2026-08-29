@@ -18,7 +18,7 @@ t9:
   isDisplayOriginalPreedit: false
 
 schema:
-  schema_id: t9
+  schema_id: t9_pinyin
   name: 中文九键
   version: "3.0.0"
   author:
@@ -70,7 +70,7 @@ recognizer:
     calculator: "^=.+"                 # 响应 lua_translator@*calc_translator，计算器。前缀设定项 calculator/prefix
 
 translator:
-  prism: t9
+  prism: t9_pinyin
   spelling_hints: 100
   comment_format: []
   # dictionary_exclude: [肏屄, 鸡巴]  # 如有屏蔽 NSFW 词汇需求 librime >= 1.14.0 等价于从 .dict.yaml 中删除对应词条，但不影响组句和用户词库。
@@ -88,6 +88,10 @@ custom_phrase:
 # 九宫格 1 键上的符号序列
 punctuator:
   half_shape:
+    ',' : '，'
+    '.' : '。'
+    '?' : '？'
+    '!' : '！'
     "1": [1, "@", ".", "/", ":", "_", "-", "#"]
     "@": [1, "@", ！, ：, 、, ……, ～]
     "#": [0, "#", "$", "%", "^", "&", "*", "(", ")"]
