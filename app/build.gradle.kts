@@ -1,3 +1,4 @@
+import java.security.MessageDigest
 import java.util.Properties
 
 plugins {
@@ -94,6 +95,98 @@ tasks.configureEach {
     }
 }
 
+val rimeAssetsDirectory = layout.projectDirectory.dir("src/main/assets/rime")
+val rimeRuntimeManifest = rimeAssetsDirectory.file("runtime-manifest.txt")
+
+val verifyRimeRuntime by tasks.registering {
+    group = "verification"
+    description = "Verifies the complete Rime runtime assets used by Android builds."
+
+    inputs.file(rimeRuntimeManifest)
+    inputs.dir(rimeAssetsDirectory)
+
+    doLast {
+        val assetsRoot = rimeAssetsDirectory.asFile.canonicalFile
+        val manifestFile = rimeRuntimeManifest.asFile
+        check(manifestFile.isFile) {
+            "Rime Runtime 清单不存在：${manifestFile.absolutePath}"
+        }
+
+        val entries = manifestFile.readLines()
+            .map(String::trim)
+            .filter { it.isNotEmpty() && !it.startsWith("#") }
+            .mapIndexed { index, line ->
+                val parts = line.split('|')
+                check(parts.size == 3) {
+                    "Rime Runtime 清单第 ${index + 1} 条格式错误：$line"
+                }
+
+                val relativePath = parts[0]
+                val expectedSize = parts[1].toLongOrNull()
+                val expectedSha256 = parts[2].lowercase()
+                check(expectedSize != null && expectedSize >= 0) {
+                    "Rime Runtime 文件长度无效：$line"
+                }
+                check(expectedSha256.matches(Regex("[0-9a-f]{64}"))) {
+                    "Rime Runtime SHA-256 无效：$line"
+                }
+                Triple(relativePath, expectedSize, expectedSha256)
+            }
+
+        check(entries.isNotEmpty()) {
+            "Rime Runtime 清单不能为空：${manifestFile.absolutePath}"
+        }
+
+        val declaredPaths = entries.map { it.first }
+        check(declaredPaths.size == declaredPaths.toSet().size) {
+            "Rime Runtime 清单包含重复路径"
+        }
+
+        entries.forEach { (relativePath, expectedSize, expectedSha256) ->
+            val runtimeFile = assetsRoot.resolve(relativePath).canonicalFile
+            check(runtimeFile.toPath().startsWith(assetsRoot.toPath())) {
+                "Rime Runtime 路径越出 assets 根目录：$relativePath"
+            }
+            check(runtimeFile.isFile) {
+                "Rime Runtime 文件缺失：$relativePath"
+            }
+            check(runtimeFile.length() == expectedSize) {
+                "Rime Runtime 文件长度不一致：$relativePath，期望 $expectedSize，实际 ${runtimeFile.length()}"
+            }
+
+            val digest = MessageDigest.getInstance("SHA-256")
+            runtimeFile.inputStream().buffered().use { input ->
+                val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
+                while (true) {
+                    val count = input.read(buffer)
+                    if (count < 0) break
+                    digest.update(buffer, 0, count)
+                }
+            }
+            val actualSha256 = digest.digest().joinToString("") { "%02x".format(it) }
+            check(actualSha256 == expectedSha256) {
+                "Rime Runtime SHA-256 不一致：$relativePath，期望 $expectedSha256，实际 $actualSha256"
+            }
+        }
+
+        val actualRuntimePaths = assetsRoot
+            .walkTopDown()
+            .filter { it.isFile }
+            .map { it.relativeTo(assetsRoot).invariantSeparatorsPath }
+            .filter { it != manifestFile.name }
+            .toSet()
+        check(actualRuntimePaths == declaredPaths.toSet()) {
+            val missing = declaredPaths.toSet() - actualRuntimePaths
+            val unexpected = actualRuntimePaths - declaredPaths.toSet()
+            "Rime Runtime 文件集合与清单不一致；缺失=$missing，未声明=$unexpected"
+        }
+    }
+}
+
+tasks.named("preBuild") {
+    dependsOn(verifyRimeRuntime)
+}
+
 room {
     schemaDirectory("$projectDir/schemas")
 }
@@ -116,7 +209,6 @@ dependencies {
 
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
-    implementation(libs.sqlite.bundled)
 
     implementation(libs.datastore.preferences)
 
